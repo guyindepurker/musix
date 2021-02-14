@@ -1,7 +1,9 @@
 //@ TO CREATE A NEW CMP USE THIS CODE IN THE COMMEND LINE:
 // node create-component.js --dir "folder-name" --name "cmp-name"
 const fs = require('fs');
+const _ = require('lodash')
 const path = require('path');
+
 const validOptions = {
     name: 'name', 
     n: 'name', 
@@ -93,8 +95,13 @@ export default ${cmpName}
 `
 
 const styleTemplate = (styleName) => {
-    const name = styleName.charAt(0).toLowerCase() + styleName.slice(1)
-    return `.${name} {}`
+    let name = styleName.charAt(0).toLowerCase() + styleName.slice(1)
+    name =  _.kebabCase(name);
+    return (
+        `
+        @import "./src/styles/setup";
+        .${name} {}`   
+    )
 }
 
 const showHelp = () => {
