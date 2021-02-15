@@ -2,3 +2,13 @@
 .mixes {
   min-height: calc(100vh - 270px);
 }
+
+.genres-names-list {
+        margin-bottom: rem(20px);
+    .genre-name {
+            color: $white;
+            font-family: $font-primary;
+            letter-spacing: 0.5px;
+            text-transform: capitalize;
+    }    
+}

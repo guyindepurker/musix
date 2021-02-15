@@ -12,8 +12,8 @@ export default function MixPreview({ mix }) {
             <p className="mix-desc">{mix.description}</p> 
             {/* singers names */}
             <div className="details-container flex">
-                <p className="mix-likes"><i class="fas fa-heart"></i>{mix.likes}</p>
-                <p className="mix-views"><i class="far fa-eye"></i>{mix.views}</p>
+                <p className="mix-likes"><i className="fas fa-heart"></i>{mix.likes}</p>
+                <p className="mix-views"><i className="far fa-eye"></i>{mix.views}</p>
             </div>
         </li>
     )

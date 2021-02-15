@@ -12,7 +12,7 @@ export default function MixList({ mixes }) {
         <ul className="mix-list clean-list flex wrap justify-center container">
             {mixes.map(mix => {
                 return (
-                    <Link to={`mix/${mix._id}`}><MixPreview key={mix._id} mix={mix} /></Link>)
+                    <Link to={`mix/${mix._id}`} key={mix._id}><MixPreview key={mix._id} mix={mix} /></Link>)
             })}
         </ul>
     )
