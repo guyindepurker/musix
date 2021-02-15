@@ -6,7 +6,7 @@ import './MixDetails.scss'
 class MixDetails extends Component {
 
     render() {
-
+        return <section>I am mix details</section>
     }
 }
 
