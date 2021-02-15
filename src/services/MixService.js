@@ -1,24 +1,32 @@
-function query(userId) {
-    return httpService.get(`board?userId=${userId}`);
+import { httpService } from './HttpService'
+
+export const MixService = {
+    query,
+    getById,
+    remove,
+    save
+}
+function query() {
+    return httpService.get('mix');
 }
 
-function getById(boardId) {
-    return httpService.get(`board/${boardId}`);
+function getById(mixId) {
+    return httpService.get(`mix/${mixId}`);
 }
 
-function remove(boardId) {
-    return httpService.delete(`board/${boardId}`);
+function remove(mixId) {
+    return httpService.delete(`mix/${mixId}`);
 }
 
-function save(board) {
-    const savedBoard = board._id ? _update(board) : _add(board);
-    return savedBoard;
+function save(mix) {
+    const savedmix = mix._id ? _update(mix) : _add(mix);
+    return savedmix;
 }
 
-async function _add(board) {
-    return httpService.post(`board/`, board);
+async function _add(mix) {
+    return httpService.post(`mix/`, mix);
 }
 
-async function _update(board) {
-    return httpService.put(`board/${board._id}`, board);
+async function _update(mix) {
+    return httpService.put(`mix/${mix._id}`, mix);
 }
