@@ -1,13 +1,18 @@
 
-import React, { Component } from 'react'
+import React from 'react'
 
 import './MixPreview.scss'
 
-class MixPreview extends Component {
+export default function MixPreview({mix}){
 
-    render() {
+    return(
+        <li className="mix-preview">
+            <h2>{mix.name}</h2>
+            <p>{mix.description}</p>
+        </li>
+    ) 
         
-    }
+    
 }
 
-export default MixPreview
+

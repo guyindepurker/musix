@@ -2,12 +2,17 @@
 import React, { Component } from 'react'
 
 import './MixList.scss'
+import MixPreview from '../MixPreview/MixPreview';
 
-class MixList extends Component {
+export default function MixList({mixes}){
 
-    render() {
-
-    }
+ return (
+     <ul className="mix-list clean-list">
+              {mixes.map(mix=>{
+                return( <MixPreview key={mix._id} mix={mix} /> )
+            })}
+          
+     </ul>
+ )
 }
 
-export default MixList

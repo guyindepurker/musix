@@ -20,7 +20,7 @@ export default function AppFooter() {
                 <NavLink exact to="/user/52">Profile</NavLink>
             </ul>
             <div className="footer-content flex column">
-                <span><i class="fal fa-globe-asia"></i> Israel</span>
+                <span><i className="fal fa-globe-asia"></i> Israel</span>
                 <span className="copyrights">© copyrights musix 2021</span>
             </div>
         </footer>

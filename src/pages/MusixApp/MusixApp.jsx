@@ -3,40 +3,56 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { loadMixes } from '../../store/actions/MixAction'
 import './MusixApp.scss'
-
+import _ from 'lodash'
+import MixList from '../../cmps/MixList/MixList';
 class _MusixApp extends Component {
-    state={
-        filterBy:null
+    state = {
+        filterBy: null,
+    
     }
-    componentDidMount(){
+    componentDidMount() {
         this.loadMixes()
     }
-    loadMixes=async()=>{
-       await this.props.loadMixes(this.state.filterBy)
-       console.log('mixes:',this.props.mixes);
+    loadMixes = async () => {
+        await this.props.loadMixes(this.state.filterBy)
+       
     }
-    sortMixesNames=()=>{
-        const mixes = this.props
+    mixesByGenre = async() => {
+        // await this.loadMixes()
+        const { mixes } = this.props
         console.log('mixes:', mixes)
-        // let sortMix = []
-        // mixes.forEach(mix => {
-        //     sortMix.includes(mix.genre)
-        // });
+        const mixesByGenre = mixes.reduce((acc, mix) => {
+            if (!acc[mix.genre]) acc[mix.genre] = []
+            acc[mix.genre].push(mix)
+            return acc
+        }, {})
+        
+        return mixesByGenre
     }
+    get genresNames() {
+        return Object.keys(this.mixesByGenre())
+    }
+   
     render() {
-        return (<section className="musix-app">
-            I am the mix playlist
+        const {mixes} = this.props
+        if (!this.props.mixes) return <div>Loading...</div>
+        return (
+            <section className="musix-app">
+                <h1>hii</h1>
+                
+                <MixList mixes={mixes} /> 
 
 
-            </section>)
+            </section>
+        )
     }
 }
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
-        mixes:state.mixReducer.mixes
+        mixes: state.mixReducer.mixes
     }
 }
 const mapDispatchToProps = {
     loadMixes
 }
-export const MusixApp = connect(mapStateToProps,mapDispatchToProps)(_MusixApp)
+export const MusixApp = connect(mapStateToProps, mapDispatchToProps)(_MusixApp)

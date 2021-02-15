@@ -6,11 +6,13 @@
 
 html {
   font-size: 16px;
+  
 }
 
 body {
   height: 100vh;
   background-image: linear-gradient(#c074b2, #8ab5e8);
+  font-family: $font-primary;
 }
 
 input {

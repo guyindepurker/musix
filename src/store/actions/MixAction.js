@@ -5,8 +5,9 @@ export function loadMixes(filterBy){
         const mixes = await mixService.query(filterBy)
         console.log('mixes:', mixes)
         dispatch({type:'SET_MIXES',mixes})
-    }
 }
+}
+
 export function loadMix(mixId){
     return async (dispatch) =>{
         const mix = await mixService.getById(mixId)
