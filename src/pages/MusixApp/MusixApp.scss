@@ -2,25 +2,24 @@
 .musix-app {
   min-height: calc(100vh - 270px);
   width: 100%;
+  padding-top: 30px;
 }
 
-.mix-genre-container{
-  &:first-child{
-    margin-top: rem(15px);
-  }
-  &:not(:last-child){
+.mix-genre-container {
+  &:not(:last-child) {
     margin-bottom: rem(20px);
   }
-  .mix-genre-header{
+  .mix-genre-header {
     margin-bottom: rem(10px);
-    .show-more-btn,.show-more-icon{
-      color:$white;
-      &:hover{
+    .show-more-btn {
+      color: $white;
+      &:hover {
         text-decoration: underline;
       }
     }
-    .show-more-btn{
-      margin-right: rem(2px);
+    .show-more-icon {
+      font-size: rem(12px);
+      margin-left: rem(2px);
     }
   }
 }

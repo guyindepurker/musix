@@ -41,7 +41,7 @@ class _MusixApp extends Component {
                     <div key={name} className="mix-genre-container flex column container">
                         <div className="mix-genre-header flex space-between align-center">
                             {name && <h3 className="heading-tertiary">{name}</h3>}
-                            <Link to={`/app/mixes?mix=${name}`}><span className="show-more-btn">Show more </span><i class="show-more-icon fas fa-arrow-circle-right"></i></Link>
+                            <Link to={`/app/mixes?mix=${name}`}><span className="show-more-btn">Show more<i class="show-more-icon fas fa-arrow-right"></i></span></Link>
                         </div>
                         <div className="genre-list-content">
                             <MixList key={name} mixes={mixesByGenre[name]} />
