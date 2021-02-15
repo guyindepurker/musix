@@ -6,7 +6,10 @@ export const mixService = {
     remove,
     save
 }
-function query() {
+function query(filterBy=null) {
+    if(filterBy){
+        return httpService.get(`mix${filterBy}`);
+    }
     return httpService.get('mix');
 }
 

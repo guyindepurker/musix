@@ -3,7 +3,6 @@ import { mixService } from '../../services/MixService';
 export function loadMixes(filterBy){
     return async (dispatch) =>{
         const mixes = await mixService.query(filterBy)
-        console.log('mixes:', mixes)
         dispatch({type:'SET_MIXES',mixes})
 }
 }

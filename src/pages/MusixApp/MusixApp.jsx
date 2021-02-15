@@ -13,7 +13,7 @@ class _MusixApp extends Component {
     }
     componentDidMount() {
         this.loadMixes()
-
+        console.log('this.props.location.query:', this.props.location.query);
     }
     loadMixes = async () => {
         await this.props.loadMixes(this.state.filterBy)
