@@ -1,4 +1,26 @@
 @import "./src/styles/setup";
 .musix-app {
   min-height: calc(100vh - 270px);
+ 
+}
+
+.mix-genre-container{
+  &:first-child{
+    margin-top: rem(15px);
+  }
+  &:not(:last-child){
+    margin-bottom: rem(20px);
+  }
+  .mix-genre-header{
+    margin-bottom: rem(10px);
+    .show-more-btn,.show-more-icon{
+      color:$white;
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+    .show-more-btn{
+      margin-right: rem(2px);
+    }
+  }
 }
