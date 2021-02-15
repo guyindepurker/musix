@@ -4,7 +4,9 @@ import React, { Component } from 'react'
 import './SignUp.scss'
 
 class SignUp extends Component {
-
+    state ={
+        isSignup:false,
+    }
     render() {
 
         const Login = () => {
@@ -20,7 +22,7 @@ class SignUp extends Component {
 
                     <div className="signup-section flex column align-center">
                         <span className="quest">Don't you have an account yet?</span>
-                        <button className="quest-btn">Sign up now!</button>
+                        <button onClick={()=>this.setState({isSignup:true})} className="quest-btn">Sign up now!</button>
                     </div>
                 </div>
 
@@ -43,12 +45,13 @@ class SignUp extends Component {
 
                     <div className="login-section flex column align-center">
                         <span className="quest">Already have an account?</span>
-                        <button className="quest-btn" >Login</button>
+                        <button onClick={()=>this.setState({isSignup:false})} className="quest-btn" >Login</button>
                     </div>
                 </div>
 
             )
         }
+        const {isSignup}=this.state 
         return (
             <section className="sign-up flex column align-center">
                 <div className="facebook-login">
@@ -57,8 +60,7 @@ class SignUp extends Component {
                 <div className="sepertor-container flex align-center">
                     <span class="separator-line"></span>Or<span class="separator-line"></span>
                 </div>
-                <Login></Login>
-                {/* <Signup></Signup> */}
+                {!isSignup&&<Login></Login> || isSignup&&<Signup></Signup>}
             </section>
 
         )
