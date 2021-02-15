@@ -45,7 +45,6 @@ class _MusixApp extends Component {
                         </div>
                         <div className="genre-list-content">
                             <MixList key={name} mixes={mixesByGenre[name]} />
-
                         </div>
                     </div>)
             }))
