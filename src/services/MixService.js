@@ -1,6 +1,6 @@
 import { httpService } from './HttpService'
 
-export const MixService = {
+export const mixService = {
     query,
     getById,
     remove,
