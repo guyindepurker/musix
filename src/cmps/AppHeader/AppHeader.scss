@@ -1,3 +1,61 @@
+@import "./src/styles/setup";
+@import "../../styles/basics/fonts";
 
-        @import "./src/styles/setup";
-        .app-header {}
+.app-header {
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 80px;
+  padding: 0 20px;
+
+  .logo-container {
+    color: $white;
+    h1 {
+      font-family: "gotham-medium";
+      font-size: rem(25px);
+      letter-spacing: 0.5px;
+      position: relative;
+      .copyrights {
+        font-size: rem(10px);
+        position: absolute;
+        top: 9px;
+        right: -9px;
+      }
+    }
+    .fa-spotify {
+      margin-right: 7px;
+      font-size: rem(40px);
+    }
+  }
+
+  .nav-links {
+    > * {
+      font-family: circular-bold;
+      padding: 0px 17px;
+      color: $white;
+      letter-spacing: 0.5px;
+    }
+
+    .profile-link {
+      &:hover {
+        a,
+        .fa-user-circle {
+          color: $light-green;
+        }
+      }
+      a {
+        color: $white;
+      }
+      .fa-user-circle {
+        margin-right: 10px;
+        font-size: rem(35px);
+        font-weight: 50 !important;
+      }
+    }
+
+    .mixes-link,
+    .signup-link {
+      &:hover {
+        color: $light-green;
+      }
+    }
+  }
+}

@@ -1,23 +1,27 @@
 
-import React, { Component } from 'react'
+import React from 'react'
 import { NavLink } from 'react-router-dom'
 import './AppHeader.scss'
 
-class AppHeader extends Component {
+export default function AppHeader() {
 
-    render() {
-        return (<header className="header">
-            <h1>Musix</h1>
-            <nav>
-                <NavLink exact to="/">Home page</NavLink>
-                <NavLink exact to="/app">Musix</NavLink>
-                <NavLink exact to="/app/mixes">Mixes</NavLink>
-                <NavLink exact to="/user/52">User profile</NavLink>
-                <NavLink exact to="/app/mix/356656">Mix details</NavLink>
-                <NavLink exact to="/signup">Sign up</NavLink>
+    return (
+        <header className="app-header flex space-between align-center">
+            <NavLink className="logo-container flex align-center" exact to="/">
+                <i className="fab fa-spotify"></i>
+                <h1>Musix<span className="copyrights">©</span></h1>
+            </NavLink>
+            <nav className="nav-links flex align-center">
+                <NavLink className="mixes-link" exact to="/app/mixes">Mixes</NavLink>
+                <NavLink className="signup-link" exact to="/signup">Sign Up</NavLink>
+                <span>|</span>
+                <div className="profile-link flex align-center">
+                    <i className="far fa-user-circle"></i>
+                    <NavLink exact to="/user/52">Profile</NavLink>
+                </div>
             </nav>
-        </header>)
-    }
+        </header>
+    )
+
 }
 
-export default AppHeader
