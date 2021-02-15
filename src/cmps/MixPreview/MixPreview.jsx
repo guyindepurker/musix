@@ -6,7 +6,7 @@ import './MixPreview.scss'
 class MixPreview extends Component {
 
     render() {
-
+        
     }
 }
 

@@ -1,11 +1,11 @@
 
+import Axios from 'axios'
+const BASE_URL = '//localhost:3000/'
 
 // const BASE_URL =
 //   process.env.NODE_ENV === "production" ? "/api/" : "//localhost:3030/api/";
 
-const BASE_URL = '//localhost:3000/'
 
-import Axios from 'axios'
 var axios = Axios.create({
   withCredentials: true
 })
