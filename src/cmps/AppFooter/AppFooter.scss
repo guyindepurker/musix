@@ -1,3 +1,65 @@
+@import "./src/styles/setup";
+.app-footer {
+  height: 270px;
+  background-color: $black;
+  color: $white;
+  bottom: 0;
+  width: 100%;
+  padding: 50px 100px;
+  position: relative;
 
-        @import "./src/styles/setup";
-        .app-footer {}
+  .logo-container {
+    color: $white;
+    margin-right: 80px;
+    height: fit-content;
+    align-items: center;
+    h1 {
+      font-family: $font-secondary;
+      font-size: rem(30px);
+      letter-spacing: 0.5px;
+      position: relative;
+      .copyrights {
+        font-size: rem(10px);
+        position: absolute;
+        top: 9px;
+        right: -9px;
+      }
+    }
+    .fa-spotify {
+      margin-right: 7px;
+      font-size: rem(45px);
+    }
+  }
+
+  .footer-links {
+    padding-top: 15px;
+
+    > * {
+      font-family: $font-secondary;
+      padding: 10px 20px;
+      color: $white;
+      letter-spacing: 0.5px;
+      font-size: rem(15px);
+      &:hover {
+        color: $light-green;
+      }
+    }
+  }
+
+  .footer-content {
+    font-size: rem(14px);
+    font-family: $font-primary;
+    color: #919496;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 50px 100px;
+    text-align: right;
+    .fa-globe-asia {
+      font-size: rem(12px);
+    }
+    .copyrights {
+      margin-top: 10px;
+    }
+  }
+}

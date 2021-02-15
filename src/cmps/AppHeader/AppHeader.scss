@@ -9,8 +9,8 @@
   .logo-container {
     color: $white;
     h1 {
-      font-family: "gotham-medium";
-      font-size: rem(25px);
+      font-family: $logo-font;
+      font-size: rem(30px);
       letter-spacing: 0.5px;
       position: relative;
       .copyrights {
@@ -22,13 +22,13 @@
     }
     .fa-spotify {
       margin-right: 7px;
-      font-size: rem(40px);
+      font-size: rem(45px);
     }
   }
 
   .nav-links {
     > * {
-      font-family: circular-bold;
+      font-family: $font-tertiary;
       padding: 0px 17px;
       color: $white;
       letter-spacing: 0.5px;
@@ -39,6 +39,7 @@
         a,
         .fa-user-circle {
           color: $light-green;
+          cursor: pointer;
         }
       }
       a {
@@ -52,7 +53,8 @@
     }
 
     .mixes-link,
-    .signup-link {
+    .signup-link,
+    .home-link {
       &:hover {
         color: $light-green;
       }

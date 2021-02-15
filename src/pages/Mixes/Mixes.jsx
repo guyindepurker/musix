@@ -7,31 +7,31 @@ import './Mixes.scss'
 
 class _Mixes extends Component {
 
-    state={
-        filterBy:null
+    state = {
+        filterBy: null
     }
-    componentDidMount(){
+    componentDidMount() {
         this.loadMixes()
     }
-    loadMixes=async()=>{
-       await this.props.loadMixes(this.state.filterBy)
-       console.log('mixes:',this.props.mixes);
+    loadMixes = async () => {
+        await this.props.loadMixes(this.state.filterBy)
+        console.log('mixes:', this.props.mixes);
     }
 
     render() {
         return (
-            <section className="mixes-list">
+            <section className="mixes">
 
             </section>
         )
     }
 }
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
-        mixes:state.mixReducer.mixes
+        mixes: state.mixReducer.mixes
     }
 }
 const mapDispatchToProps = {
     loadMixes
 }
-export const Mixes = connect(mapStateToProps,mapDispatchToProps)(_Mixes)
+export const Mixes = connect(mapStateToProps, mapDispatchToProps)(_Mixes)

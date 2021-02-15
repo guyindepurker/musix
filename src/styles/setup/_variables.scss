@@ -1,4 +1,3 @@
-
 // LAYOUT BREAKPOINTS
 
 $break-mobile: 400px;
@@ -7,14 +6,22 @@ $break-narrow: 750px;
 $break-normal: 950px;
 $break-wide: 1300px;
 
-//colors 
+//colors
 
 $bgc-color: linear-gradient(#c074b2, #8ab5e8);
 
 // linear-gradient(transparent,rgba(0,0,0,.5))
 
-$green: #1DB954;
-$light-green: #1ED760;
+$green: #1db954;
+$light-green: #1ed760;
 $dark-grey: #222326;
 $white: white;
 $black: black;
+$light-gray: #919496;
+
+// FONTS
+
+$logo-font: "gotham-medium";
+$font-primary: "circular-book";
+$font-secondary: "circular-medium";
+$font-tertiary: "circular-bold";

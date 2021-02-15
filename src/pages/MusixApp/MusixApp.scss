@@ -1,3 +1,4 @@
-
-        @import "./src/styles/setup";
-        .musix-app {}
+@import "./src/styles/setup";
+.musix-app {
+  min-height: calc(100vh - 270px);
+}

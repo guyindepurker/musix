@@ -1,3 +1,4 @@
-
-        @import "./src/styles/setup";
-        .sign-up {}
+@import "./src/styles/setup";
+.sign-up {
+  min-height: calc(100vh - 270px);
+}

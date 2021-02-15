@@ -1,3 +1,4 @@
-
-        @import "./src/styles/setup";
-        .user-profile {}
+@import "./src/styles/setup";
+.user-profile {
+  min-height: calc(100vh - 270px);
+}

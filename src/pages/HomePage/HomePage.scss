@@ -1,3 +1,4 @@
-
-        @import "./src/styles/setup";
-        .home-page {}
+@import "./src/styles/setup";
+.home-page {
+  min-height: calc(100vh - 270px);
+}

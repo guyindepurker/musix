@@ -1,3 +1,4 @@
-
-        @import "./src/styles/setup";
-        .mix-details {}
+@import "./src/styles/setup";
+.mix-details {
+  min-height: calc(100vh - 270px);
+}
