@@ -1,44 +1,58 @@
 
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { loadMixes } from '../../store/actions/MixAction'
 import './MusixApp.scss'
 import _ from 'lodash'
 import MixList from '../../cmps/MixList/MixList';
+import { Link } from 'react-router-dom'
 class _MusixApp extends Component {
     state = {
         filterBy: null,
-    
+        mixesByGenre: null
     }
     componentDidMount() {
         this.loadMixes()
+
     }
     loadMixes = async () => {
         await this.props.loadMixes(this.state.filterBy)
-       
+        this.mixesByGenre()
     }
-    mixesByGenre = async() => {
-        // await this.loadMixes()
+    mixesByGenre = () => {
         const { mixes } = this.props
-        console.log('mixes:', mixes)
         const mixesByGenre = mixes.reduce((acc, mix) => {
             if (!acc[mix.genre]) acc[mix.genre] = []
             acc[mix.genre].push(mix)
             return acc
         }, {})
-        
-        return mixesByGenre
+        this.setState({ mixesByGenre })
     }
     get genresNames() {
-        return Object.keys(this.mixesByGenre())
+        return Object.keys(this.state.mixesByGenre)
     }
-   
+
     render() {
-        const {mixes} = this.props
-        if (!this.props.mixes) return <div>Loading...</div>
+        const { mixesByGenre } = this.state
+        if (!mixesByGenre) return <div>Loading...</div>
+        const MixGenres = () => {
+            return (this.genresNames.map(name => {
+                return (
+                    <div key={name} className="mix-genre-container flex column container">
+                        <div className="mix-genre-header flex space-between align-center">
+                            {name && <h3 className="heading-tertiary">{name}</h3>}
+                            <Link to={`/app/mixes?mix=${name}`}><span className="show-more-btn">Show more </span><i class="show-more-icon fas fa-arrow-circle-right"></i></Link>
+                        </div>
+                        <div className="genre-list-content">
+                            <MixList key={name} mixes={mixesByGenre[name]} />
+
+                        </div>
+                    </div>)
+            }))
+        }
         return (
             <section className="musix-app">
-                <MixList mixes={mixes} /> 
+                <MixGenres />
             </section>
         )
     }
