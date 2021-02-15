@@ -12,14 +12,16 @@
   .mix-genre-header {
     margin-bottom: rem(10px);
     .show-more-btn {
-      color: $white;
+      color: $light-grey;
+      font-family: $font-secondary;
       &:hover {
-        text-decoration: underline;
+        border-bottom: 2px solid $light-grey;
+        
       }
     }
     .show-more-icon {
       font-size: rem(12px);
-      margin-left: rem(2px);
+      margin-left: rem(5px);
     }
   }
 }
