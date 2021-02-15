@@ -38,11 +38,7 @@ class _MusixApp extends Component {
         if (!this.props.mixes) return <div>Loading...</div>
         return (
             <section className="musix-app">
-                <h1>hii</h1>
-                
                 <MixList mixes={mixes} /> 
-
-
             </section>
         )
     }

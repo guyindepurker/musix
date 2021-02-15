@@ -1,3 +1,55 @@
+@import "./src/styles/setup";
+.mix-preview {
+  background-color: $mix-bgc;
+  width: 280px;
+  height: 270px;
+  margin: 10px;
+  padding: 16px;
+  border-radius: 4px;
+  isolation: isolate;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: $mix-bgc-hover;
+  }
 
-        @import "./src/styles/setup";
-        .mix-preview {}
+  > * {
+    color: $white;
+  }
+
+  .mix-name {
+    font-family: $font-tertiary;
+    padding: 5px 0;
+  }
+
+  .mix-desc {
+    font-family: $font-secondary;
+    font-size: rem(12px);
+    margin-bottom: 10px;
+    // padding: 5px 0;
+  }
+
+  .mix-img {
+    width: 250px;
+    height: 140px;
+    object-fit: cover;
+    margin-bottom: 8px;
+  }
+
+  .details-container {
+    font-family: $font-secondary;
+    align-self: flex-end;
+    > * {
+      padding: 5px;
+    }
+    .mix-likes {
+      color: $red;
+      .fa-heart {
+        margin-right: 3px;
+      }
+    }
+
+    .fa-eye {
+      margin-right: 3px;
+    }
+  }
+}

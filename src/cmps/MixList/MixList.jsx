@@ -1,18 +1,21 @@
 
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
+
 
 import './MixList.scss'
 import MixPreview from '../MixPreview/MixPreview';
 
-export default function MixList({mixes}){
+export default function MixList({ mixes }) {
 
- return (
-     <ul className="mix-list clean-list">
-              {mixes.map(mix=>{
-                return( <MixPreview key={mix._id} mix={mix} /> )
+    return (
+        <ul className="mix-list clean-list flex wrap justify-center container">
+            {mixes.map(mix => {
+                return (
+                    <Link to={`mix/${mix._id}`}><MixPreview key={mix._id} mix={mix} /></Link>)
             })}
-          
-     </ul>
- )
+        </ul>
+    )
 }
+
 
