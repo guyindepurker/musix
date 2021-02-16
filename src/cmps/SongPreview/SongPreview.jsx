@@ -3,7 +3,7 @@ import React from 'react'
 
 import './SongPreview.scss'
 
-export default function SongPreview({ song }) {
+export default function SongPreview({ song,updateMix }) {
 
     return (
         <li className="song-preview flex space-between">
@@ -14,7 +14,7 @@ export default function SongPreview({ song }) {
                 <span className="song-duration">{song.duration}</span>
             </div>
             <div className="song-controls flex align-center">
-                <i className="song-preview-icon fas fa-trash-alt"></i>
+                <i onClick={()=>updateMix(song.id)} className="song-preview-icon fas fa-trash-alt"></i>
             </div>
         </li>
     )

@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 import './MixDetails.scss'
-import { loadMix, updateMix, removeMix } from '../../store/actions/MixAction';
+import { loadMix, updateMix, removeMix, loadMixes } from '../../store/actions/MixAction';
 import SongList from '../../cmps/SongList/SongList';
 import MixHeader from '../../cmps/MixHeader';
 import MixActions from '../../cmps/MixActions';
@@ -15,11 +15,44 @@ class _MixDetails extends Component {
     }
     componentDidMount() {
         this.loadMix()
+        
     }
 
     loadMix = async () => {
         await this.props.loadMix(this.props.match.params.id)
+        if(!this.props.mixes){
+            await this.props.loadMixes()
+        }
     }
+    updateMix = async (key,value) =>{
+        console.log('key,value:', key,value)
+        const copyMix = {...this.props.mix}
+        copyMix[key] = value
+        try{
+            await this.props.updateMix(copyMix)
+        }catch (err){
+            console.log('ERR',err);
+        }
+    }
+    removeSong = (id) =>{
+        const copyMix = {...this.props.mix}
+       let {songs} = copyMix
+       let updatedSongs = songs.filter(song=>song.id!==id)
+       this.updateMix('songs',updatedSongs)
+    }
+  
+
+    removeMix=async (mixId)=>{
+        const {removeMix,history,loadMixes} = this.props
+       try{
+           await removeMix(mixId)
+           await loadMixes()
+           history.push('/app/mix')
+       }catch (err){
+           console.log('ERR',err);
+       }
+    }
+
     filterBySong = (song) => {
        this.setState({filterBySong:song})
     }
@@ -39,13 +72,13 @@ class _MixDetails extends Component {
         return (
             <section className="mix-details">
                 <div className="grid grid-header">
-                    <MixHeader mix={mix} createdBy={createdBy} songs={songs} />
+                    <MixHeader updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
                 </div>
                 <div className="grid grid-action">
                     <MixActions setSearch={this.filterBySong} />
                 </div>
                 <div className="grid grid-content">
-                    <SongList songs={this.songsToShow} />
+                    <SongList updateMix={this.removeSong} songs={this.songsToShow} />
                 </div>
             </section>
         )
@@ -54,13 +87,16 @@ class _MixDetails extends Component {
 
 function mapStateToProps(state) {
     return {
-        mix: state.mixReducer.mix
+        mix: state.mixReducer.mix,
+        mixes: state.mixReducer.mixes,
+
     }
 }
 const mapDispatchToProps = {
     loadMix,
     updateMix,
-    removeMix
+    removeMix,
+    loadMixes
 }
 
 export const MixDetails = connect(mapStateToProps, mapDispatchToProps)(_MixDetails)

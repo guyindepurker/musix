@@ -16,9 +16,9 @@ class _MusixApp extends Component {
     }
     loadMixes = async () => {
         await this.props.loadMixes(this.state.filterBy)
-        this.mixesByGenre()
+        this.mixByGenre()
     }
-    mixesByGenre = () => {
+    mixByGenre = () => {
         const { mixes } = this.props
         const mixesByGenre = mixes.reduce((acc, mix) => {
             if (!acc[mix.genre]) acc[mix.genre] = []

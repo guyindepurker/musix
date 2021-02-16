@@ -1,0 +1,14 @@
+.btn-green{
+color: $white;
+background-color:$light-green-3;
+letter-spacing: 1.4px;
+padding: rem(16px) rem(40px);
+transition-duration: .3s;
+min-width: 160px;
+text-transform: uppercase;
+border-radius: 20px;
+&:hover{
+    color:$light-green-3;
+    background-color:$white;
+}
+}

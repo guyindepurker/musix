@@ -12,7 +12,7 @@ export default function MixActions({ mix ,setSearch}) {
             <div className="mix-controls flex align-center">
                 <i className="mix-control-icon fas fa-plus-circle"></i>
                 <div className="search-container-controls">
-                    <Search setSearch={setSearch} />
+                    <Search placeholderTxt="Look for songs here" setSearch={setSearch} />
                 </div>
             </div>
             <div className="mix-social flex align-center">

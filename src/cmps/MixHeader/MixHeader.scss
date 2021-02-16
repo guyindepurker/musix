@@ -19,7 +19,7 @@
 
                 >*:not(:first-child) {
                         letter-spacing: 1px;
-                        color: $light-grey;
+
                 }
 
                 .mix {
@@ -48,5 +48,47 @@
                         }
 
                 }
+
+                [contenteditable]:focus {
+                        outline: 0px solid transparent;
+                    }
+                    .editable{
+                         border-bottom: 1px dashed rgba($white, 0.695);
+                    font-style: oblique;
+                
+                }
         }
+
+        .icon {
+                font-size: rem(17px);
+                color: $white;
+                transition: all .3s;
+                cursor: pointer;
+
+                &:hover {
+                        color: $light-green;
+                }
+        }
+
+        .btn-controls-container {
+                top: 6.9375rem;
+                right: rem(7px);
+                font-size: rem(20px);
+                gap: 10px;
+        }
+}
+
+// Private cmp :select genre
+.select-genre {
+        padding: 4px 5px;
+        width: fit-content;
+        display: inline-block;
+        margin-left: 3px;
+        text-transform: capitalize;
+        outline: none;
+        cursor: pointer;
+        border: 0;
+        border-radius: 8px;
+        appearance: none;
+
 }

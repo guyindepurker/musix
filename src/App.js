@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{Component} from 'react';
 import logo from './logo.svg';
 import './styles/_style.scss';
 import {
@@ -15,17 +15,23 @@ import { Mixes } from './pages/Mixes/Mixes';
 import UserProfile from './pages/UserProfile/UserProfile';
 import {MixDetails} from './pages/MixDetails/MixDetails';
 import SignUp from './pages/SignUp/SignUp';
-function App() {
+import { connect } from 'react-redux';
+class _App extends Component  {
+  render(){
+    const {user} = this.props
+    const PrivateRoute = (props) => {
+      return user ? <Route { ...props } /> : <Redirect to="/signup" />
+    }
   return (
     <div className='App'>
       <Router>
         <AppHeader />
         <Switch>
-          <Route path='/app/mix/:id' component={MixDetails} />
-          <Route path='/app/mixes' component={Mixes} />
-          <Route path='/app' component={MusixApp} />
+          <PrivateRoute path='/app/mix/:id' component={MixDetails} />
+          <PrivateRoute path='/app/mixes' component={Mixes} />
+          <PrivateRoute path='/app' component={MusixApp} />
           <Route path='/signup' component={SignUp} />
-          <Route path='/user/:id' component={UserProfile} />
+          <PrivateRoute path='/user/:id' component={UserProfile} />
           <Route path='/' component={HomePage} />
         </Switch>
         <AppFooter />
@@ -34,4 +40,12 @@ function App() {
   );
 }
 
-export default App;
+}
+
+function mapStateToProps(state) {
+  return {
+    user: state.userReducer.currUser
+  }
+}
+
+export const App = connect(mapStateToProps)(_App);
