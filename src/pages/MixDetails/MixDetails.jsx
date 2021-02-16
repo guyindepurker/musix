@@ -7,6 +7,7 @@ import { loadMix, updateMix, removeMix, loadMixes } from '../../store/actions/Mi
 import SongList from '../../cmps/SongList/SongList';
 import MixHeader from '../../cmps/MixHeader';
 import MixActions from '../../cmps/MixActions';
+import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 
 
 class _MixDetails extends Component {
@@ -15,6 +16,7 @@ class _MixDetails extends Component {
     }
     componentDidMount() {
         this.loadMix()
+        console.log('user:',this.props.user);
         
     }
 
@@ -66,19 +68,19 @@ class _MixDetails extends Component {
         return songs
     }
     render() {
-        const { mix } = this.props
-        if (!mix) return <div>Loading....</div>
+        const { mix,user } = this.props
+        if (!mix) return <LoaderCmp></LoaderCmp>
         const { createdBy, songs } = mix
         return (
             <section className="mix-details">
                 <div className="grid grid-header">
-                    <MixHeader updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
+                    <MixHeader user={user} updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
                 </div>
                 <div className="grid grid-action">
                     <MixActions setSearch={this.filterBySong} />
                 </div>
                 <div className="grid grid-content">
-                    <SongList updateMix={this.removeSong} songs={this.songsToShow} />
+                    <SongList isUserAdmin={(user._id===createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
                 </div>
             </section>
         )
@@ -89,6 +91,7 @@ function mapStateToProps(state) {
     return {
         mix: state.mixReducer.mix,
         mixes: state.mixReducer.mixes,
+        user:state.userReducer.loggedinUser
 
     }
 }

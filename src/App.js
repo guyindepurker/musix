@@ -44,7 +44,7 @@ class _App extends Component  {
 
 function mapStateToProps(state) {
   return {
-    user: state.userReducer.currUser
+    user: state.userReducer.loggedinUser
   }
 }
 

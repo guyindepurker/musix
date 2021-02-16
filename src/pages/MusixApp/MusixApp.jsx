@@ -6,6 +6,7 @@ import './MusixApp.scss'
 import _ from 'lodash'
 import MixList from '../../cmps/MixList/MixList';
 import { Link } from 'react-router-dom'
+import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 class _MusixApp extends Component {
     state = {
         filterBy: null,
@@ -33,7 +34,7 @@ class _MusixApp extends Component {
 
     render() {
         const { mixesByGenre } = this.state
-        if (!mixesByGenre) return <div>Loading...</div>
+        if (!mixesByGenre) return <LoaderCmp></LoaderCmp>
         const MixGenres = () => {
             return (this.genresNames.map(name => {
                 return (

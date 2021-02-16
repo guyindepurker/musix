@@ -52,3 +52,16 @@ export function getMiniUser(){
     if(!user) throw new Error('Not have a logged in user')
     return user
 }
+
+export function loginGuestMode() {
+    return async (dispatch) =>{
+        try{
+            const user = await userService.guestMode()
+            console.log('user:', user)
+            dispatch({type:'SET_USER',user})
+        } catch (err){
+            console.log('err from action login:', err)
+            throw err
+        }
+    }
+}

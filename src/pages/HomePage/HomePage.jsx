@@ -2,9 +2,18 @@
 import React from 'react'
 
 import './HomePage.scss'
+import { connect } from 'react-redux';
+import { loginGuestMode } from '../../store/actions/UserAction';
 
-export default function HomePage(props) {
-
+function HomePage(props) {
+    async function loginGuestMode() {
+       try{
+        await props.loginGuestMode()
+        props.history.push('/app/mix')
+       }catch (err){
+           console.log('unbale to login as a guest');
+       }
+    }
     const HeroHomePage = () => {
         return(
             <div className="hero-home-page">
@@ -14,8 +23,8 @@ export default function HomePage(props) {
             </h1>
                 <h6 className="hero-content-description">Millions of songs and podcasts. No credit card needed.</h6>
                 <div className="hero-content-controls">
-                    <button className="btn-green">Try as guest!</button>
-                    <button className="btn-green">Login</button>
+                    <button onClick={()=>loginGuestMode()} className="btn-green">Try as guest!</button>
+                    <button onClick={()=>props.history.push('/signup')} className="btn-green">Login</button>
                 </div>
             </div>
 
@@ -83,3 +92,7 @@ export default function HomePage(props) {
     )
 }
 
+const mapDispatchToProps = {
+    loginGuestMode
+}
+export default connect(undefined,mapDispatchToProps)(HomePage)

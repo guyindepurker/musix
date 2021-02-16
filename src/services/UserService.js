@@ -1,5 +1,5 @@
-import { httpService } from './http.service';
-
+import { utilService } from './UtilsService';
+import { httpService } from './HttpService';
 export const userService = {
   getById,
   remove,
@@ -8,6 +8,7 @@ export const userService = {
   signup,
   logout,
   getMiniUser,
+  guestMode
 };
 
 function getById(userId) {
@@ -61,4 +62,14 @@ function getMiniUser() {
 function _getUser() {
   const user = JSON.parse(sessionStorage.getItem('user'));
   return user;
+}
+
+async function guestMode() {
+  const guest = {
+    _id: utilService.makeId(),
+    fullName: 'Orly Amdadi',
+    userName: 'orly@amdadi.com',
+    isAdmin: false
+    }
+    return _handleLogin(guest);
 }
