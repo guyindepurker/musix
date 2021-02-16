@@ -1,5 +1,6 @@
 //@ TO CREATE A NEW CMP USE THIS CODE IN THE COMMEND LINE:
 // node create-component.js --dir "folder-name" --name "cmp-name"
+// fun cmp write:  node create-component.js --dir "folder-name" --name "cmp-name" --cmp-type "func"
 const fs = require('fs');
 const _ = require('lodash')
 const path = require('path');
