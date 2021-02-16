@@ -13,7 +13,7 @@ import HomePage from './pages/HomePage/HomePage';
 import { MusixApp } from './pages/MusixApp/MusixApp';
 import { Mixes } from './pages/Mixes/Mixes';
 import UserProfile from './pages/UserProfile/UserProfile';
-import MixDetails from './pages/MixDetails/MixDetails';
+import {MixDetails} from './pages/MixDetails/MixDetails';
 import SignUp from './pages/SignUp/SignUp';
 function App() {
   return (

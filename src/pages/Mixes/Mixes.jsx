@@ -12,6 +12,7 @@ class _Mixes extends Component {
 
     state = {
         filterBy: null,
+        filterBySong:null
 
     }
     componentDidMount() {
@@ -26,9 +27,22 @@ class _Mixes extends Component {
     loadMixes = async () => {
         await this.props.loadMixes(this.state.filterBy)
     }
+    filterBySong = (txt) =>{
+        this.setState({filterBySong:txt})
+    }
 
     get genresNames() {
         return ['all mixes', 'funk', 'pop', 'rock', 'electro', 'trance', 'techno', 'israeli', 'classic']
+    }
+
+    get mixesToShow(){
+        const { mixes } = this.props
+        const {filterBySong} = this.state
+        if(filterBySong){
+            const mixToShows = mixes.filter(mix=> mix.songs.some(song=>song.title.toLowerCase().includes(filterBySong.toLowerCase())))
+            return mixToShows
+        }
+        return mixes
     }
 
     render() {
@@ -52,10 +66,10 @@ class _Mixes extends Component {
         return (
             <section className="mixes">
                 <div className="search-container">
-                <Search />
+                    <Search placeholderTxt='Look for songs on mixes' setSearch={this.filterBySong} />
                 </div>
                 <GenresNames />
-                <MixList mixes={mixes} />
+                <MixList mixes={this.mixesToShow} />
             </section>
         )
     }

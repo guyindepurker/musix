@@ -58,7 +58,7 @@ class SignUp extends Component {
                     <button className="facebook-btn">Continue with Facebook</button>
                 </div>
                 <div className="sepertor-container flex align-center">
-                    <span class="separator-line"></span>Or<span class="separator-line"></span>
+                    <span className="separator-line"></span>Or<span className="separator-line"></span>
                 </div>
                 {!isSignup&&<Login></Login> || isSignup&&<Signup></Signup>}
             </section>
