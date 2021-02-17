@@ -1,6 +1,9 @@
 
 import React from 'react'
 import { NavLink } from 'react-router-dom'
+import guyImg from '../../assets/imgs/guy.jfif'
+import yuvalImg from '../../assets/imgs/yuval.jpg'
+
 
 import './AppFooter.scss'
 
@@ -22,6 +25,20 @@ export default function AppFooter() {
             <div className="footer-content flex column">
                 <span><i className="fal fa-globe-asia"></i> Israel</span>
                 <span className="copyrights">© copyrights musix 2021</span>
+            </div>
+            <div className="about flex column">
+                <div className="developer flex align-center ">
+                    <img alt="Yuval" src={yuvalImg} />
+                    <p>Yuval Beit On</p>
+                    <a href="https://www.linkedin.com/in/yuvalbeiton/" > <i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/YuvalBeitOn" > <i class="fab fa-github"></i></a>
+                </div>
+                <div className="developer flex align-center">
+                    <img alt="Hilla" src={guyImg} />
+                    <p>Guy Indepurker</p>
+                    <a href="https://www.linkedin.com/in/guy-indepurker-5778091a4/" > <i class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/guyindepurker" > <i class="fab fa-github"></i></a>
+                </div>
             </div>
         </footer>
     )
