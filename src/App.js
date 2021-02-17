@@ -1,5 +1,4 @@
 import React,{Component} from 'react';
-import logo from './logo.svg';
 import './styles/_style.scss';
 import {
   HashRouter as Router,
@@ -16,7 +15,7 @@ import UserProfile from './pages/UserProfile/UserProfile';
 import {MixDetails} from './pages/MixDetails/MixDetails';
 import SignUp from './pages/SignUp/SignUp';
 import { connect } from 'react-redux';
-import {CreateMix} from './cmps/CreateMix/CreateMix';
+// import {CreateMix} from './cmps/CreateMix/CreateMix';
 class _App extends Component  {
   render(){
     const {user} = this.props
@@ -28,7 +27,7 @@ class _App extends Component  {
       <Router>
         <AppHeader />
         <Switch>
-          <PrivateRoute path='/app/mix/new' component={CreateMix} />
+          {/* <PrivateRoute path='/app/mix/new' component={CreateMix} /> */}
           <PrivateRoute path='/app/mix/:id' component={MixDetails} />
           <PrivateRoute path='/app/mixes' component={Mixes} />
           <PrivateRoute path='/app' component={MusixApp} />
@@ -39,6 +38,22 @@ class _App extends Component  {
         <AppFooter />
       </Router>
     </div>
+
+  //   <div className='App'>
+  //   <Router>
+  //     <AppHeader />
+  //     <Switch>
+  //       {/* <PrivateRoute path='/app/mix/new' component={CreateMix} /> */}
+  //       <Route path='/app/mix/:id' component={MixDetails} />
+  //       <Route path='/app/mixes' component={Mixes} />
+  //       <Route path='/app' component={MusixApp} />
+  //       <Route path='/signup' component={SignUp} />
+  //       <Route path='/user/:id' component={UserProfile} />
+  //       <Route path='/' component={HomePage} />
+  //     </Switch>
+  //     <AppFooter />
+  //   </Router>
+  // </div>
   );
 }
 

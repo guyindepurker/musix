@@ -1,24 +1,33 @@
 @import "./src/styles/setup";
 
 .search-cmp {
-        margin: rem(5px);
+  margin: rem(5px);
+  position: relative;
+  height: fit-content;
 
+  .search-input {
+    color: $black;
+    padding: rem(6px) rem(12px) rem(6px) rem(15px);
+    height: rem(40px);
+    width: 250px;
+    border: 0;
+    outline: none;
+    border-radius: 100px;
+    text-overflow: ellipsis;
+    font-size: rem(14px);
+    font-weight: 100;
+    letter-spacing: 0.015em;
 
-.search-input {
-        color: $black;
-        padding: rem(6px) rem(48px);
-        height: rem(40px);
-        width: 100%;
-        border: 0;
-        outline: none;
-        border-radius: 100px;
-        text-overflow: ellipsis;
-        font-size: rem(14px);
-        font-weight: 100;
-        letter-spacing: .015em;
-      
-        &::placeholder {
-                color: $light-grey-2;
-        }
-}
+    &::placeholder {
+      color: $light-grey-2;
+    }
+  }
+
+  .fa-search {
+    position: absolute;
+    bottom: 14px;
+    font-size: rem(14px);
+    right: 11px;
+    padding-left: 8px;
+  }
 }

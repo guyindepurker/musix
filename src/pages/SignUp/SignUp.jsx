@@ -1,11 +1,13 @@
 
 import React, { Component } from 'react'
+import { CreateMix } from '../../cmps/CreateMix/CreateMix'
+import Player from '../../cmps/Player/Player'
 
 import './SignUp.scss'
 
 class SignUp extends Component {
-    state ={
-        isSignup:false,
+    state = {
+        isSignup: false,
     }
     render() {
 
@@ -22,7 +24,7 @@ class SignUp extends Component {
 
                     <div className="signup-section flex column align-center">
                         <span className="quest">Don't you have an account yet?</span>
-                        <button onClick={()=>this.setState({isSignup:true})} className="quest-btn">Sign up now!</button>
+                        <button onClick={() => this.setState({ isSignup: true })} className="quest-btn">Sign up now!</button>
                     </div>
                 </div>
 
@@ -45,13 +47,13 @@ class SignUp extends Component {
 
                     <div className="login-section flex column align-center">
                         <span className="quest">Already have an account?</span>
-                        <button onClick={()=>this.setState({isSignup:false})} className="quest-btn" >Login</button>
+                        <button onClick={() => this.setState({ isSignup: false })} className="quest-btn" >Login</button>
                     </div>
                 </div>
 
             )
         }
-        const {isSignup}=this.state 
+        const { isSignup } = this.state
         return (
             <section className="sign-up flex column align-center">
                 <div className="facebook-login">
@@ -60,7 +62,8 @@ class SignUp extends Component {
                 <div className="sepertor-container flex align-center">
                     <span className="separator-line"></span>Or<span className="separator-line"></span>
                 </div>
-                {!isSignup&&<Login></Login> || isSignup&&<Signup></Signup>}
+                {!isSignup && <Login></Login> || isSignup && <Signup></Signup>}
+\                {/* <Player></Player> */}
             </section>
 
         )

@@ -4,8 +4,9 @@
 
         .img-mix {
                 display: block;
-                align-self: center;
+                // align-self: center;
                 width: rem(210px);
+                height: rem(220px);
                 object-fit: cover;
                 border-radius: rem(5px);
                 margin-right: rem(15px);
@@ -79,16 +80,3 @@
 }
 
 // Private cmp :select genre
-.select-genre {
-        padding: 4px 5px;
-        width: fit-content;
-        display: inline-block;
-        margin-left: 3px;
-        text-transform: capitalize;
-        outline: none;
-        cursor: pointer;
-        border: 0;
-        border-radius: 8px;
-        appearance: none;
-
-}
