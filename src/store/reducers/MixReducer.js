@@ -17,12 +17,14 @@ export function mixReducer(state=INITIAL_STATE,action){
         case 'REMOVE_MIX':
             return {
                 ...state,
-                mixes:state.mixes.filter(mix=>mix._id !== action.mixId)
+                mixes:state.mixes.filter(mix=>mix._id !== action.mixId),
+                mix:null
             }
         case 'ADD_MIX':
             return {
                 ...state,
-                mixes:[...state.mixes,action.mix]
+                mixes:[...state.mixes,action.mix],
+                mix:action.mix
             }
         case 'UPDATE_MIX':
             return {

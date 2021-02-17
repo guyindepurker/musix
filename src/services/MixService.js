@@ -4,7 +4,8 @@ export const mixService = {
     query,
     getById,
     remove,
-    save
+    save,
+    getEmptyMix
 }
 function query(filterBy=null) {
     if(filterBy){
@@ -33,3 +34,19 @@ async function _add(mix) {
 async function _update(mix) {
     return httpService.put(`mix/${mix._id}`, mix);
 }
+function getEmptyMix(miniUser,name='New Mix',description='Mix description') {
+    const mix ={
+        name,
+        description,
+        genre: 'funk',
+        views: 0,
+        imgUrl: 'https://i.ytimg.com/vi/aIHF7u9Wwiw/default.jpg',
+        likes: 0,
+        createdBy:miniUser,
+        tags: [],
+        likedByUsers: [],
+        songs:[]
+    }
+    return mix
+}
+

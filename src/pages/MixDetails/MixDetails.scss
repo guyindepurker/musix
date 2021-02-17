@@ -1,4 +1,26 @@
 @import "./src/styles/setup";
+
 .mix-details {
   min-height: calc(100vh - 270px);
+  display: grid;
+  grid-template-rows: rem(260px) rem(60px) 1fr;
+  grid-template-columns: rem(15px) 1fr rem(15px);
+  row-gap: 10px;
+
+  .grid {
+    grid-column: 2/3;
+
+    &-header {
+      grid-row: 1/2;
+    }
+
+    &-action {
+      grid-row: 2/3;
+    }
+
+    &-content {
+      grid-row: 3/4;
+    }
+  }
+
 }

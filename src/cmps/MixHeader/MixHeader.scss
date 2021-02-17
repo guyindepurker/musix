@@ -1,3 +1,94 @@
+@import "./src/styles/setup";
 
-        @import "./src/styles/setup";
-        .mix-header {}
+.mix-header {
+
+        .img-mix {
+                display: block;
+                align-self: center;
+                width: rem(210px);
+                object-fit: cover;
+                border-radius: rem(5px);
+                margin-right: rem(15px);
+        }
+
+        &-content {
+                color: $white;
+                font-size: rem(16px);
+                text-transform: capitalize;
+                gap: rem(5px);
+
+                >*:not(:first-child) {
+                        letter-spacing: 1px;
+
+                }
+
+                .mix {
+                        &-name {
+                                font-size: rem(96px);
+                                font-family: $font-secondary;
+                        }
+
+                        &-description {
+                                font-size: rem(25px);
+                                text-transform: lowercase;
+
+                                &::first-letter {
+                                        text-transform: uppercase;
+                                }
+                        }
+
+                        &-created-by {
+                                span {
+                                        margin-right: rem(5px);
+                                }
+                        }
+
+                        &-info {
+                                font-size: rem(12px);
+                        }
+
+                }
+
+                [contenteditable]:focus {
+                        outline: 0px solid transparent;
+                    }
+                    .editable{
+                         border-bottom: 1px dashed rgba($white, 0.695);
+                    font-style: oblique;
+                
+                }
+        }
+
+        .icon {
+                font-size: rem(17px);
+                color: $white;
+                transition: all .3s;
+                cursor: pointer;
+
+                &:hover {
+                        color: $light-green;
+                }
+        }
+
+        .btn-controls-container {
+                top: 6.9375rem;
+                right: rem(7px);
+                font-size: rem(20px);
+                gap: 10px;
+        }
+}
+
+// Private cmp :select genre
+.select-genre {
+        padding: 4px 5px;
+        width: fit-content;
+        display: inline-block;
+        margin-left: 3px;
+        text-transform: capitalize;
+        outline: none;
+        cursor: pointer;
+        border: 0;
+        border-radius: 8px;
+        appearance: none;
+
+}

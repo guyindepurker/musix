@@ -7,11 +7,14 @@ import { loadMixes } from '../../store/actions/MixAction'
 
 import './Mixes.scss'
 import Search from '../../cmps/Search';
+import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
+import { utilService } from '../../services/UtilsService';
 
 class _Mixes extends Component {
 
     state = {
         filterBy: null,
+        filterBySong:null
 
     }
     componentDidMount() {
@@ -26,18 +29,31 @@ class _Mixes extends Component {
     loadMixes = async () => {
         await this.props.loadMixes(this.state.filterBy)
     }
+    filterBySong = (txt) =>{
+        this.setState({filterBySong:txt})
+    }
 
     get genresNames() {
         return ['all mixes', 'funk', 'pop', 'rock', 'electro', 'trance', 'techno', 'israeli', 'classic']
     }
 
+    get mixesToShow(){
+        const { mixes } = this.props
+        const {filterBySong} = this.state
+        if(filterBySong){
+            const mixToShows = mixes.filter(mix=> mix.songs.some(song=> utilService.findMatchLowerCase(song.title,filterBySong)))
+            return mixToShows
+        }
+        return mixes
+    }
+
     render() {
         const { mixes } = this.props
-        if (!mixes) return <div>Loading...</div>
+        if (!mixes) return <LoaderCmp></LoaderCmp>
 
         const GenresNames = () => {
             return (
-                <ul className="genres-names-list clean-list flex container space-around">
+                <ul className="genres-names-list clean-list flex wrap container space-around">
                     {this.genresNames.map((name, idx) => {
                         return (
                             <li onClick={() => this.props.history.push((idx === 0) ? `mixes` : `mixes?genre=${name}`)} className="genre-name" key={name}>
@@ -52,10 +68,10 @@ class _Mixes extends Component {
         return (
             <section className="mixes">
                 <div className="search-container">
-                <Search />
+                    <Search placeholderTxt='Look for songs on mixes' setSearch={this.filterBySong} />
                 </div>
                 <GenresNames />
-                <MixList mixes={mixes} />
+                <MixList mixes={this.mixesToShow} />
             </section>
         )
     }

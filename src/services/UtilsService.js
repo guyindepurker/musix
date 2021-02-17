@@ -13,8 +13,16 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
+function findMatchLowerCase(key,value){
+    key = key.toLowerCase()
+    value = value.toLowerCase()
+    return key.includes(value)
+}
+
+
 
 export const utilService = {
     makeId,
     getRandomInt,
+    findMatchLowerCase
 }

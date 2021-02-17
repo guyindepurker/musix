@@ -1,3 +1,20 @@
+@import "./src/styles/setup";
 
-        @import "./src/styles/setup";
-        .mix-actions {}
+.mix-actions {
+        border-top: 1px solid $dark-grey;
+        border-bottom: 1px solid $dark-grey;
+        padding: rem(7px) 0;
+
+        .mix-control-icon {
+                color: $white;
+                font-size: rem(25px);
+                margin: 0 rem(6px);
+                transition: all .2s;
+                cursor: pointer;
+
+                &:hover {
+                        color: $light-green;
+                }
+        }
+
+}

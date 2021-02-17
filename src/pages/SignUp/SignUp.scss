@@ -61,6 +61,12 @@
     letter-spacing: 0.5px;
     align-self: center;
     margin-top: 20px;
+    transition: all .3s;
+
+    &:hover{
+      border-color: $green;
+      background-color:$green;
+    }
   }
 
   .quest {
@@ -80,5 +86,10 @@
     letter-spacing: 0.5px;
     align-self: center;
     margin-top: 20px;
+    transition: all .3s;
+    &:hover{
+      border-color: $green;
+      background-color:$green;
+    }
   }
 }

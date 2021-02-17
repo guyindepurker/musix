@@ -6,6 +6,7 @@ import './MusixApp.scss'
 import _ from 'lodash'
 import MixList from '../../cmps/MixList/MixList';
 import { Link } from 'react-router-dom'
+import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 class _MusixApp extends Component {
     state = {
         filterBy: null,
@@ -13,13 +14,12 @@ class _MusixApp extends Component {
     }
     componentDidMount() {
         this.loadMixes()
-        console.log('this.props.location.query:', this.props.location.query);
     }
     loadMixes = async () => {
         await this.props.loadMixes(this.state.filterBy)
-        this.mixesByGenre()
+        this.mixByGenre()
     }
-    mixesByGenre = () => {
+    mixByGenre = () => {
         const { mixes } = this.props
         const mixesByGenre = mixes.reduce((acc, mix) => {
             if (!acc[mix.genre]) acc[mix.genre] = []
@@ -34,14 +34,14 @@ class _MusixApp extends Component {
 
     render() {
         const { mixesByGenre } = this.state
-        if (!mixesByGenre) return <div>Loading...</div>
+        if (!mixesByGenre) return <LoaderCmp></LoaderCmp>
         const MixGenres = () => {
             return (this.genresNames.map(name => {
                 return (
                     <div key={name} className="mix-genre-container flex column container">
                         <div className="mix-genre-header flex space-between align-center">
                             {name && <h3 className="heading-tertiary">{name}</h3>}
-                            <Link to={`/app/mixes?genre=${name}`}><span className="show-more-btn">Show more<i class="show-more-icon fas fa-arrow-right"></i></span></Link>
+                            <Link to={`/app/mixes?genre=${name}`}><span className="show-more-btn">Show more<i className="show-more-icon fas fa-arrow-right"></i></span></Link>
                         </div>
                         <div className="genre-list-content">
                             <MixList key={name} mixes={mixesByGenre[name]} />
