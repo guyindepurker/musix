@@ -8,6 +8,7 @@ import { loadMixes } from '../../store/actions/MixAction'
 import './Mixes.scss'
 import Search from '../../cmps/Search';
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
+import { utilService } from '../../services/UtilsService';
 
 class _Mixes extends Component {
 
@@ -40,7 +41,7 @@ class _Mixes extends Component {
         const { mixes } = this.props
         const {filterBySong} = this.state
         if(filterBySong){
-            const mixToShows = mixes.filter(mix=> mix.songs.some(song=>song.title.toLowerCase().includes(filterBySong.toLowerCase())))
+            const mixToShows = mixes.filter(mix=> mix.songs.some(song=> utilService.findMatchLowerCase(song.title,filterBySong)))
             return mixToShows
         }
         return mixes

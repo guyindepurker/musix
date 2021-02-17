@@ -8,7 +8,7 @@ import SongList from '../../cmps/SongList/SongList';
 import MixHeader from '../../cmps/MixHeader';
 import MixActions from '../../cmps/MixActions';
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
-
+import { utilService } from '../../services/UtilsService';
 
 class _MixDetails extends Component {
     state = {
@@ -62,7 +62,7 @@ class _MixDetails extends Component {
          const {filterBySong}=this.state
          const { songs } = this.props.mix
         if(filterBySong){
-            const songsToShow= songs.filter(song=>song.title.toLowerCase().includes(filterBySong.toLowerCase()))
+            const songsToShow= songs.filter(song=> utilService.findMatchLowerCase(song.title,filterBySong))
             return songsToShow
         }
         return songs
