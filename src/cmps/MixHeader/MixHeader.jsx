@@ -23,7 +23,7 @@ class MixHeader extends Component {
         const { isEdit } = this.state
 
         return (
-            <div className="mix-header flex relative">
+            <div className="mix-header  flex relative">
                 <img className="img-mix" src={mix.imgUrl} alt="mix img" />
                 <div className="mix-header-content flex column ">
                     {(user._id === createdBy._id || user.isAdmin) && <div className="btn-controls-container absolute flex column">

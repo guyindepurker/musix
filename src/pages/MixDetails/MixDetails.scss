@@ -5,13 +5,15 @@
   display: grid;
   grid-template-rows: rem(260px) rem(60px) 1fr;
   grid-template-columns: rem(15px) 1fr rem(15px);
-  row-gap: 10px;
+  row-gap: 5px;
 
   .grid {
     grid-column: 2/3;
-
+    
     &-header {
       grid-row: 1/2;
+      grid-column: 1/-1;
+      
     }
 
     &-action {
@@ -19,6 +21,8 @@
     }
 
     &-content {
+      grid-column: 1/-1;
+
       grid-row: 3/4;
     }
   }
