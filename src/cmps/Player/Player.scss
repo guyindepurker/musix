@@ -46,15 +46,10 @@
   }
 
   .song-container {
-    color: $light-grey; 
-
-    .song-name {
-            font-size: rem(14px);
-    }
+    color: $light-grey;
     .song-img {
       width: 60px;
       height: 50px;
-      margin-left: rem(15px);
     }
 
     .like-song {
