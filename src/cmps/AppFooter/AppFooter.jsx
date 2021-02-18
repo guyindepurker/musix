@@ -7,10 +7,12 @@ import yuvalImg from '../../assets/imgs/yuval.jpg'
 
 
 import './AppFooter.scss'
+import { useSelector, connect } from 'react-redux';
 
-export default function AppFooter() {
-
+ function AppFooter(props) {
+   if(props.song) return null; 
     return (
+        
         <footer className="app-footer flex">
             <NavLink className="logo-container flex" exact to="/app">
                 <i className="fab fa-spotify"></i>
@@ -34,7 +36,7 @@ export default function AppFooter() {
                     <a href="https://github.com/YuvalBeitOn" > <i className="fab fa-github"></i></a>
                 </div>
                 <div className="developer flex align-center justify-center">
-                    <img alt="Hilla" src={guyImg} />
+                    <img alt="Guy" src={guyImg} />
                     <p>Guy Indepurker</p>
                     <a href="https://www.linkedin.com/in/guy-indepurker-5778091a4/" > <i className="fab fa-linkedin"></i></a>
                     <a href="https://github.com/guyindepurker" > <i className="fab fa-github"></i></a>
@@ -45,5 +47,10 @@ export default function AppFooter() {
 
     
 }
+function mapStateToProps(state) {
+    return {
+      song: state.playerReducer.song
+    }
+  }
 
-
+export default AppFooter = connect(mapStateToProps)(AppFooter)

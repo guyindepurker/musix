@@ -30,7 +30,7 @@ class Player extends Component {
         }
     }
     onReady = (event) => {
-        // console.log(' event.target:', event.target)
+        console.log(' event.target:', event.target)
         event.target.playVideo();
         const duration = event.target.getDuration();
         this.setState(prevState => ({ isPlaying: !prevState.isPlaying, youtubePlayer: event.target, duration }))

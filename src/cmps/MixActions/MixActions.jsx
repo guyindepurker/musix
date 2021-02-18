@@ -8,7 +8,7 @@ import './MixActions.scss'
 
 export default function MixActions({ mix, setSearch }) {
     return (
-        <div className="mix-actions flex space-between align-center">
+        <div className="mix-actions  flex space-between align-center">
             <div className="mix-controls flex align-center">
                 <i className="mix-control-icon fas fa-plus-circle"></i>
                 <div className="search-container-controls">
