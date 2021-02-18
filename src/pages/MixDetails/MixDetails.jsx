@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 
 import './MixDetails.scss'
@@ -77,18 +77,20 @@ class _MixDetails extends Component {
         if (!mix) return <LoaderCmp></LoaderCmp>
         const { createdBy, songs } = mix
         return (
-            <section className="mix-details">
-                <div className="grid grid-header">
-                    <MixHeader user={user} updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
-                </div>
-                <div className="grid grid-action">
-                    <MixActions setSearch={this.filterBySong} />
-                </div>
-                <div className="grid grid-content">
-                    <SongList loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
-                    <Player></Player>
-                </div>
-            </section>
+            <Fragment>
+                <section className="mix-details">
+                    <div className="grid grid-header">
+                        <MixHeader user={user} updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
+                    </div>
+                    <div className="grid grid-action">
+                        <MixActions setSearch={this.filterBySong} />
+                    </div>
+                    <div className="grid grid-content">
+                        <SongList loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
+                    </div>
+                </section>
+                <Player></Player>
+            </Fragment>
         )
     }
 }

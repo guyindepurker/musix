@@ -10,6 +10,13 @@
   width: 100%;
 
   .volume-container {
+    width: 300px;
+
+    .fa-volume {
+      color: $light-grey;
+      margin-right: 5px;
+      font-size: rem(14px);
+    }
   }
 
   .song-control {
@@ -21,7 +28,9 @@
       }
       .play-song-btn {
         background-color: $white;
-        padding: 8px 8px 8px 11px;
+        // padding: 8px 8px 8px 11px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -31,25 +40,50 @@
       .fas {
         color: $light-grey;
         font-size: rem(16px);
+        &:hover {
+          color: $white;
+        }
       }
-      
-      .fa-play,.fa-pause {
+
+      .fa-play,
+      .fa-pause {
         color: $black;
+        &:hover {
+          color: $light-grey;
+        }
+      }
+
+      .fa-play {
+        margin-left: 3px;
       }
     }
 
     .song-duration-slider {
+      width: 500px;
       input {
         width: 425px;
+      }
+
+      span {
+        width: 30px;
+        color: $light-grey;
+        font-size: rem(14px);
+        margin: 0 5px;
       }
     }
   }
 
   .song-container {
     color: $light-grey;
+    width: 350px;
+    justify-content: flex-end;
+    .song-name {
+      font-size: rem(14px);
+    }
     .song-img {
-      width: 60px;
-      height: 50px;
+      width: 70px;
+      height: 60px;
+      margin-left: 10px;
     }
 
     .like-song {
