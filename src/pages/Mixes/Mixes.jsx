@@ -9,8 +9,9 @@ import './Mixes.scss'
 import Search from '../../cmps/Search';
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 import { utilService } from '../../services/UtilsService';
-import PopUpMenu from '../../cmps/PopUpMenu/PopUpMenu'
-import Player from '../../cmps/Player/Player'
+import Player from '../../cmps/Player/Player';
+import ReactPlayer from 'react-player/youtube'
+
 
 class _Mixes extends Component {
 
@@ -66,6 +67,7 @@ class _Mixes extends Component {
                         })}
                     </ul>
                     <Player></Player>
+                    <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
                 </Fragment>
 
             )
