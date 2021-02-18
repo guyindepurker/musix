@@ -63,7 +63,6 @@ class SignUp extends Component {
                     <span className="separator-line"></span>Or<span className="separator-line"></span>
                 </div>
                 {!isSignup && <Login></Login> || isSignup && <Signup></Signup>}
-\                {/* <Player></Player> */}
             </section>
 
         )

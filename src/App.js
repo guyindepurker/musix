@@ -27,7 +27,6 @@ class _App extends Component  {
       <Router>
         <AppHeader />
         <Switch>
-          {/* <PrivateRoute path='/app/mix/new' component={CreateMix} /> */}
           <PrivateRoute path='/app/mix/:id' component={MixDetails} />
           <PrivateRoute path='/app/mixes' component={Mixes} />
           <PrivateRoute path='/app' component={MusixApp} />
@@ -38,22 +37,6 @@ class _App extends Component  {
         <AppFooter />
       </Router>
     </div>
-
-  //   <div className='App'>
-  //   <Router>
-  //     <AppHeader />
-  //     <Switch>
-  //       {/* <PrivateRoute path='/app/mix/new' component={CreateMix} /> */}
-  //       <Route path='/app/mix/:id' component={MixDetails} />
-  //       <Route path='/app/mixes' component={Mixes} />
-  //       <Route path='/app' component={MusixApp} />
-  //       <Route path='/signup' component={SignUp} />
-  //       <Route path='/user/:id' component={UserProfile} />
-  //       <Route path='/' component={HomePage} />
-  //     </Switch>
-  //     <AppFooter />
-  //   </Router>
-  // </div>
   );
 }
 

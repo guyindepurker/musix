@@ -47,7 +47,7 @@ class _CreateMix extends Component {
         if (!mix) return <LoaderCmp></LoaderCmp>
         return (
             <section className="create-mix">
-                <button className="close-btn" onClick={this.props.closeModal}><i class="fas fa-times"></i></button>
+                <button className="close-btn" onClick={this.props.closeModal}><i className="fas fa-times"></i></button>
                 <h3 className="create-mix-title">Create your own mix!</h3>
                 <form onSubmit={this.saveMix} className="form-mix flex column wrap">
                     <div className="upload-img-container flex column align-center">
@@ -68,7 +68,7 @@ class _CreateMix extends Component {
                     <label htmlFor="mixName">Name:</label>
                     <input id="mixName" type="text" onChange={this.handleChange} name="name" value={mix.name} placeholder="Enter mix name" />
                     <label htmlFor="mixGenre">Genre:</label>
-                    <SelectGenre selectedVal={mix.genre} save={this.saveMix} ></SelectGenre>
+                    <SelectGenre selectedVal={mix.genre} save={this.handleChange} ></SelectGenre>
                     <label htmlFor="mixDescription">Description:</label>
                     <textarea rows="3" cols="30" id="mixDescription" onChange={this.handleChange} type="text" name="description" value={mix.description} placeholder="Your description..." />
                     <button className="create-mix-btn flex justify-center">Create mix ♫</button>

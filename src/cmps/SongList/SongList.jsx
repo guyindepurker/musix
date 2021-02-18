@@ -8,9 +8,9 @@ export default function SongList({ songs,updateMix ,isUserAdmin}) {
     console.log('songs:', songs)
     console.log('songs length:', songs.length)
     return (
-        <ul className="song-list clean-list flex column wrap">
-            { (songs.length ===0) && <DontMatchResCmp />||songs.map(song => (<SongPreview updateMix={updateMix} key={song.id} isUserAdmin={isUserAdmin} song={song} />) )  }
-        </ul>
+        <ul className="song-list clean-list flex column">
+            { (songs.length ===0) && <DontMatchResCmp />||songs.map((song, idx) => (<SongPreview updateMix={updateMix} key={song.id} isUserAdmin={isUserAdmin} song={song} idx={idx} />) )  }
+        </ul>   
     )
 }
 

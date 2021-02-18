@@ -1,5 +1,5 @@
 
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 
 import MixList from '../../cmps/MixList/MixList'
@@ -9,12 +9,14 @@ import './Mixes.scss'
 import Search from '../../cmps/Search';
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 import { utilService } from '../../services/UtilsService';
+import PopUpMenu from '../../cmps/PopUpMenu/PopUpMenu'
+import Player from '../../cmps/Player/Player'
 
 class _Mixes extends Component {
 
     state = {
         filterBy: null,
-        filterBySong:null
+        filterBySong: null
 
     }
     componentDidMount() {
@@ -29,19 +31,19 @@ class _Mixes extends Component {
     loadMixes = async () => {
         await this.props.loadMixes(this.state.filterBy)
     }
-    filterBySong = (txt) =>{
-        this.setState({filterBySong:txt})
+    filterBySong = (txt) => {
+        this.setState({ filterBySong: txt })
     }
 
     get genresNames() {
         return ['all mixes', 'funk', 'pop', 'rock', 'electro', 'trance', 'techno', 'israeli', 'classic']
     }
 
-    get mixesToShow(){
+    get mixesToShow() {
         const { mixes } = this.props
-        const {filterBySong} = this.state
-        if(filterBySong){
-            const mixToShows = mixes.filter(mix=> mix.songs.some(song=> utilService.findMatchLowerCase(song.title,filterBySong)))
+        const { filterBySong } = this.state
+        if (filterBySong) {
+            const mixToShows = mixes.filter(mix => mix.songs.some(song => utilService.findMatchLowerCase(song.title, filterBySong)))
             return mixToShows
         }
         return mixes
@@ -53,15 +55,19 @@ class _Mixes extends Component {
 
         const GenresNames = () => {
             return (
-                <ul className="genres-names-list clean-list flex wrap container space-around">
-                    {this.genresNames.map((name, idx) => {
-                        return (
-                            <li onClick={() => this.props.history.push((idx === 0) ? `mixes` : `mixes?genre=${name}`)} className="genre-name" key={name}>
-                                {name}
-                            </li>
-                        )
-                    })}
-                </ul>
+                <Fragment>
+                    <ul className="genres-names-list clean-list flex wrap container space-around">
+                        {this.genresNames.map((name, idx) => {
+                            return (
+                                <li onClick={() => this.props.history.push((idx === 0) ? `mixes` : `mixes?genre=${name}`)} className="genre-name" key={name}>
+                                    {name}
+                                </li>
+                            )
+                        })}
+                    </ul>
+                    <Player></Player>
+                </Fragment>
+
             )
         }
 

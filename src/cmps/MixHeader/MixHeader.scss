@@ -1,82 +1,80 @@
 @import "./src/styles/setup";
 
 .mix-header {
+  background-image: linear-gradient(transparent, rgba(0, 0, 0, 0.5));
+  width: 100%;
+  height: 100%;
+  .img-mix {
+    display: block;
+    width: rem(210px);
+    height: rem(220px);
+    object-fit: cover;
+    border-radius: rem(5px);
+    margin-right: rem(15px);
+  }
 
-        .img-mix {
-                display: block;
-                // align-self: center;
-                width: rem(210px);
-                height: rem(220px);
-                object-fit: cover;
-                border-radius: rem(5px);
-                margin-right: rem(15px);
+  &-content {
+    color: $white;
+    font-size: rem(16px);
+    text-transform: capitalize;
+    gap: rem(5px);
+
+    > *:not(:first-child) {
+      letter-spacing: 1px;
+    }
+
+    .mix {
+      &-name {
+        font-size: rem(96px);
+        font-family: $font-secondary;
+      }
+
+      &-description {
+        font-size: rem(25px);
+        text-transform: lowercase;
+
+        &::first-letter {
+          text-transform: uppercase;
         }
+      }
 
-        &-content {
-                color: $white;
-                font-size: rem(16px);
-                text-transform: capitalize;
-                gap: rem(5px);
-
-                >*:not(:first-child) {
-                        letter-spacing: 1px;
-
-                }
-
-                .mix {
-                        &-name {
-                                font-size: rem(96px);
-                                font-family: $font-secondary;
-                        }
-
-                        &-description {
-                                font-size: rem(25px);
-                                text-transform: lowercase;
-
-                                &::first-letter {
-                                        text-transform: uppercase;
-                                }
-                        }
-
-                        &-created-by {
-                                span {
-                                        margin-right: rem(5px);
-                                }
-                        }
-
-                        &-info {
-                                font-size: rem(12px);
-                        }
-
-                }
-
-                [contenteditable]:focus {
-                        outline: 0px solid transparent;
-                    }
-                    .editable{
-                         border-bottom: 1px dashed rgba($white, 0.695);
-                    font-style: oblique;
-                
-                }
+      &-created-by {
+        span {
+          margin-right: rem(5px);
         }
+      }
 
-        .icon {
-                font-size: rem(17px);
-                color: $white;
-                transition: all .3s;
-                cursor: pointer;
+      &-info {
+        font-size: rem(12px);
+      }
+    }
 
-                &:hover {
-                        color: $light-green;
-                }
-        }
+    [contenteditable]:focus {
+      outline: 0px solid transparent;
+    }
+    .editable {
+      border-bottom: 1px dashed rgba($white, 0.695);
+      font-style: oblique;
+    }
+  }
 
-        .btn-controls-container {
-                top: 6.9375rem;
-                right: rem(7px);
-                font-size: rem(20px);
-                gap: 10px;
-        }
+  .icon {
+    font-size: rem(17px);
+    color: $white;
+    transition: all 0.3s;
+    cursor: pointer;
+
+    &:hover {
+      color: $light-green;
+    }
+  }
+
+  .btn-controls-container {
+    top: 6.9375rem;
+    right: rem(7px);
+    font-size: rem(20px);
+    gap: 10px;
+  }
 }
 
 // Private cmp :select genre

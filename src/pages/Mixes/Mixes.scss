@@ -1,24 +1,24 @@
 @import "./src/styles/setup";
 .mixes {
   min-height: calc(100vh - 270px);
-  .search-container{
-          width: rem(400px);
-          margin: rem(20px) auto;
-
+  .search-container {
+    margin-bottom: rem(25px);
+    display: flex;
+    justify-content: center;
   }
 }
 
 .genres-names-list {
-        margin-bottom: rem(20px);
-    .genre-name {
-            cursor: pointer;
-            color: $white;
-            font-family: $font-primary;
-            letter-spacing: 0.5px;
-            text-transform: capitalize;
-            transition: all .3s;
-            &:hover{
-               color: $light-green;
-            }
-    }    
+  margin-bottom: rem(20px);
+  .genre-name {
+    cursor: pointer;
+    color: $white;
+    font-family: $font-primary;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    transition: all 0.3s;
+    &:hover {
+      color: $light-green;
+    }
+  }
 }
