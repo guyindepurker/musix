@@ -18,11 +18,24 @@ function findMatchLowerCase(key,value){
     value = value.toLowerCase()
     return key.includes(value)
 }
+function showTime(seconds) {
+    var mins;
+    var secs;
+    if (seconds >= 60) {
+        mins = (parseInt(seconds / 60)).toString();
+        secs = (parseInt(seconds - mins * 60)).toString().padStart(2, '0');
+    } else {
+        mins = '0';
+        secs = (parseInt(seconds)).toString().padStart(2, '0');
+    }
+    return `${mins}:${secs}`
+}
 
 
 
 export const utilService = {
     makeId,
     getRandomInt,
-    findMatchLowerCase
+    findMatchLowerCase,
+    showTime
 }
