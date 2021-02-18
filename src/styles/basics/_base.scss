@@ -30,3 +30,32 @@ button {
 a {
   text-decoration: none;
 }
+
+.back-drop-layer {
+  position: fixed;
+  z-index: 2;
+  height: 100%;
+  width: 100%;
+  margin-top: rem(-130px);
+  background-color: rgba(0, 0, 0, 0.404);
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: rgba(0, 0, 0, 0.171);
+  -webkit-border-radius: 100px;
+}
+
+::-webkit-scrollbar:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:vertical:active {
+  -webkit-border-radius: 100px;
+}

@@ -1,5 +1,9 @@
 export function loadSongs(songs){
     return  (dispatch) =>{
+       const firstSong = songs[0]
+       if(firstSong){
+        dispatch({type:'SET_SONG',song:firstSong})
+       }
         dispatch({type:'SET_SONGS',songs})
 }
 }

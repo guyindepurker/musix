@@ -55,8 +55,10 @@
 
     .mixes-link,
     .signup-link,
-    .home-link {
+    .home-link,
+    .create-mix-cmp {
       &:hover {
+        cursor: pointer;
         color: $light-green;
       }
     }

@@ -9,7 +9,8 @@ import MixHeader from '../../cmps/MixHeader';
 import MixActions from '../../cmps/MixActions';
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 import { utilService } from '../../services/UtilsService';
-
+import Player from '../../cmps/Player/Player';
+import { loadSongs, loadSong } from '../../store/actions/PlayerAction';
 class _MixDetails extends Component {
     state = {
         filterBySong: null
@@ -22,6 +23,7 @@ class _MixDetails extends Component {
 
     loadMix = async () => {
         await this.props.loadMix(this.props.match.params.id)
+        this.props.loadSongs(this.props.mix.songs)
         if (!this.props.mixes) {
             await this.props.loadMixes()
         }
@@ -43,7 +45,10 @@ class _MixDetails extends Component {
         this.updateMix('songs', updatedSongs)
     }
 
-
+    loadSongToPlayer = (song) => {
+        console.log('song to play:', song)
+        this.props.loadSong(song)
+    }
     removeMix = async (mixId) => {
         const { removeMix, history, loadMixes } = this.props
         try {
@@ -80,7 +85,8 @@ class _MixDetails extends Component {
                     <MixActions setSearch={this.filterBySong} />
                 </div>
                 <div className="grid grid-content">
-                    <SongList isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
+                    <SongList loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
+                    <Player></Player>
                 </div>
             </section>
         )
@@ -98,7 +104,9 @@ const mapDispatchToProps = {
     loadMix,
     updateMix,
     removeMix,
-    loadMixes
+    loadMixes,
+    loadSongs,
+    loadSong
 }
 
 export const MixDetails = connect(mapStateToProps, mapDispatchToProps)(_MixDetails)
