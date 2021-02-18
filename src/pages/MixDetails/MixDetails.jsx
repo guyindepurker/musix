@@ -12,63 +12,63 @@ import { utilService } from '../../services/UtilsService';
 
 class _MixDetails extends Component {
     state = {
-        filterBySong:null
+        filterBySong: null
     }
     componentDidMount() {
         this.loadMix()
-        console.log('user:',this.props.user);
-        
+        console.log('user:', this.props.user);
+
     }
 
     loadMix = async () => {
         await this.props.loadMix(this.props.match.params.id)
-        if(!this.props.mixes){
+        if (!this.props.mixes) {
             await this.props.loadMixes()
         }
     }
-    updateMix = async (key,value) =>{
-        console.log('key,value:', key,value)
-        const copyMix = {...this.props.mix}
+    updateMix = async (key, value) => {
+        console.log('key,value:', key, value)
+        const copyMix = { ...this.props.mix }
         copyMix[key] = value
-        try{
+        try {
             await this.props.updateMix(copyMix)
-        }catch (err){
-            console.log('ERR',err);
+        } catch (err) {
+            console.log('ERR', err);
         }
     }
-    removeSong = (id) =>{
-        const copyMix = {...this.props.mix}
-       let {songs} = copyMix
-       let updatedSongs = songs.filter(song=>song.id!==id)
-       this.updateMix('songs',updatedSongs)
+    removeSong = (id) => {
+        const copyMix = { ...this.props.mix }
+        let { songs } = copyMix
+        let updatedSongs = songs.filter(song => song.id !== id)
+        this.updateMix('songs', updatedSongs)
     }
-  
 
-    removeMix=async (mixId)=>{
-        const {removeMix,history,loadMixes} = this.props
-       try{
-           await removeMix(mixId)
-           await loadMixes()
-           history.push('/app/mix')
-       }catch (err){
-           console.log('ERR',err);
-       }
+
+    removeMix = async (mixId) => {
+        const { removeMix, history, loadMixes } = this.props
+        try {
+            await removeMix(mixId)
+            await loadMixes()
+            history.push('/app/mix')
+        } catch (err) {
+            console.log('ERR', err);
+        }
     }
 
     filterBySong = (song) => {
-       this.setState({filterBySong:song})
+        this.setState({ filterBySong: song })
     }
-    get songsToShow(){
-         const {filterBySong}=this.state
-         const { songs } = this.props.mix
-        if(filterBySong){
-            const songsToShow= songs.filter(song=> utilService.findMatchLowerCase(song.title,filterBySong))
+    get songsToShow() {
+        const { filterBySong } = this.state
+        const { songs } = this.props.mix
+        if (filterBySong) {
+            const songsToShow = songs.filter(song => utilService.findMatchLowerCase(song.title, filterBySong))
             return songsToShow
         }
         return songs
     }
     render() {
-        const { mix,user } = this.props
+        const { mix, user } = this.props
         if (!mix) return <LoaderCmp></LoaderCmp>
         const { createdBy, songs } = mix
         return (
@@ -80,7 +80,7 @@ class _MixDetails extends Component {
                     <MixActions setSearch={this.filterBySong} />
                 </div>
                 <div className="grid grid-content">
-                    <SongList isUserAdmin={(user._id===createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
+                    <SongList isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
                 </div>
             </section>
         )
@@ -91,8 +91,7 @@ function mapStateToProps(state) {
     return {
         mix: state.mixReducer.mix,
         mixes: state.mixReducer.mixes,
-        user:state.userReducer.loggedinUser
-
+        user: state.userReducer.loggedinUser
     }
 }
 const mapDispatchToProps = {

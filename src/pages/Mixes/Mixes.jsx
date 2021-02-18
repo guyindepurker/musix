@@ -49,7 +49,7 @@ class _Mixes extends Component {
 
     render() {
         const { mixes } = this.props
-        if (!mixes) return <LoaderCmp></LoaderCmp>
+        if ( !mixes) return <LoaderCmp></LoaderCmp>
 
         const GenresNames = () => {
             return (

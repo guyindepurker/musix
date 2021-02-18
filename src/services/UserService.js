@@ -69,7 +69,7 @@ async function guestMode() {
     _id: utilService.makeId(),
     fullName: 'Orly Amdadi',
     userName: 'orly@amdadi.com',
-    isAdmin: false
+    isAdmin: true
     }
     return _handleLogin(guest);
 }
