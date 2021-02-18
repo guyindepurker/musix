@@ -2,27 +2,106 @@
 import React, { Component } from 'react'
 // import ReactPlayer from 'react-player/youtube'
 import './Player.scss'
-
+import { connect } from 'react-redux';
+import { loadSong, loadSongs } from '../../store/actions/PlayerAction';
+import LoaderCmp from '../LoaderCmp/LoaderCmp';
+import YouTube from 'react-youtube';
+import { utilService } from '../../services/UtilsService';
 class Player extends Component {
-
-
+    gInterval
     state = {
-        volume: 0.75
+        volume: 5,
+        isPlaying: false,
+        youtubePlayer: null,
+        timeLeft: 0,
+        duration: 0
+
     }
 
-    handleVolumeChange = ({ target }) => {
-        this.setState({ volume: target.value })
+    componentDidUpdate(prevProps, prevState) {
+        const { youtubePlayer, isPlaying } = this.state
+        if (youtubePlayer && isPlaying) {
+            this.gInterval = setInterval(() => {
+                let time = youtubePlayer.getCurrentTime()
+                this.setState({ timeLeft: time })
+            }, 1000)
+        } else if (prevState.isPlaying !== isPlaying) {
+            clearInterval(this.gInterval)
+        }
+    }
+    onReady = (event) => {
+        // console.log(' event.target:', event.target)
+        event.target.playVideo();
+        const duration = event.target.getDuration();
+        this.setState(prevState => ({ isPlaying: !prevState.isPlaying, youtubePlayer: event.target, duration }))
+    }
+
+    toggleIsPlaying = () => {
+        this.setState(prevState => ({ isPlaying: !prevState.isPlaying }))
+    }
+
+    changeSong = (action) => {
+        const { song, songs, loadSong } = this.props
+        let idx = songs.findIndex(currSong => currSong.id === song.id)
+        let songsLength = songs.length - 1
+        if (idx >= songsLength) idx = -1
+        if (action === 'next') {
+            const nextSong = songs[idx + 1]
+            loadSong(nextSong)
+
+        } else {
+            if (idx === 0) idx = songs.length;
+            if (idx === -1) idx = 1;
+            const prevSong = songs[idx - 1]
+            loadSong(prevSong)
+        }
+        this.toggleIsPlaying()
+    }
+
+    changeVolume = ({ target }) => {
+        const { youtubePlayer } = this.state
+        this.setState({ volume: target.value }, () => {
+            console.log('this.state.volume:', this.state.volume)
+            youtubePlayer.setVolume(this.state.volume)
+        })
+    }
+
+    handleSong = (action) => {
+        const { youtubePlayer } = this.state
+        if (action === 'pause') {
+            youtubePlayer.pauseVideo()
+            clearInterval(this.gInterval)
+        } else {
+            youtubePlayer.playVideo()
+        }
+        this.toggleIsPlaying()
+    }
+
+    changeTime = ({ target }) => {
+        // TO FIX 
+        const value = target.value
+        const { youtubePlayer } = this.state
+        youtubePlayer.seekTo(value)
+    }
+
+    get timeLeft() {
+        const { timeLeft } = this.state
+        if (timeLeft === 0) return '00:00'
+        return utilService.showTime(timeLeft)
     }
 
     render() {
-        const song = {
-            "title": "Earth, Wind & Fire - September",
-            "id": "mUkffgfiLjooxs",
-            "youtubeId": "Gs069dndIYk",
-            "imgUrl": "http://i3.ytimg.com/vi/Gs069dndIYk/maxresdefault.jpg",
-            "duration": "3:35"
-        }
-
+        const opts = {
+            height: '0',
+            width: '0',
+            playerVars: {
+                // https://developers.google.com/youtube/player_parameters
+                autoplay: 1,
+            },
+        };
+        const { song } = this.props
+        const { isPlaying, youtubePlayer, duration, timeLeft } = this.state
+        if (!song) return <LoaderCmp></LoaderCmp>
         return (
             <section className="player flex align-center space-between">
 
@@ -32,28 +111,32 @@ class Player extends Component {
                         className="volume-slider"
                         type="range"
                         value={this.volume}
-                        min={0}
-                        step={0.05}
-                        max={1}
-                        onChange={this.handleVolumeChange}
+                        min="0"
+                        step="1"
+                        max="100"
+                        onChange={this.changeVolume}
                     />
                 </div>
 
                 <div className="song-control flex column align-center">
                     <div className="btns-player-control flex space-around">
                         <button className="shuffle"><i className="fas fa-random"></i></button>
-                        <button className="prev-song-btn"><i className="fas fa-arrow-to-left"></i></button>
-                        <button className="play-song-btn"><i className="fas fa-play"></i></button>
-                        <button className="next-song-btn"><i className="fas fa-arrow-to-right"></i></button>
+                        <button onClick={() => this.changeSong('prev')} className="prev-song-btn"><i className="fas fa-arrow-to-left"></i></button>
+                        <button onClick={() => isPlaying ? this.handleSong('pause') : this.handleSong('play')} className="play-song-btn"><i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i></button>
+                        <button onClick={() => this.changeSong('next')} className="next-song-btn"><i className="fas fa-arrow-to-right"></i></button>
                     </div>
                     <div className="song-duration-slider">
-                        <span className="count-time"></span>
+                        <span className="count-time">{this.timeLeft}</span>
                         <input
                             className="duration-slider"
                             type="range"
                             name="played"
+                            value={timeLeft}
+                            min="0"
+                            max={duration}
+                            onChange={this.changeTime}
                         />
-                        <span className="song-duration"></span>
+                        <span className="song-duration">{song.duration}</span>
                     </div>
                 </div>
 
@@ -62,7 +145,7 @@ class Player extends Component {
                     <span className="song-name">{song.title}</span>
                     <img className="song-img" src={song.imgUrl} alt="song-img"></img>
                 </div>
-
+                <YouTube videoId={song.youtubeId} opts={opts} onReady={this.onReady} />
             </section>
         )
 
@@ -70,4 +153,21 @@ class Player extends Component {
     }
 }
 
-export default Player
+function mapStateToProps(state) {
+    return {
+        song: state.playerReducer.song,
+        songs: state.playerReducer.songs,
+    }
+}
+const mapDispatchToProps = {
+    loadSong,
+    loadSongs
+}
+
+
+export default Player = connect(mapStateToProps, mapDispatchToProps)(Player)
+
+
+
+
+

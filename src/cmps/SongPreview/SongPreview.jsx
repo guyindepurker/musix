@@ -3,11 +3,11 @@ import React from 'react'
 
 import './SongPreview.scss'
 
-export default function SongPreview({ song, updateMix, isUserAdmin, idx }) {
+export default function SongPreview({ song, updateMix, isUserAdmin, idx,loadSong }) {
     let number = idx + 1;
     return (
         <li className="song-preview flex space-between">
-            <div className="song-details flex align-center">
+            <div onClick={()=>loadSong(song)} className="song-details flex align-center">
                 <span className="song-number">{number}</span>
                 <i className="song-preview-icon fas fa-play"></i>
                 <img className="img-song" src={song.imgUrl} alt="img song" />

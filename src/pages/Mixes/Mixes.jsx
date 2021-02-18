@@ -9,9 +9,7 @@ import './Mixes.scss'
 import Search from '../../cmps/Search';
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 import { utilService } from '../../services/UtilsService';
-import Player from '../../cmps/Player/Player';
-import ReactPlayer from 'react-player/youtube'
-
+import PopUpMenu from '../../cmps/PopUpMenu/PopUpMenu'
 
 class _Mixes extends Component {
 
@@ -52,11 +50,10 @@ class _Mixes extends Component {
 
     render() {
         const { mixes } = this.props
-        if (!mixes) return <LoaderCmp></LoaderCmp>
+        if ( !mixes) return <LoaderCmp></LoaderCmp>
 
         const GenresNames = () => {
             return (
-                <Fragment>
                     <ul className="genres-names-list clean-list flex wrap container space-around">
                         {this.genresNames.map((name, idx) => {
                             return (
@@ -66,9 +63,6 @@ class _Mixes extends Component {
                             )
                         })}
                     </ul>
-                    <Player></Player>
-                    <ReactPlayer url='https://www.youtube.com/watch?v=ysz5S6PUM-U' />
-                </Fragment>
 
             )
         }

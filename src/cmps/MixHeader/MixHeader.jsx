@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import SelectGenre from '../SelectGenre/SelectGenre'
-import { addMix } from '../../store/actions/MixAction';
+
 
 import './MixHeader.scss'
 class MixHeader extends Component {
