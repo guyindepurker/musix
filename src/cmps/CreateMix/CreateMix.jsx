@@ -10,6 +10,7 @@ import { addMix } from '../../store/actions/MixAction';
 import { uploadImg } from '../../services/CloudService';
 import imgPlaceholder from '../../assets/imgs/uploadImg.png';
 import SelectGenre from '../SelectGenre/SelectGenre';
+import { withRouter } from 'react-router-dom';
 
 class _CreateMix extends Component {
 
@@ -20,7 +21,7 @@ class _CreateMix extends Component {
     componentDidMount() {
         const miniUser = userService.getMiniUser()
         const mix = mixService.getEmptyMix(miniUser)
-        this.setState({ mix })
+        this.setState({ mix },()=>console.log('this is your new mix',this.state.mix))
     }
     handleChange = ({ target }) => {
         const field = target.name
@@ -30,8 +31,13 @@ class _CreateMix extends Component {
     saveMix = async (ev) => {
         ev.preventDefault()
         const { mix } = this.state
+        console.log('mix.imgUrl:', mix.imgUrl)
         await this.props.addMix(mix)
-        this.props.history.push(`/app/mix/${this.props.newMix._id}`)
+        const id = this.props.newMix._id
+        console.log('your new mix id = ',id);
+        console.log('this.props.history:', this.props)
+        this.props.history.push(`/app/mix/${id}`)
+        this.props.closeModal()
     }
 
 
@@ -88,4 +94,4 @@ const mapDispatchToProps = {
     addMix,
 }
 
-export const CreateMix = connect(mapStateToProps, mapDispatchToProps)(_CreateMix)
+export const CreateMix = withRouter(connect(mapStateToProps, mapDispatchToProps)(_CreateMix))

@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  height: 100vh;
+  // height: 100vh;
   // background-image: linear-gradient(#c074b2, #8ab5e8);\
   
   // background-color: $dark-black;
@@ -44,7 +44,7 @@ a {
 ::-webkit-scrollbar {
   width: 12px;
   background-color: rgba(0, 0, 0, 0.171);
-  -webkit-border-radius: 100px;
+  
 }
 
 ::-webkit-scrollbar:hover {
@@ -52,7 +52,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb:vertical {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(237, 237, 237, 0.5);
   -webkit-border-radius: 100px;
 }
 

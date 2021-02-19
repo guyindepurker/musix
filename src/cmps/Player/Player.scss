@@ -1,39 +1,45 @@
 @import "./src/styles/setup";
+
 .player {
-  height: 100px;
+  height: 105px;
   position: fixed;
-  padding: rem(15px) rem(30px);
-  z-index: 1;
   bottom: 0;
+  padding: rem(15px) rem(30px);
+  z-index: 55;
   background-color: $player-bgc;
   border-top: 1px solid $player-top;
   width: 100%;
 
-  .volume-container {
-  }
+  .volume-container {}
 
   .song-control {
     .btns-player-control {
       width: 250px;
       margin-bottom: rem(15px);
+
       button {
         background-color: transparent;
       }
+
       .play-song-btn {
         background-color: $white;
-        padding: 8px 8px 8px 11px;
+        background-color: white;
+        padding: 9px;
+        padding-right: 9px;
+        width: 34px;
+        height: 34px;
+        text-align: end;
         border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        border-radius: 50%;
       }
 
       .fas {
         color: $light-grey;
         font-size: rem(16px);
       }
-      
-      .fa-play,.fa-pause {
+
+      .fa-play,
+      .fa-pause {
         color: $black;
       }
     }
@@ -45,8 +51,19 @@
     }
   }
 
+  .grey-icon {
+    color: $light-grey;
+    margin: 0 5px;
+    transition: all .3s;
+
+    &:hover {
+      color: $green;
+    }
+  }
+
   .song-container {
     color: $light-grey;
+
     .song-img {
       width: 60px;
       height: 50px;
@@ -59,6 +76,7 @@
       .fa-heart {
         font-size: rem(16px);
         color: $light-grey;
+
         &:hover {
           color: $white;
         }

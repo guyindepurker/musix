@@ -1,7 +1,7 @@
 @import "./src/styles/setup";
 
 .home-page {
-  // min-height: calc(100vh - 270px);
+
   display: grid;
   grid-template-rows: 80vh minmax(max-content,rem(550px)) minmax(max-content, rem(300px));
   grid-template-columns: 1fr;

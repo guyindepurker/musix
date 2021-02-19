@@ -40,7 +40,7 @@ function getEmptyMix(miniUser,name='New Mix',description='Mix description') {
         description,
         genre: 'funk',
         views: 0,
-        imgUrl: '',
+        imgUrl: 'defualtImg.jpg',
         likes: 0,
         createdBy:miniUser,
         tags: [],

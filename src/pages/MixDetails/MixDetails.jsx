@@ -85,9 +85,11 @@ class _MixDetails extends Component {
                     <MixActions setSearch={this.filterBySong} />
                 </div>
                 <div className="grid grid-content">
-                    <SongList loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
-                    <Player></Player>
+                    <SongList  loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
                 </div>
+                <div className=" grid-player">
+                    <Player></Player>
+                    </div>
             </section>
         )
     }
@@ -97,7 +99,7 @@ function mapStateToProps(state) {
     return {
         mix: state.mixReducer.mix,
         mixes: state.mixReducer.mixes,
-        user: state.userReducer.loggedinUser
+        user: state.userReducer.loggedinUser,
     }
 }
 const mapDispatchToProps = {

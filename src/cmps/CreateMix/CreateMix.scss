@@ -3,7 +3,7 @@
         font-family: $font-secondary;
   position: fixed;
   width: 530px;
-  height: 650px;
+  height: 570px;
   background-color: #ffffffbd;
   z-index: 3;
   top: 50%;
@@ -34,8 +34,9 @@
 
   .upload-img-container {
     margin-bottom: 15px;
-
+    
     .uploadImg {
+      cursor: pointer;
       width: 200px;
       box-shadow: 1px 2px 15px 2px #494949;
     }
@@ -56,6 +57,7 @@
     border: none;
     margin-bottom: 10px;
     font-family: $font-secondary;
+    resize:none;
 
   }
 

@@ -5,6 +5,7 @@ import './SongPreview.scss'
 
 export default function SongPreview({ song, updateMix, isUserAdmin, idx,loadSong }) {
     let number = idx + 1;
+    
     return (
         <li className="song-preview flex space-between">
             <div onClick={()=>loadSong(song)} className="song-details flex align-center">
@@ -20,3 +21,4 @@ export default function SongPreview({ song, updateMix, isUserAdmin, idx,loadSong
         </li>
     )
 }
+

@@ -18,22 +18,28 @@ class Player extends Component {
 
     }
 
-    componentDidUpdate(prevProps, prevState) {
+
+    onReady = (event) => {
+        console.log(' event.target:', event.target)
+        event.target.playVideo();
+        const duration = event.target.getDuration();
+        if(!this.state.isPlaying){
+            this.toggleIsPlaying()
+        }
+        this.setState({youtubePlayer: event.target, duration },this.getTimeLeft)
+        
+    }
+    componentWillUnmount() {
+        clearInterval(this.gInterval);
+      }
+    getTimeLeft=()=>{
         const { youtubePlayer, isPlaying } = this.state
         if (youtubePlayer && isPlaying) {
             this.gInterval = setInterval(() => {
                 let time = youtubePlayer.getCurrentTime()
                 this.setState({ timeLeft: time })
             }, 1000)
-        } else if (prevState.isPlaying !== isPlaying) {
-            clearInterval(this.gInterval)
-        }
-    }
-    onReady = (event) => {
-        console.log(' event.target:', event.target)
-        event.target.playVideo();
-        const duration = event.target.getDuration();
-        this.setState(prevState => ({ isPlaying: !prevState.isPlaying, youtubePlayer: event.target, duration }))
+        } 
     }
 
     toggleIsPlaying = () => {
@@ -55,7 +61,7 @@ class Player extends Component {
             const prevSong = songs[idx - 1]
             loadSong(prevSong)
         }
-        this.toggleIsPlaying()
+        
     }
 
     changeVolume = ({ target }) => {
@@ -101,12 +107,12 @@ class Player extends Component {
         };
         const { song } = this.props
         const { isPlaying, youtubePlayer, duration, timeLeft } = this.state
-        if (!song) return <LoaderCmp></LoaderCmp>
+        if (!song) return null
         return (
             <section className="player flex align-center space-between">
 
-                <div className="volume-container">
-                    <i className="fas fa-volume"></i>
+                <div className="volume-container flex align-center">
+                    <i className="fas grey-icon fa-volume"></i>
                     <input
                         className="volume-slider"
                         type="range"
@@ -122,11 +128,11 @@ class Player extends Component {
                     <div className="btns-player-control flex space-around">
                         <button className="shuffle"><i className="fas fa-random"></i></button>
                         <button onClick={() => this.changeSong('prev')} className="prev-song-btn"><i className="fas fa-arrow-to-left"></i></button>
-                        <button onClick={() => isPlaying ? this.handleSong('pause') : this.handleSong('play')} className="play-song-btn"><i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i></button>
+                        <button onClick={() => isPlaying ? this.handleSong('pause') : this.handleSong('play')} className="play-song-btn flex center-center"><i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i></button>
                         <button onClick={() => this.changeSong('next')} className="next-song-btn"><i className="fas fa-arrow-to-right"></i></button>
                     </div>
-                    <div className="song-duration-slider">
-                        <span className="count-time">{this.timeLeft}</span>
+                    <div className="song-duration-slider flex align-center">
+                        <span className="grey-icon count-time">{this.timeLeft}</span>
                         <input
                             className="duration-slider"
                             type="range"
@@ -136,7 +142,7 @@ class Player extends Component {
                             max={duration}
                             onChange={this.changeTime}
                         />
-                        <span className="song-duration">{song.duration}</span>
+                        <span className="grey-icon song-duration">{song.duration}</span>
                     </div>
                 </div>
 

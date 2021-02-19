@@ -25,7 +25,7 @@ function showTime(seconds) {
         mins = (parseInt(seconds / 60)).toString();
         secs = (parseInt(seconds - mins * 60)).toString().padStart(2, '0');
     } else {
-        mins = '0';
+        mins = '00';
         secs = (parseInt(seconds)).toString().padStart(2, '0');
     }
     return `${mins}:${secs}`

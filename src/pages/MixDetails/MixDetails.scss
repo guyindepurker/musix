@@ -1,9 +1,9 @@
 @import "./src/styles/setup";
 
 .mix-details {
-  min-height: calc(100vh - 270px);
+  
   display: grid;
-  grid-template-rows: rem(260px) rem(60px) 1fr;
+  grid-template-rows: rem(260px) rem(60px) rem(300px) max-content;
   grid-template-columns: rem(15px) 1fr rem(15px);
   row-gap: 5px;
 
@@ -24,6 +24,14 @@
       grid-column: 1/-1;
 
       grid-row: 3/4;
+      
+      overflow-y: scroll;
+    }
+    &-player{
+      grid-column: 1/-1;
+  
+      grid-row: 4/5;
+      
     }
   }
 
