@@ -19,6 +19,7 @@
       font-size: rem(14px);
     }
   }
+  // ??
 
   .song-control {
     .btns-player-control {
@@ -40,6 +41,7 @@
       .fas {
         color: $light-grey;
         font-size: rem(16px);
+
         &:hover {
           color: $white;
         }
@@ -48,6 +50,7 @@
       .fa-play,
       .fa-pause {
         color: $black;
+
         &:hover {
           color: $light-grey;
         }
@@ -60,6 +63,7 @@
 
     .song-duration-slider {
       width: 500px;
+
       input {
         width: 425px;
       }
@@ -87,9 +91,11 @@
     color: $light-grey;
     width: 350px;
     justify-content: flex-end;
+
     .song-name {
       font-size: rem(14px);
     }
+
     .song-img {
       width: 70px;
       height: 60px;
