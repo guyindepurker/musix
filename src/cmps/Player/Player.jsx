@@ -1,6 +1,5 @@
 
-import React, { Component } from 'react'
-// import ReactPlayer from 'react-player/youtube'
+import React, { Component, Fragment } from 'react'
 import './Player.scss'
 import { connect } from 'react-redux';
 import { loadSong, loadSongs } from '../../store/actions/PlayerAction';
@@ -14,32 +13,26 @@ class Player extends Component {
         isPlaying: false,
         youtubePlayer: null,
         timeLeft: 0,
-        duration: 0
+        videoUrl: ''
 
     }
 
-
-    onReady = (event) => {
-        console.log(' event.target:', event.target)
-        event.target.playVideo();
-        const duration = event.target.getDuration();
-        if(!this.state.isPlaying){
-            this.toggleIsPlaying()
-        }
-        this.setState({youtubePlayer: event.target, duration },this.getTimeLeft)
-        
-    }
-    componentWillUnmount() {
-        clearInterval(this.gInterval);
-      }
-    getTimeLeft=()=>{
+    componentDidUpdate(prevState) {
         const { youtubePlayer, isPlaying } = this.state
         if (youtubePlayer && isPlaying) {
             this.gInterval = setInterval(() => {
                 let time = youtubePlayer.getCurrentTime()
                 this.setState({ timeLeft: time })
             }, 1000)
-        } 
+        } else if (prevState.isPlaying !== isPlaying) {
+            clearInterval(this.gInterval)
+        }
+    }
+    onReady = (event) => {
+        // event.target.playVideo();
+        event.target.pauseVideo();
+        this.setState(prevState => ({ isPlaying: !prevState.isPlaying, youtubePlayer: event.target }))
+
     }
 
     toggleIsPlaying = () => {
@@ -54,14 +47,13 @@ class Player extends Component {
         if (action === 'next') {
             const nextSong = songs[idx + 1]
             loadSong(nextSong)
-
         } else {
             if (idx === 0) idx = songs.length;
             if (idx === -1) idx = 1;
             const prevSong = songs[idx - 1]
             loadSong(prevSong)
         }
-        
+        this.toggleIsPlaying()
     }
 
     changeVolume = ({ target }) => {
@@ -106,53 +98,58 @@ class Player extends Component {
             },
         };
         const { song } = this.props
-        const { isPlaying, youtubePlayer, duration, timeLeft } = this.state
-        if (!song) return null
+        const { isPlaying, duration, timeLeft } = this.state
+
+        if (!song) return <LoaderCmp></LoaderCmp>
         return (
-            <section className="player flex align-center space-between">
-
-                <div className="volume-container flex align-center">
-                    <i className="fas grey-icon fa-volume"></i>
-                    <input
-                        className="volume-slider"
-                        type="range"
-                        value={this.volume}
-                        min="0"
-                        step="1"
-                        max="100"
-                        onChange={this.changeVolume}
-                    />
-                </div>
-
-                <div className="song-control flex column align-center">
-                    <div className="btns-player-control flex space-around">
-                        <button className="shuffle"><i className="fas fa-random"></i></button>
-                        <button onClick={() => this.changeSong('prev')} className="prev-song-btn"><i className="fas fa-arrow-to-left"></i></button>
-                        <button onClick={() => isPlaying ? this.handleSong('pause') : this.handleSong('play')} className="play-song-btn flex center-center"><i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i></button>
-                        <button onClick={() => this.changeSong('next')} className="next-song-btn"><i className="fas fa-arrow-to-right"></i></button>
-                    </div>
-                    <div className="song-duration-slider flex align-center">
-                        <span className="grey-icon count-time">{this.timeLeft}</span>
+            <Fragment>
+                <section className="player flex align-center space-between">
+                    <div className="volume-container flex align-center">
+                        <i className="fas fa-volume"></i>
                         <input
-                            className="duration-slider"
+                            className="volume-slider"
                             type="range"
-                            name="played"
-                            value={timeLeft}
+                            value={this.volume}
                             min="0"
-                            max={duration}
-                            onChange={this.changeTime}
+                            step="1"
+                            max="100"
+                            onChange={this.changeVolume}
                         />
-                        <span className="grey-icon song-duration">{song.duration}</span>
                     </div>
-                </div>
 
-                <div className="song-container flex align-center">
-                    <button className="like-song"><i className="far fa-heart"></i></button>
-                    <span className="song-name">{song.title}</span>
-                    <img className="song-img" src={song.imgUrl} alt="song-img"></img>
+                    <div className="song-control flex column align-center">
+                        <div className="btns-player-control flex space-around">
+                            <button className="shuffle"><i className="fas fa-random"></i></button>
+                            <button onClick={() => this.changeSong('prev')} className="prev-song-btn"><i className="fas fa-arrow-to-left"></i></button>
+                            <button onClick={() => isPlaying ? this.handleSong('pause') : this.handleSong('play')} className="play-song-btn"><i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i></button>
+                            <button onClick={() => this.changeSong('next')} className="next-song-btn"><i className="fas fa-arrow-to-right"></i></button>
+                        </div>
+
+                        <div className="song-duration-slider flex align-center">
+                            <span className="count-time">{this.timeLeft}</span>
+                            <input
+                                className="duration-slider"
+                                type="range"
+                                name="played"
+                                value={timeLeft}
+                                min="0"
+                                max={duration}
+                                onChange={this.changeTime}
+                            />
+                            <span className="song-duration">{song.duration}</span>
+                        </div>
+                    </div>
+
+                    <div className="song-container flex align-center">
+                        <button className="like-song"><i className="far fa-heart"></i></button>
+                        <span className="song-name">{song.title}</span>
+                        <img className="song-img" src={song.imgUrl} alt="song-img"></img>
+                    </div>
+                </section>
+                <div className="youtube-player">
+                    <YouTube videoId={song.youtubeId} opts={opts} onReady={this.onReady} />
                 </div>
-                <YouTube videoId={song.youtubeId} opts={opts} onReady={this.onReady} />
-            </section>
+            </Fragment>
         )
 
 

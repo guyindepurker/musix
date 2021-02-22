@@ -28,6 +28,7 @@ export function addMix(mix){
 export function updateMix(mix){
     return async (dispatch) =>{
         const mixUpdated = await mixService.save(mix)
+        console.log('mixUpdated:', mixUpdated);
         dispatch({type:'UPDATE_MIX',mix:mixUpdated})
     }
 }

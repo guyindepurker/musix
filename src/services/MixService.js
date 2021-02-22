@@ -32,6 +32,7 @@ async function _add(mix) {
 }
 
 async function _update(mix) {
+    console.log('mix in update:', mix);
     return httpService.put(`mix/${mix._id}`, mix);
 }
 function getEmptyMix(miniUser,name='New Mix',description='Mix description') {

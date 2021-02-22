@@ -1,7 +1,6 @@
 
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
-
 import './MixDetails.scss'
 import { loadMix, updateMix, removeMix, loadMixes } from '../../store/actions/MixAction';
 import SongList from '../../cmps/SongList/SongList';
@@ -9,6 +8,7 @@ import MixHeader from '../../cmps/MixHeader';
 import MixActions from '../../cmps/MixActions';
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 import { utilService } from '../../services/UtilsService';
+import { youtubeService } from '../../services/YoutubeService';
 import Player from '../../cmps/Player/Player';
 import { loadSongs, loadSong } from '../../store/actions/PlayerAction';
 class _MixDetails extends Component {
@@ -17,8 +17,6 @@ class _MixDetails extends Component {
     }
     componentDidMount() {
         this.loadMix()
-        console.log('user:', this.props.user);
-
     }
 
     loadMix = async () => {
@@ -28,6 +26,7 @@ class _MixDetails extends Component {
             await this.props.loadMixes()
         }
     }
+
     updateMix = async (key, value) => {
         console.log('key,value:', key, value)
         const copyMix = { ...this.props.mix }
@@ -38,6 +37,18 @@ class _MixDetails extends Component {
             console.log('ERR', err);
         }
     }
+
+    addSongToMix = async (song) => {
+        console.log('song in addSongToMix<<<<<', song);
+        song.duration = await youtubeService.getSongDuration(song.youtubeId)
+        console.log('song.duration:', song.duration);
+        const copyMix = { ...this.props.mix }
+        const songs = copyMix.songs
+        songs.push(song)
+        this.updateMix('songs', songs)
+    }
+
+
     removeSong = (id) => {
         const copyMix = { ...this.props.mix }
         let { songs } = copyMix
@@ -77,20 +88,16 @@ class _MixDetails extends Component {
         if (!mix) return <LoaderCmp></LoaderCmp>
         const { createdBy, songs } = mix
         return (
-            <section className="mix-details">
-                <div className="grid grid-header">
+            <Fragment>
+                <section className="mix-details">
                     <MixHeader user={user} updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
-                </div>
-                <div className="grid grid-action">
-                    <MixActions setSearch={this.filterBySong} />
-                </div>
-                <div className="grid grid-content">
-                    <SongList  loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
-                </div>
-                <div className=" grid-player">
-                    <Player></Player>
+                    <MixActions setSearch={this.filterBySong} addSongToMix={this.addSongToMix} />
+                    <div className="song-list-container">
+                        <SongList loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
                     </div>
-            </section>
+                </section>
+                <Player></Player>
+            </Fragment>
         )
     }
 }
