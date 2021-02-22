@@ -36,7 +36,7 @@ export default class MixActions extends Component {
                     </div>
                 </div>
                 {isAddSongsModalShowen && <AddSongs addSongToMix={addSongToMix}></AddSongs>}
-                {isAddSongsModalShowen && <div className="back-drop-layer" onClick={()=> this.toggleAddSongsModal(!isAddSongsModalShowen)}></div>}
+                {isAddSongsModalShowen && <div className="back-drop-layer" onClick={this.toggleAddSongsModal}></div>}
 
             </Fragment>
         )

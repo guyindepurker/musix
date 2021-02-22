@@ -38,7 +38,7 @@ class _App extends Component  {
           <Route path='/' component={HomePage} />
         </Switch>
         </main>
-        {!song&& <AppFooter /> || user && song && <Player></Player>}
+        {!song&& <AppFooter /> }
       </Router>
     </div>
   );

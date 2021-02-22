@@ -43,8 +43,7 @@ class _MixDetails extends Component {
         song.duration = await youtubeService.getSongDuration(song.youtubeId)
         console.log('song.duration:', song.duration);
         const copyMix = { ...this.props.mix }
-        const songs = copyMix.songs
-        songs.push(song)
+    const songs = [...copyMix.songs,song]
         this.updateMix('songs', songs)
     }
 
@@ -88,16 +87,18 @@ class _MixDetails extends Component {
         if (!mix) return <LoaderCmp></LoaderCmp>
         const { createdBy, songs } = mix
         return (
-            <Fragment>
-                <section className="mix-details">
+            // <Fragment>
+                <section className="mix-details-main">
+                    <div className="mix-details">
                     <MixHeader user={user} updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
                     <MixActions setSearch={this.filterBySong} addSongToMix={this.addSongToMix} />
                     <div className="song-list-container">
                         <SongList loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
                     </div>
-                </section>
+                    </div>
                 <Player></Player>
-            </Fragment>
+                </section>
+            // </Fragment>
         )
     }
 }

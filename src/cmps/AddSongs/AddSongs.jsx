@@ -8,7 +8,8 @@ import SongList from '../SongList/SongList';
 class AddSongs extends Component {
 
     state = {
-        searchTerm: ''
+        searchTerm: '',
+        songs:null
     }
 
     handleInputChange = (ev) => {
@@ -17,6 +18,7 @@ class AddSongs extends Component {
 
     getSongs = async () => {
         const { searchTerm } = this.state;
+        if(!searchTerm) return;
         const songs = await youtubeService.getSongs(searchTerm);
         if (!songs) return;
         this.setState({ songs });

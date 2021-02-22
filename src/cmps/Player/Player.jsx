@@ -102,7 +102,7 @@ class Player extends Component {
 
         if (!song) return <LoaderCmp></LoaderCmp>
         return (
-            <Fragment>
+            // <Fragment>
                 <section className="player flex align-center space-between">
                     <div className="volume-container flex align-center">
                         <i className="fas fa-volume"></i>
@@ -145,11 +145,11 @@ class Player extends Component {
                         <span className="song-name">{song.title}</span>
                         <img className="song-img" src={song.imgUrl} alt="song-img"></img>
                     </div>
-                </section>
                 <div className="youtube-player">
                     <YouTube videoId={song.youtubeId} opts={opts} onReady={this.onReady} />
                 </div>
-            </Fragment>
+                </section>
+            // </Fragment> 
         )
 
 
