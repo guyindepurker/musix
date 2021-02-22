@@ -17,23 +17,29 @@ class Player extends Component {
 
     }
 
-    componentDidUpdate(prevState) {
+    onReady = (event) => {
+        console.log(' event.target:', event.target)
+        event.target.pauseVideo();
+        const duration = event.target.getDuration();
+        if(!this.state.isPlaying){
+            this.toggleIsPlaying()
+        }
+        this.setState({youtubePlayer: event.target, duration },this.getTimeLeft)
+        
+    }
+    componentWillUnmount() {
+        clearInterval(this.gInterval);
+      }
+    getTimeLeft=()=>{
         const { youtubePlayer, isPlaying } = this.state
         if (youtubePlayer && isPlaying) {
             this.gInterval = setInterval(() => {
                 let time = youtubePlayer.getCurrentTime()
                 this.setState({ timeLeft: time })
             }, 1000)
-        } else if (prevState.isPlaying !== isPlaying) {
-            clearInterval(this.gInterval)
-        }
+        } 
     }
-    onReady = (event) => {
-        // event.target.playVideo();
-        event.target.pauseVideo();
-        this.setState(prevState => ({ isPlaying: !prevState.isPlaying, youtubePlayer: event.target }))
 
-    }
 
     toggleIsPlaying = () => {
         this.setState(prevState => ({ isPlaying: !prevState.isPlaying }))
