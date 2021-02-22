@@ -1,16 +1,14 @@
 
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-
 import guyImg from '../../assets/imgs/guy.jfif'
 import yuvalImg from '../../assets/imgs/yuval.jpg'
 
 
 import './AppFooter.scss'
-import { useSelector, connect } from 'react-redux';
+import {  connect } from 'react-redux';
 
- function AppFooter(props) {
-   if(props.song) return null; 
+ function AppFooter() {
     return (
         
         <footer className="app-footer flex">

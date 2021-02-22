@@ -1,4 +1,5 @@
 @import "./src/styles/setup";
 .song-list {
- 
+  max-height: rem(220px);
+  overflow-y: scroll;
 }

@@ -1,20 +1,31 @@
 @import "./src/styles/setup";
 
 .mix-actions {
-        border-top: 1px solid $dark-grey;
-        border-bottom: 1px solid $dark-grey;
-        padding: rem(7px) 0;
+  border-top: 1px solid $dark-grey;
+  border-bottom: 1px solid $dark-grey;
+  padding: rem(10px) rem(20px);
 
-        .mix-control-icon {
-                color: $white;
-                font-size: rem(25px);
-                margin: 0 rem(6px);
-                transition: all .2s;
-                cursor: pointer;
+  .mix-control-icon {
+    color: $white;
+    font-size: rem(25px);
+    margin: 0 rem(6px);
+    transition: all 0.2s;
+    cursor: pointer;
 
-                &:hover {
-                        color: $light-green;
-                }
-        }
+    &:hover {
+      color: $light-green;
+    }
+  }
 
+  .toggle-add-songs-btn {
+    background-color: transparent;
+    margin-right: rem(10px);
+    .fa-plus {
+      font-size: rem(30px);
+      color: $white;
+      &:hover {
+        color: rgba(255, 255, 255, 0.459);
+      }
+    }
+  }
 }

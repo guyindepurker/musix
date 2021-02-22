@@ -15,11 +15,12 @@ import UserProfile from './pages/UserProfile/UserProfile';
 import {MixDetails} from './pages/MixDetails/MixDetails';
 import SignUp from './pages/SignUp/SignUp';
 import { connect } from 'react-redux';
+import Player from './cmps/Player/Player';
 
 
 class _App extends Component  {
   render(){
-    const {user} = this.props
+    const {user, song} = this.props
     const PrivateRoute = (props) => {
       return user ? <Route { ...props } /> : <Redirect to="/signup" />
     }
@@ -37,7 +38,7 @@ class _App extends Component  {
           <Route path='/' component={HomePage} />
         </Switch>
         </main>
-        <AppFooter />
+        {!song&& <AppFooter /> || user && song && <Player></Player>}
       </Router>
     </div>
   );
@@ -47,7 +48,8 @@ class _App extends Component  {
 
 function mapStateToProps(state) {
   return {
-    user: state.userReducer.loggedinUser
+    user: state.userReducer.loggedinUser,
+    song :state.playerReducer.song
   }
 }
 

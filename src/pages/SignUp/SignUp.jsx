@@ -1,8 +1,5 @@
 
 import React, { Component } from 'react'
-import { CreateMix } from '../../cmps/CreateMix/CreateMix'
-import Player from '../../cmps/Player/Player'
-
 import './SignUp.scss'
 
 class SignUp extends Component {
@@ -10,7 +7,6 @@ class SignUp extends Component {
         isSignup: false,
     }
     render() {
-
         const Login = () => {
             return (
                 <div className="login flex column">

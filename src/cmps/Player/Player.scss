@@ -64,11 +64,18 @@
         width: 425px;
       }
 
-      span {
+      .count-time,
+      .song-duration {
         width: 30px;
         color: $light-grey;
         font-size: rem(14px);
-        margin: 0 10px;
+      }
+
+      .count-time {
+        margin-right: rem(15px);
+      }
+      .song-duration {
+        margin-left: rem(10px);
       }
     }
   }
@@ -76,7 +83,7 @@
   .grey-icon {
     color: $light-grey;
     margin: 0 5px;
-    transition: all .3s;
+    transition: all 0.3s;
 
     &:hover {
       color: $green;
@@ -110,4 +117,9 @@
       }
     }
   }
+}
+
+.youtube-player {
+  height: fit-content;
+  margin-top: -20px;
 }

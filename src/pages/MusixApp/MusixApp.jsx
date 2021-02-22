@@ -7,6 +7,7 @@ import _ from 'lodash'
 import MixList from '../../cmps/MixList/MixList';
 import { Link } from 'react-router-dom'
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
+
 class _MusixApp extends Component {
     state = {
         filterBy: null,

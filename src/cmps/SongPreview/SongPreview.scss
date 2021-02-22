@@ -1,57 +1,76 @@
 @import "./src/styles/setup";
+.song-preview-container {
 
-.song-preview {
-  padding: rem(10px);
-  transition: all 0.3s;
-  border-radius: 6px;
-  height: 50px;
-  color: $light-grey;
+  .song-preview {
+    width: 100%;
+    padding: rem(10px);
+    transition: all 0.3s;
+    border-radius: 6px;
+    height: 50px;
+    color: $light-grey;
 
-  &:not(:last-child) {
-    margin-bottom: 10px;
-  }
-
-  &:hover {
-    background-color: $song-hover;
-  }
-
-  .song-details {
-    font-size: rem(16px);
-    gap: rem(10px);
-    transition: color 0.3s;
-    cursor: pointer;
-    .song-number {
-      margin-right: 8px;
+    &:not(:last-child) {
+      margin-bottom: 10px;
     }
-    img {
-      width: rem(50px);
-
-      object-fit: cover;
-      border-radius: rem(5px);
-    }
-    .song-name {
-      text-transform: capitalize;
-    }
-    .song-duration {
-      color: $light-grey-2;
-      font-size: rem(12px);
-      letter-spacing: 1.1px;
-    }
-
-    &:hover,
-    &:hover > :first-child {
-      color: $green;
-    }
-  }
-
-  .song-preview-icon {
-    font-size: rem(15px);
-    color: $white;
-    transition: all 0.2s;
-    cursor: pointer;
 
     &:hover {
-      color: $green;
+      background-color: $song-hover;
+    }
+
+    .song-details {
+      font-size: rem(16px);
+      gap: rem(10px);
+      transition: color 0.3s;
+      cursor: pointer;
+      .song-number {
+        margin-right: 8px;
+      }
+      img {
+        width: rem(50px);
+
+        object-fit: cover;
+        border-radius: rem(5px);
+      }
+      .song-name {
+        text-transform: capitalize;
+        width: fit-content;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      .song-duration {
+        color: $light-grey-2;
+        font-size: rem(12px);
+        letter-spacing: 1.1px;
+      }
+
+      &:hover,
+      &:hover > :first-child {
+        color: $green;
+      }
+    }
+
+    .song-preview-icon {
+      font-size: rem(15px);
+      color: $white;
+      transition: all 0.2s;
+      cursor: pointer;
+
+      &:hover {
+        color: $green;
+      }
+    }
+  }
+
+  .add-song-btn {
+    background-color: transparent;
+    .fa-plus {
+      color: $light-grey;
+      font-size: rem(18px);
+      &:hover {
+        color: $green;
+      }
     }
   }
 }
