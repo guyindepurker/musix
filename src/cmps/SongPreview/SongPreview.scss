@@ -39,7 +39,7 @@
     }
 
     &:hover,
-    &:hover > :first-child {
+    &:hover > :first-child ,&.played-song,&.played-song >:first-child{
       color: $green;
     }
   }

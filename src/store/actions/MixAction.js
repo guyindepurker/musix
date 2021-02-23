@@ -9,6 +9,10 @@ export function loadMixes(filterBy){
 
 export function loadMix(mixId){
     return async (dispatch) =>{
+        if(!mixId){
+            console.log('Not have mix id set null')
+          return  dispatch({type:'SET_MIX',mix:null})
+        }
         const mix = await mixService.getById(mixId)
         dispatch({type:'SET_MIX',mix})
     }

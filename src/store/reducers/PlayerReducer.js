@@ -5,7 +5,6 @@ const INITIAL_STATE = {
 export function playerReducer(state=INITIAL_STATE,action){
     switch (action.type) {
         case 'SET_SONG':
-            console.log('action.song:', action.song)
             return {
                 ...state,
                 song:action.song

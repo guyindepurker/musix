@@ -21,7 +21,7 @@ class _CreateMix extends Component {
     componentDidMount() {
         const miniUser = userService.getMiniUser()
         const mix = mixService.getEmptyMix(miniUser)
-        this.setState({ mix },()=>console.log('this is your new mix',this.state.mix))
+        this.setState({ mix }, () => console.log('this is your new mix', this.state.mix))
     }
     handleChange = ({ target }) => {
         const field = target.name
@@ -31,21 +31,22 @@ class _CreateMix extends Component {
     saveMix = async (ev) => {
         ev.preventDefault()
         const { mix } = this.state
-        console.log('mix.imgUrl:', mix.imgUrl)
         await this.props.addMix(mix)
         const id = this.props.newMix._id
-        console.log('your new mix id = ',id);
-        console.log('this.props.history:', this.props)
         this.props.history.push(`/app/mix/${id}`)
         this.props.closeModal()
     }
 
 
-    async onUploadImg(ev) {
+    onUploadImg = async (ev) => {
         this.setState({ isLoading: true })
-        const imgUrl = await uploadImg(ev);
-        this.setState(prevState => ({ mix: { ...prevState.mix, imgUrl } }))
-        this.setState({ isLoading: false })
+        try {
+            const res = await uploadImg(ev);
+            this.setState(prevState => ({ mix: { ...prevState.mix, imgUrl: res.url }, isLoading: false }),()=>console.log('state:',this.state))
+
+        } catch (err) {
+            console.log('Cant upload your image!!', err);
+        }
     }
 
     render() {

@@ -11,25 +11,45 @@ import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 import { utilService } from '../../services/UtilsService';
 import Player from '../../cmps/Player/Player';
 import { loadSongs, loadSong } from '../../store/actions/PlayerAction';
+import { userService } from '../../services/UserService';
 class _MixDetails extends Component {
     state = {
         filterBySong: null
     }
     componentDidMount() {
         this.loadMix()
-        console.log('user:', this.props.user);
+      
 
     }
+    componentWillUnmount() {
+        this.props.loadMix(undefined)
+     }
 
     loadMix = async () => {
         await this.props.loadMix(this.props.match.params.id)
         this.props.loadSongs(this.props.mix.songs)
+        this.props.loadSong(this.props.mix.songs[0])
         if (!this.props.mixes) {
             await this.props.loadMixes()
         }
     }
+    likeByUser = () =>{
+        const copyMix = {...this.props.mix}
+        const miniUser = userService.getMiniUser()
+        const {likedByUsers} = copyMix
+        const isLike = likedByUsers.find(user=>user._id === miniUser._id)
+        if(isLike) return;
+        let likes = [...likedByUsers,miniUser]
+        this.updateMix('likedByUsers',likes)
+    }
+    unLikeByUser = ()=>{
+        const copyMix = {...this.props.mix}
+        const miniUser = userService.getMiniUser()
+        const {likedByUsers} = copyMix
+        const likes = likedByUsers.filter(user=>user._id !== miniUser._id)
+        this.updateMix('likedByUsers',likes)
+    }
     updateMix = async (key, value) => {
-        console.log('key,value:', key, value)
         const copyMix = { ...this.props.mix }
         copyMix[key] = value
         try {
@@ -46,7 +66,6 @@ class _MixDetails extends Component {
     }
 
     loadSongToPlayer = (song) => {
-        console.log('song to play:', song)
         this.props.loadSong(song)
     }
     removeMix = async (mixId) => {
@@ -72,20 +91,26 @@ class _MixDetails extends Component {
         }
         return songs
     }
+    get isLike(){
+        const {mix,user} = this.props
+         const isLike =  mix.likedByUsers.some(lUser => lUser._id===user._id)
+         return isLike
+    }
     render() {
-        const { mix, user } = this.props
+        const { mix, user,songPlayed } = this.props
         if (!mix) return <LoaderCmp></LoaderCmp>
         const { createdBy, songs } = mix
         return (
+           
             <section className="mix-details">
                 <div className="grid grid-header">
                     <MixHeader user={user} updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
                 </div>
                 <div className="grid grid-action">
-                    <MixActions setSearch={this.filterBySong} />
+                    <MixActions isLike={this.isLike} like={this.likeByUser} unLike={this.unLikeByUser} pathName={this.props.history.location.pathname} setSearch={this.filterBySong} />
                 </div>
                 <div className="grid grid-content">
-                    <SongList  loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
+                    <SongList songPlayed={songPlayed || null} loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
                 </div>
                 <div className=" grid-player">
                     <Player></Player>
@@ -100,6 +125,7 @@ function mapStateToProps(state) {
         mix: state.mixReducer.mix,
         mixes: state.mixReducer.mixes,
         user: state.userReducer.loggedinUser,
+        songPlayed: state.playerReducer.song,
     }
 }
 const mapDispatchToProps = {

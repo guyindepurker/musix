@@ -20,8 +20,8 @@ class Player extends Component {
 
 
     onReady = (event) => {
-        console.log(' event.target:', event.target)
         event.target.playVideo();
+        
         const duration = event.target.getDuration();
         if(!this.state.isPlaying){
             this.toggleIsPlaying()
@@ -67,7 +67,6 @@ class Player extends Component {
     changeVolume = ({ target }) => {
         const { youtubePlayer } = this.state
         this.setState({ volume: target.value }, () => {
-            console.log('this.state.volume:', this.state.volume)
             youtubePlayer.setVolume(this.state.volume)
         })
     }
@@ -77,10 +76,11 @@ class Player extends Component {
         if (action === 'pause') {
             youtubePlayer.pauseVideo()
             clearInterval(this.gInterval)
+            this.toggleIsPlaying()
         } else {
             youtubePlayer.playVideo()
+            this.toggleIsPlaying()
         }
-        this.toggleIsPlaying()
     }
 
     changeTime = ({ target }) => {

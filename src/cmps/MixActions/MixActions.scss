@@ -15,6 +15,17 @@
                 &:hover {
                         color: $light-green;
                 }
+
+        }
+        .mix-icon-like-active{
+                color: $light-green;
+             
+        }
+        .clean-a{
+                // &:link,&:active&:focus&:hover,&:visited{
+                //         text-decoration: none;
+                        
+                // }
         }
 
 }

@@ -57,7 +57,6 @@ export function loginGuestMode() {
     return async (dispatch) =>{
         try{
             const user = await userService.guestMode()
-            console.log('user:', user)
             dispatch({type:'SET_USER',user})
         } catch (err){
             console.log('err from action login:', err)

@@ -1,9 +1,10 @@
 @import "./src/styles/setup";
 
 .mix-details {
-  
+  height: 85vh;
   display: grid;
-  grid-template-rows: rem(260px) rem(60px) rem(300px) max-content;
+  // grid-template-rows: rem(260px) rem(60px) rem(300px) max-content;
+  grid-template-rows: rem(260px) rem(60px) 1fr 100px;
   grid-template-columns: rem(15px) 1fr rem(15px);
   row-gap: 5px;
 

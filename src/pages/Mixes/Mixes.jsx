@@ -19,7 +19,9 @@ class _Mixes extends Component {
 
     }
     componentDidMount() {
-        this.loadMixes()
+        if(!this.props.mixes){
+            this.loadMixes()
+        }
     }
     componentDidUpdate(prevProps) {
         if (this.props.location.search !== prevProps.location.search) {
