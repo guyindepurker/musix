@@ -5,13 +5,17 @@ import './UserProfile.scss'
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 import _ from 'lodash'
 import { utilService } from '../../services/UtilsService';
+import UserEdit from '../../cmps/UserEdit/UserEdit';
 class UserProfile extends Component {
     state = {
         user:null,
-       
+       isEdit:false
     }
     componentDidMount(){
         this.loadUser1()
+    }
+    toggleUserEditor = ()=>{
+        this.setState(prevState=>({isEdit:!prevState.isEdit}))
     }
     loadUser1 = ()=>{
         const user = {
@@ -29,7 +33,7 @@ class UserProfile extends Component {
        return utilService.greetByTime()
     }
     render() {
-        const {user} = this.state
+        const {user,isEdit} = this.state
         if(!user) return <LoaderCmp></LoaderCmp>
        const UserPreview = () =>{
             return (
@@ -42,7 +46,7 @@ class UserProfile extends Component {
             return <div className="details-container  flex column">
             <h3>Overview</h3>
         <UserPreview></UserPreview>
-        <button className="btn-primary ">Update details</button>
+        <button onClick={this.toggleUserEditor} className="btn-primary ">Update details</button>
         </div>
         }
         const HeroProfile = ()=>{
@@ -58,7 +62,7 @@ class UserProfile extends Component {
             return (
                 <Fragment>
                 <div className="user-profile-img flex center-center">
-                <img  src="/defualtImg.jpg" alt="" srcset=""/>
+                <img  src="/defualtImg.jpg" alt="user img" />
             </div>
             <ul className="clean-list nav-bar-menu-user flex column">
                 <li><a href="#">Overview</a></li>
@@ -78,7 +82,8 @@ class UserProfile extends Component {
             <NavBarProfile></NavBarProfile>
             </nav>
             <main className="main-content">
-            <Overview></Overview>
+            {isEdit&& <UserEdit toggleUserEditor={this.toggleUserEditor}></UserEdit> ||<Overview></Overview>}
+            
             </main>
             </div>
             </section>)

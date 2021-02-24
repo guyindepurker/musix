@@ -26,7 +26,7 @@ class _App extends Component  {
   return (
     <div className='App'>
       <Router>
-        <AppHeader />
+        <AppHeader  />
         <main>
         <Switch>
           <PrivateRoute path='/app/mix/:id' component={MixDetails} />

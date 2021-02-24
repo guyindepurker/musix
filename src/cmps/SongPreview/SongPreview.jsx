@@ -24,14 +24,16 @@
 import React, { Fragment } from 'react'
 
 import './SongPreview.scss'
+import { useState } from 'react';
 
 export default function SongPreview({ songPlayed,song, updateMix, isUserAdmin, idx, loadSong, isInAddSongs, addSongToMix }) {
     let number = idx + 1;
     const isMatch = songPlayed?.id === song.id 
+    
     return (
         <section className="song-preview-container flex align-center">
             <li className="song-preview flex space-between">
-                <div onClick={() => loadSong(song)} className={`song-details flex align-center ${isMatch&&'played-song' || ''}`}>
+                <div onClick={() => isInAddSongs ? addSongToMix(song) : loadSong(song)} className={`song-details flex align-center ${isMatch&&'played-song' || ''}`}>
                     {!isInAddSongs && <span className="song-number">{number}</span>}
                     {!isInAddSongs && <i className="song-preview-icon fas fa-play"></i>}
                     <img className="img-song" src={song.imgUrl} alt="img song" />
