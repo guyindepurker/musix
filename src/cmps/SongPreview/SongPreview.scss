@@ -14,7 +14,17 @@
   &:hover {
     background-color: $song-hover;
   }
+.add-song-btn{
+  background-color: transparent;
+  i{
+    color: $light-green;
+    transition: all .2s;
+    :hover{
+      color: $green;
+    }
 
+  }
+}
   .song-details {
     font-size: rem(16px);
     gap: rem(10px);
