@@ -19,12 +19,12 @@ class _MixDetails extends Component {
     }
     componentDidMount() {
         this.loadMix()
-      
+
 
     }
     componentWillUnmount() {
         this.props.loadMix(undefined)
-     }
+    }
 
     loadMix = async () => {
         await this.props.loadMix(this.props.match.params.id)
@@ -34,21 +34,21 @@ class _MixDetails extends Component {
             await this.props.loadMixes()
         }
     }
-    likeByUser = () =>{
-        const copyMix = {...this.props.mix}
+    likeByUser = () => {
+        const copyMix = { ...this.props.mix }
         const miniUser = userService.getMiniUser()
-        const {likedByUsers} = copyMix
-        const isLike = likedByUsers.find(user=>user._id === miniUser._id)
-        if(isLike) return;
-        let likes = [...likedByUsers,miniUser]
-        this.updateMix('likedByUsers',likes)
+        const { likedByUsers } = copyMix
+        const isLike = likedByUsers.find(user => user._id === miniUser._id)
+        if (isLike) return;
+        let likes = [...likedByUsers, miniUser]
+        this.updateMix('likedByUsers', likes)
     }
-    unLikeByUser = ()=>{
-        const copyMix = {...this.props.mix}
+    unLikeByUser = () => {
+        const copyMix = { ...this.props.mix }
         const miniUser = userService.getMiniUser()
-        const {likedByUsers} = copyMix
-        const likes = likedByUsers.filter(user=>user._id !== miniUser._id)
-        this.updateMix('likedByUsers',likes)
+        const { likedByUsers } = copyMix
+        const likes = likedByUsers.filter(user => user._id !== miniUser._id)
+        this.updateMix('likedByUsers', likes)
     }
     updateMix = async (key, value) => {
         const copyMix = { ...this.props.mix }
@@ -67,10 +67,11 @@ class _MixDetails extends Component {
     }
     addSongToMix = async (song) => {
         console.log('song in addSongToMix<<<<<', song);
-        song.duration = await youtubeService.getSongDuration(song.youtubeId)
-        console.log('song.duration:', song.duration);
         const copyMix = { ...this.props.mix }
-        const songs = [...copyMix.songs,song]
+        const isAlreadyInMix = copyMix.songs.find(currSong => currSong.youtubeId === song.youtubeId)
+        if (isAlreadyInMix) return;
+        song.duration = await youtubeService.getSongDuration(song.youtubeId)
+        const songs = [...copyMix.songs, song]
         this.updateMix('songs', songs)
     }
     loadSongToPlayer = (song) => {
@@ -99,17 +100,17 @@ class _MixDetails extends Component {
         }
         return songs
     }
-    get isLike(){
-        const {mix,user} = this.props
-         const isLike =  mix.likedByUsers.some(lUser => lUser._id===user._id)
-         return isLike
+    get isLike() {
+        const { mix, user } = this.props
+        const isLike = mix.likedByUsers.some(lUser => lUser._id === user._id)
+        return isLike
     }
     render() {
-        const { mix, user,songPlayed } = this.props
+        const { mix, user, songPlayed } = this.props
         if (!mix) return <LoaderCmp></LoaderCmp>
         const { createdBy, songs } = mix
         return (
-           
+
             <section className="mix-details">
                 <div className="grid grid-header">
                     <MixHeader user={user} updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
@@ -122,7 +123,7 @@ class _MixDetails extends Component {
                 </div>
                 <div className=" grid-player">
                     <Player></Player>
-                    </div>
+                </div>
             </section>
         )
     }
