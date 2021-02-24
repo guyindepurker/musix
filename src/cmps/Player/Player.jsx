@@ -34,7 +34,8 @@ class Player extends Component {
       }
     getTimeLeft=()=>{
         const { youtubePlayer, isPlaying } = this.state
-        if (youtubePlayer && isPlaying) {
+        if (youtubePlayer) {
+            console.log('im in the get');
             this.gInterval = setInterval(() => {
                 let time = youtubePlayer.getCurrentTime()
                 this.setState({ timeLeft: time })
@@ -54,12 +55,14 @@ class Player extends Component {
         if (action === 'next') {
             const nextSong = songs[idx + 1]
             loadSong(nextSong)
-
+            this.setState({timeLeft: 0})
+            
         } else {
             if (idx === 0) idx = songs.length;
             if (idx === -1) idx = 1;
             const prevSong = songs[idx - 1]
             loadSong(prevSong)
+            this.setState({timeLeft: 0})
         }
         
     }
@@ -84,15 +87,17 @@ class Player extends Component {
     }
 
     changeTime = ({ target }) => {
-        // TO FIX 
+        
         const value = target.value
         const { youtubePlayer } = this.state
-        youtubePlayer.seekTo(value)
+        this.setState({timeLeft:value},()=>{
+            youtubePlayer.seekTo(this.state.timeLeft)
+        })
     }
 
     get timeLeft() {
         const { timeLeft } = this.state
-        if (timeLeft === 0) return '00:00'
+        if (timeLeft === 0 && !timeLeft) return '00:00'
         return utilService.showTime(timeLeft)
     }
 

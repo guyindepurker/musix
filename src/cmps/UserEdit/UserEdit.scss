@@ -1,3 +1,25 @@
 
         @import "./src/styles/setup";
-        .user-edit {}
+        .user-to-edit {
+                
+                label{
+                        font-size: rem(20px);
+                        margin-bottom: rem(10px);
+                }
+                input{
+                        border-radius: 10px;
+                        border: 1px solid $light-grey;
+                        padding: 10px 10px;
+                        font-family: inherit;
+                        font-size: rem(18px);
+                        color: $player-bgc;
+                        background-color: $white;
+                        transition: all .3s;
+
+                        &:focus{
+                                outline: none;
+                                color: $white;
+                                background-color: $player-top;
+                        }
+                }
+        }

@@ -1,6 +1,6 @@
 
 import React, { Fragment, useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { withRouter,NavLink } from 'react-router-dom'
 import './AppHeader.scss'
 
 import { useSelector,useDispatch } from 'react-redux';
@@ -8,17 +8,25 @@ import { CreateMix } from '../CreateMix/CreateMix';
 
 import { logout } from '../../store/actions/UserAction';
 
-export default function AppHeader() {
+ function AppHeader(props) {
 
     let [showCreateMixModal, toggleCreateMix] = useState(false)
     let [showNavOption,toggleNavOpt] = useState(false)
     const user = useSelector(state => state.userReducer.loggedinUser)
     const dispatch = useDispatch()
+    const handleNavOption = (action)=>{
+        toggleNavOpt(false)
+        if(action==='profile'){
+            return props.history.push(`/user/${user._id}`)
+        }else if(action==='logout'){
+            return dispatch(logout())
+        }
+    }
     const ProfileNavOption = ()=>{
         return (
             <div className="nav-profile-option absolute">
-                <div className="profile-btn"><NavLink exact to={`/user/${user._id}`}>Profile</NavLink></div>
-                <div className="profile-btn btn-logout" onClick={()=>dispatch(logout())}>logout</div>  
+                <div className="profile-btn flex wrap space-around align-center" onClick={()=>handleNavOption('profile')}><i className="fal icon fa-user-alt"></i> Profile</div>
+                <div className="profile-btn btn-logout flex wrap space-around align-center" onClick={()=>handleNavOption('logout')}><i className="fad fa-sign-out"></i> logout</div>  
             </div>
         )
     }
@@ -70,3 +78,4 @@ export default function AppHeader() {
 
 }
 
+export default AppHeader = withRouter(AppHeader)

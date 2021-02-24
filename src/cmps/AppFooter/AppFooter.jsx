@@ -10,7 +10,7 @@ import './AppFooter.scss'
 import { useSelector, connect } from 'react-redux';
 
  function AppFooter(props) {
-   if(props.song) return null; 
+   if(props.mix) return null; 
     return (
         
         <footer className="app-footer flex">
@@ -49,7 +49,7 @@ import { useSelector, connect } from 'react-redux';
 }
 function mapStateToProps(state) {
     return {
-      song: state.playerReducer.song
+      mix: state.mixReducer.mix
     }
   }
 

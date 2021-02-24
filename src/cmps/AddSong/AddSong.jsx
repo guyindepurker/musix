@@ -42,7 +42,7 @@ class AddSong extends Component {
         const { addSongToMix,closeModal } = this.props
         return (
             <section className="add-song flex column align-center">
-                <button onClick={closeModal}>Close</button>
+                <i onClick={closeModal} className="fas close-btn fa-times"></i>
                 <div className="search-container flex">
                     <input className="search-input" type="search" onInput={this.handleInputChange} placeholder="search songs..." />
                     <button className="search-btn" onClick={this.getSongs}>Search</button>
