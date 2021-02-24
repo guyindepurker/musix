@@ -25,9 +25,10 @@ export function signup(userCred){
     }
 }
 export function logout(){
-    return async (dispatch) =>{
+    console.log('do logout~!!');
+    return  (dispatch) =>{
         try{
-             await userService.logout()
+             userService.logout()
             dispatch({type:'SET_USER',user:null})
         } catch (err){
             console.log('err from action logout:', err)

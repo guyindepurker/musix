@@ -31,11 +31,23 @@ function showTime(seconds) {
     return `${mins}:${secs}`
 }
 
-
+function greetByTime(value='Good') {
+    const hour = new Date().getHours()
+    let massage= ''
+    if(hour<12){
+        massage=`${value} morning`
+    }else if(hour<17){
+        massage=`${value} afternoon`
+    }else {
+        massage=`${value} evening`
+    }
+    return massage
+}
 
 export const utilService = {
     makeId,
     getRandomInt,
     findMatchLowerCase,
-    showTime
+    showTime,
+    greetByTime
 }

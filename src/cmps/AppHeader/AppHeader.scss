@@ -4,7 +4,7 @@
 .app-header {
   background-color: rgba($black, 0.6);
   height: rem(80px);
-  padding: 0 rem(20px);
+  padding: rem(15px) rem(20px);
   margin-bottom: rem(50px);
 
   .logo-container {
@@ -63,4 +63,26 @@
       }
     }
   }
+}
+.nav-profile-option{
+  top: 37px;
+background-color: white;
+right: 11px;
+width: 93px;
+text-align: center;
+border: 1px solid rgba($light-grey-4, 0.2);
+border-radius: 10px;
+color: black;
+>:first-child{
+margin-bottom: 10px;
+}
+.profile-btn,a{
+padding: 8px;
+letter-spacing: 2px;
+border-radius: 10px;
+color: inherit;
+}
+.btn-logout{
+  background-color: rgb(184, 82, 82);
+}
 }

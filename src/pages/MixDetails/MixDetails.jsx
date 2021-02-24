@@ -12,6 +12,7 @@ import { utilService } from '../../services/UtilsService';
 import Player from '../../cmps/Player/Player';
 import { loadSongs, loadSong } from '../../store/actions/PlayerAction';
 import { userService } from '../../services/UserService';
+import { youtubeService } from '../../services/YoutubeService';
 class _MixDetails extends Component {
     state = {
         filterBySong: null
@@ -64,7 +65,14 @@ class _MixDetails extends Component {
         let updatedSongs = songs.filter(song => song.id !== id)
         this.updateMix('songs', updatedSongs)
     }
-
+    addSongToMix = async (song) => {
+        console.log('song in addSongToMix<<<<<', song);
+        song.duration = await youtubeService.getSongDuration(song.youtubeId)
+        console.log('song.duration:', song.duration);
+        const copyMix = { ...this.props.mix }
+        const songs = [...copyMix.songs,song]
+        this.updateMix('songs', songs)
+    }
     loadSongToPlayer = (song) => {
         this.props.loadSong(song)
     }
@@ -107,7 +115,7 @@ class _MixDetails extends Component {
                     <MixHeader user={user} updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
                 </div>
                 <div className="grid grid-action">
-                    <MixActions isLike={this.isLike} like={this.likeByUser} unLike={this.unLikeByUser} pathName={this.props.history.location.pathname} setSearch={this.filterBySong} />
+                    <MixActions isLike={this.isLike} like={this.likeByUser} unLike={this.unLikeByUser} pathName={this.props.history.location.pathname} setSearch={this.filterBySong} addSongToMix={this.addSongToMix} />
                 </div>
                 <div className="grid grid-content">
                     <SongList songPlayed={songPlayed || null} loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />

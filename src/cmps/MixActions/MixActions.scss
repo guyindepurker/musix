@@ -3,7 +3,9 @@
 .mix-actions {
         border-top: 1px solid $dark-grey;
         border-bottom: 1px solid $dark-grey;
-        padding: rem(7px) 0;
+        padding: rem(7px) rem(20px);
+        width: 100%;
+        height: 100%;
 
         .mix-control-icon {
                 color: $white;
