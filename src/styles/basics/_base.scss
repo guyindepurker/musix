@@ -6,7 +6,12 @@
 
 html {
   font-size: 16px;
-  
+  @include respond(mobile){
+    font-size: 10px;
+  }
+  @include respond(narrow){
+    font-size: 12px;
+  }
 }
 
 body {

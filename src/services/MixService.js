@@ -9,6 +9,7 @@ export const mixService = {
 }
 function query(filterBy=null) {
     if(filterBy){
+        console.log('filterBy:', filterBy)
         return httpService.get(`mix${filterBy}`);
     }
     return httpService.get('mix');

@@ -41,6 +41,13 @@
     }
     .song-name {
       text-transform: capitalize;
+      @include respond(min-mobile){
+        text-transform: capitalize;
+        width: rem(104px);
+        white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      }
     }
     .song-duration {
       color: $light-grey-2;
@@ -58,6 +65,7 @@
     font-size: rem(15px);
     color: $white;
     transition: all 0.2s;
+    margin-left: rem(9px);
     cursor: pointer;
 
     &:hover {

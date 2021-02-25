@@ -10,6 +10,7 @@
 
 .genres-names-list {
   margin-bottom: rem(20px);
+  gap: rem(10px);
   .genre-name {
     cursor: pointer;
     color: $white;

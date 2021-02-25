@@ -10,7 +10,8 @@
     color: $black;
     padding: rem(6px) rem(12px) rem(6px) rem(15px);
     height: rem(40px);
-    width: 250px;
+    max-width: rem(250px);
+    min-width: rem(180px);
     border: 0;
     outline: none;
     border-radius: 100px;

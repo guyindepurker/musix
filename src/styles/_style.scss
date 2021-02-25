@@ -17,10 +17,11 @@
 .App {
   // background-image: linear-gradient(#c074b2, #8ab5e8);
   background-color: $dark-black;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   main{
     flex-grow: 1;
+    background-color: inherit;
   }
 }
