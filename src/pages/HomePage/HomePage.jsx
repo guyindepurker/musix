@@ -20,6 +20,7 @@ function HomePage(props) {
             <div className="hero-content  flex column align-center">
                 <h1 className="hero-content-title">
                     Listening is everything
+                    
             </h1>
                 <h6 className="hero-content-description">Millions of songs and podcasts. No credit card needed.</h6>
                 <div className="hero-content-controls">

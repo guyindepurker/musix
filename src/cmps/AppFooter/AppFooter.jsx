@@ -13,11 +13,14 @@ import { useSelector, connect } from 'react-redux';
    if(props.mix) return null; 
     return (
         
-        <footer className="app-footer flex">
+        <footer className="app-footer ">
+            <div className="main-footer container flex wrap  space-between">
+            <div className="logo-main">
             <NavLink className="logo-container flex" exact to="/app">
                 <i className="fab fa-spotify"></i>
                 <h1>Musix<span className="copyrights">©</span></h1>
             </NavLink>
+            </div>
             <ul className="footer-links flex column">
                 <NavLink className="home-link" exact to="/">Home</NavLink>
                 <NavLink className="mixes-link" exact to="/app/mixes">Mixes</NavLink>
@@ -25,9 +28,6 @@ import { useSelector, connect } from 'react-redux';
                 <NavLink exact to="/user/52">Profile</NavLink>
             </ul>
             <div className="footer-content flex column">
-                <span><i className="fal fa-globe-asia"></i> Israel</span>
-                <span className="copyrights">© copyrights musix 2021</span>
-            </div>
             <div className="about flex column">
                 <div className="developer flex align-center justify-center">
                     <img alt="Yuval" src={yuvalImg} />
@@ -41,6 +41,10 @@ import { useSelector, connect } from 'react-redux';
                     <a href="https://www.linkedin.com/in/guy-indepurker-5778091a4/" > <i className="fab fa-linkedin"></i></a>
                     <a href="https://github.com/guyindepurker" > <i className="fab fa-github"></i></a>
                 </div>
+            </div>
+            
+                <span className="copyrights">© copyrights musix 2021 <span><i className="fal fa-globe-asia"></i> Israel</span></span>
+            </div>
             </div>
         </footer>
     )

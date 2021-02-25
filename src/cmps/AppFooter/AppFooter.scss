@@ -1,15 +1,34 @@
 @import "./src/styles/setup";
 .app-footer {
-  height: 270px;
+  margin-top: 20px;
   background-color: $black;
   color: $white;
   width: 100%;
-  padding: 50px 100px;
-  position: relative;
+  padding: rem(50px) rem(100px);
+  @include respond(narrow){
+ padding: rem(50px) rem(30px);
+  }
+
+  .main-footer{
+    @include respond(noraml){
+      .logo-main{
+        width: 100%;
+      }
+    }
+    @include respond(narrow){
+      >*:not(:first-child){
+      width: 100%; 
+      justify-content: center;
+      align-items: center; 
+      }
+  
+    }
+  
+
 
   .logo-container {
     color: $white;
-    margin-right: 80px;
+    margin-right: rem(80px);
     height: fit-content;
     align-items: center;
     h1 {
@@ -31,11 +50,14 @@
   }
 
   .footer-links {
-    padding-top: 15px;
-
+    padding-top: rem(15px);
+    // @include respond(narrow){
+    //   justify-content: center;
+    //   align-items: center;
+    // }
     > * {
       font-family: $font-secondary;
-      padding: 10px 20px;
+      padding: rem(10px) rem(20px);
       color: $white;
       letter-spacing: 0.5px;
       font-size: rem(15px);
@@ -49,10 +71,7 @@
     font-size: rem(14px);
     font-family: $font-primary;
     color: #919496;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 50px 100px;
+    padding: 0 rem(80px);
     text-align: right;
     .fa-globe-asia {
       font-size: rem(12px);
@@ -63,21 +82,20 @@
   }
 
   .about {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 40px 90px;
+
+    // align-self: flex-start;
+    margin-bottom: rem(5px);
     > * {
       // margin: 10px;
       text-align: right;
     }
     .developer {
       box-shadow: 0px 2px 11px -1px #3a3a3a;
-      margin: 10px;
+      margin: rem(10px);
       border-radius: 5px;
       font-size: rem(13px);
       padding: 0 3px;
-      width: 190px;
+      width: rem(190px);
       > * {
         margin: 4px;
       }
@@ -90,9 +108,10 @@
   }
 
   img {
-    height: 30px;
-    width: 30px;
+    height: rem(30px);
+    width: rem(30px);
     border-radius: 50%;
     margin: 0 5px;
   }
+}
 }

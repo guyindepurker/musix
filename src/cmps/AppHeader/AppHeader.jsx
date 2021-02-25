@@ -9,9 +9,10 @@ import { CreateMix } from '../CreateMix/CreateMix';
 import { logout } from '../../store/actions/UserAction';
 
  function AppHeader(props) {
-
     let [showCreateMixModal, toggleCreateMix] = useState(false)
     let [showNavOption,toggleNavOpt] = useState(false)
+    let [showNavMobile,toggleNavMobile] = useState(false)
+    // let [isMobile,toggleIsMobile] = useState((window.innerWidth <=750) ? true : false)
     const user = useSelector(state => state.userReducer.loggedinUser)
     const dispatch = useDispatch()
     const handleNavOption = (action)=>{
@@ -22,6 +23,15 @@ import { logout } from '../../store/actions/UserAction';
             return dispatch(logout())
         }
     }
+    const onToggleNavMobile = ()=>{
+        toggleNavMobile(!showNavMobile)
+        // if(!isMobile){
+        //     toggleIsMobile(true)
+        // } else {
+        //     toggleIsMobile(!isMobile)
+        // }
+    }
+
     const ProfileNavOption = ()=>{
         return (
             <div className="nav-profile-option absolute">
@@ -43,8 +53,8 @@ import { logout } from '../../store/actions/UserAction';
             <Fragment>
                 <NavLink className="mixes-link" exact to="/app/mixes">Mixes</NavLink>
                 <span user="true" className="create-mix-cmp" onClick={() => toggleCreateMix(!showCreateMixModal)}>Create Mix</span>
-                <span>|</span>
-                <div className="profile-link relative flex align-center">
+                {!showNavMobile&&<span>|</span>}
+                <div className={`profile-link relative flex ${showNavMobile ? 'center-center' :'align-center'}`}>
                     <i onClick={()=>toggleNavOpt(!showNavOption)} className="far fa-user-circle"></i>
                    {showNavOption&& <ProfileNavOption />}
                 </div>
@@ -60,6 +70,7 @@ import { logout } from '../../store/actions/UserAction';
 
         )
     }
+   
     return (
         <Fragment>
             <header className="app-header flex space-between align-center">
@@ -67,9 +78,12 @@ import { logout } from '../../store/actions/UserAction';
                     <i className="fab fa-spotify"></i>
                     <h1>Musix<span className="copyrights">©</span></h1>
                 </NavLink>
-                <nav className="nav-links flex align-center">
+                
+             <i onClick={ onToggleNavMobile}  className={`far icon-hamburger fa-${showNavMobile ? 'times' : 'bars'}`}></i>
+                <nav className="nav-links flex align-center" style={{display: showNavMobile && 'flex'}}>
                 {user&& <HeaderUser /> || <HeaderGuest />}
                 </nav>
+              
             </header>
 
             <CreatMixModel />
