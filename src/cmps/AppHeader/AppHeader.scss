@@ -6,7 +6,20 @@
   height: rem(80px);
   padding: rem(15px) rem(20px);
   margin-bottom: rem(50px);
-
+.icon-hamburger{
+  z-index: 33;
+  display: none;
+    font-size: 21px;
+    color: white;
+    cursor: pointer;
+    transition: all .2s;
+    &:hover{
+      color: $green;
+    }
+    @include respond(narrow){
+      display: block;
+    }
+}
   .logo-container {
     color: $white;
     h1 {
@@ -28,11 +41,36 @@
   }
 
   .nav-links {
+    @include respond(narrow){
+      display: none;
+      flex-direction: column;
+      background-color: $mix-bgc;
+      padding: 10px 0;
+      gap: 10px;
+      position: fixed;
+      top: 11px;
+      right: 8px;
+      width: 100vw;
+      height: 100vh;
+      z-index: 3;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
     > * {
       font-family: $font-tertiary;
       padding: 0px rem(17px);
       color: $white;
       letter-spacing: 0.5px;
+      @include respond(narrow){
+      background-color: $green;
+      text-align: center;
+      width: 50%;
+      padding: 10px;
+      &:hover{
+        background-color: #fff;
+      }
+    }
     }
 
     .profile-link {

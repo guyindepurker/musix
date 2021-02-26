@@ -2,16 +2,33 @@
 
 .user-profile {
     margin-top: -50px;
+    @include respond(min-mobile){
+        margin-top: 0;
+
+    }
     .user-profile-grid-container {
         display: grid;
         grid-template-columns: rem(300px) 1fr;
         grid-template-rows: rem(440px) 1fr;
+        @include respond(normal){
+        grid-template-columns: 1fr;
+        grid-template-rows: rem(440px) 1fr;
 
+
+        }
+        @include respond(min-mobile){
+            grid-template-rows: rem(210px) 1fr;
+
+        }
         header {
             grid-column: 1/-1;
             grid-row: 1/2;
             padding-top: rem(40px);
             background-color: $mix-bgc;
+            @include respond(min-mobile){
+                background-color: inherit;
+        
+            }
            
         }
 
@@ -19,6 +36,10 @@
             grid-column: 1/2;
             grid-row: 2/3;
             background-color: $navbar-bgc;
+            @include respond(normal){
+               display: none;
+            
+                }
         }
 
         main {
@@ -26,6 +47,10 @@
             grid-column: 2/-1;
             background-color: $white;
             padding: rem(20px) rem(43px);
+            @include respond(normal){
+                grid-column: 1/-1;
+        
+                }
         }
     }
 }
@@ -37,11 +62,18 @@
     padding-left: 4.125rem;
     text-align: left;
     color: $white;
+    @include respond(min-mobile){
+        padding: 5px 10px;
+    text-align: center;
 
+    }
     .hero {
         &-title {
             font-size: rem(40px);
             margin-bottom: rem(10px);
+            @include respond(max-narrow){
+                font-size: rem(30px);
+            }
         }
 
         &-paragraph {
@@ -49,6 +81,12 @@
             font-size: rem(17px);
             letter-spacing: 1.5px;
             width: 40ch;
+            @include respond(max-narrow){
+                width: 20ch;
+            }
+            @include respond(min-mobile){
+                width: 100%;
+            }
         }
     }
 }
@@ -129,7 +167,9 @@ button{
 }
 .user-list-details{
     margin-bottom: 15px;
-    width: 500px;
+    max-width: 500px;
+        min-width: 100%;
+
     color: $black;
     background-color: $white;
     .user-preview{

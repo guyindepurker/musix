@@ -14,37 +14,45 @@ class Player extends Component {
         isPlaying: false,
         youtubePlayer: null,
         timeLeft: 0,
-        duration: 0
 
     }
 
-
-    onReady = (event) => {
-        event.target.playVideo();
-        
-        const duration = event.target.getDuration();
-        if(!this.state.isPlaying){
+    componentDidUpdate({ song }, prevState) {
+        if (!this.props.song || !song) return
+        if (song.title !== this.props.song.title && !this.state.isPlaying) {
             this.toggleIsPlaying()
         }
-        this.setState({youtubePlayer: event.target, duration },this.getTimeLeft)
-        
+    }
+    onReady = (event) => {
+        console.log('ready')
+        event.target.playVideo();
+        console.log('event.target:', event.target)
+        if (!this.state.isPlaying) {
+            this.toggleIsPlaying()
+        }
+        this.setState({ youtubePlayer: event.target }, this.getTimeLeft)
+
     }
     componentWillUnmount() {
         clearInterval(this.gInterval);
-      }
-    getTimeLeft=()=>{
+    }
+    getTimeLeft = () => {
         const { youtubePlayer, isPlaying } = this.state
         if (youtubePlayer) {
             console.log('im in the get');
             this.gInterval = setInterval(() => {
                 let time = youtubePlayer.getCurrentTime()
-                this.setState({ timeLeft: time })
+                console.log('i am in the getter!', this.duration);
+                if (this.duration === time) {
+                    this.changeSong('next');
+                }
+                this.setState({ timeLeft: time }, () => console.log('time left state =', this.state.timeLeft))
             }, 1000)
-        } 
+        }
     }
 
     toggleIsPlaying = () => {
-        this.setState(prevState => ({ isPlaying: !prevState.isPlaying }))
+        this.setState(prevState => ({ isPlaying: !prevState.isPlaying }), () => console.log('SetState Toggle IsLoading', this.state.isPlaying))
     }
 
     changeSong = (action) => {
@@ -55,16 +63,18 @@ class Player extends Component {
         if (action === 'next') {
             const nextSong = songs[idx + 1]
             loadSong(nextSong)
-            this.setState({timeLeft: 0})
-            
+
         } else {
             if (idx === 0) idx = songs.length;
             if (idx === -1) idx = 1;
             const prevSong = songs[idx - 1]
             loadSong(prevSong)
-            this.setState({timeLeft: 0})
         }
-        
+        if (!this.state.isPlaying) {
+            this.toggleIsPlaying()
+        }
+        this.setState({ timeLeft: 0 })
+
     }
 
     changeVolume = ({ target }) => {
@@ -78,7 +88,6 @@ class Player extends Component {
         const { youtubePlayer } = this.state
         if (action === 'pause') {
             youtubePlayer.pauseVideo()
-            clearInterval(this.gInterval)
             this.toggleIsPlaying()
         } else {
             youtubePlayer.playVideo()
@@ -87,18 +96,23 @@ class Player extends Component {
     }
 
     changeTime = ({ target }) => {
-        
+
         const value = target.value
         const { youtubePlayer } = this.state
-        this.setState({timeLeft:value},()=>{
+        this.setState({ timeLeft: value }, () => {
             youtubePlayer.seekTo(this.state.timeLeft)
         })
     }
 
     get timeLeft() {
         const { timeLeft } = this.state
-        if (timeLeft === 0 && !timeLeft) return '00:00'
+        if (timeLeft === 0 || !timeLeft) return '00:00'
         return utilService.showTime(timeLeft)
+    }
+    get duration() {
+        const { youtubePlayer } = this.state
+        if (!youtubePlayer) return 0
+        return youtubePlayer.getDuration();
     }
 
     render() {
@@ -111,15 +125,16 @@ class Player extends Component {
             },
         };
         const { song } = this.props
-        const { isPlaying, youtubePlayer, duration, timeLeft } = this.state
+        const { isPlaying, timeLeft } = this.state
         if (!song) return null
+        console.log('duration:',this.duration);
         return (
             <section className="player flex align-center space-between">
 
                 <div className="volume-container flex align-center">
                     <i className="fas grey-icon fa-volume"></i>
                     <input
-                        className="volume-slider"
+                        className="slider-duration  volume-slider"
                         type="range"
                         value={this.volume}
                         min="0"
@@ -139,12 +154,12 @@ class Player extends Component {
                     <div className="song-duration-slider flex align-center">
                         <span className="grey-icon count-time">{this.timeLeft}</span>
                         <input
-                            className="duration-slider"
+                            className="slider-duration duration-slider"
                             type="range"
                             name="played"
                             value={timeLeft}
                             min="0"
-                            max={duration}
+                            max={this.duration}
                             onChange={this.changeTime}
                         />
                         <span className="grey-icon song-duration">{song.duration}</span>

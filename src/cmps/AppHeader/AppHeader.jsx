@@ -8,11 +8,12 @@ import { CreateMix } from '../CreateMix/CreateMix';
 
 import { logout } from '../../store/actions/UserAction';
 
-function AppHeader(props) {
-
+ function AppHeader(props) {
     let [showCreateMixModal, toggleCreateMix] = useState(false)
-    let [showNavOption, toggleNavOpt] = useState(false)
-    const user = useSelector(state => state.userReducer.loggedInUser)
+    let [showNavOption,toggleNavOpt] = useState(false)
+    let [showNavMobile,toggleNavMobile] = useState(false)
+    // let [isMobile,toggleIsMobile] = useState((window.innerWidth <=750) ? true : false)
+    const user = useSelector(state => state.userReducer.loggedinUser)
     const dispatch = useDispatch()
     const handleNavOption = (action) => {
         toggleNavOpt(false)
@@ -22,7 +23,16 @@ function AppHeader(props) {
             return dispatch(logout())
         }
     }
-    const ProfileNavOption = () => {
+    const onToggleNavMobile = ()=>{
+        toggleNavMobile(!showNavMobile)
+        // if(!isMobile){
+        //     toggleIsMobile(true)
+        // } else {
+        //     toggleIsMobile(!isMobile)
+        // }
+    }
+
+    const ProfileNavOption = ()=>{
         return (
             <div className="nav-profile-option absolute">
                 <div className="profile-btn flex wrap space-around align-center" onClick={() => handleNavOption('profile')}><i className="fal icon fa-user-alt"></i> Profile</div>
@@ -43,10 +53,10 @@ function AppHeader(props) {
             <Fragment>
                 <NavLink className="mixes-link" exact to="/app/mixes">Mixes</NavLink>
                 <span user="true" className="create-mix-cmp" onClick={() => toggleCreateMix(!showCreateMixModal)}>Create Mix</span>
-                <span>|</span>
-                <div className="profile-link relative flex align-center">
-                    <i onClick={() => toggleNavOpt(!showNavOption)} className="far fa-user-circle"></i>
-                    {showNavOption && <ProfileNavOption />}
+                {!showNavMobile&&<span>|</span>}
+                <div className={`profile-link relative flex ${showNavMobile ? 'center-center' :'align-center'}`}>
+                    <i onClick={()=>toggleNavOpt(!showNavOption)} className="far fa-user-circle"></i>
+                   {showNavOption&& <ProfileNavOption />}
                 </div>
             </Fragment>
         )
@@ -60,6 +70,7 @@ function AppHeader(props) {
 
         )
     }
+   
     return (
         <Fragment>
             <header className="app-header flex space-between align-center">
@@ -67,10 +78,12 @@ function AppHeader(props) {
                     <i className="fab fa-spotify"></i>
                     <h1>Musix<span className="copyrights">©</span></h1>
                 </NavLink>
-                <nav className="nav-links flex align-center">
-                    {/* {user&& <HeaderUser /> || <HeaderGuest />} */}
-                    <HeaderUser /> || <HeaderGuest />
+                
+             <i onClick={ onToggleNavMobile}  className={`far icon-hamburger fa-${showNavMobile ? 'times' : 'bars'}`}></i>
+                <nav className="nav-links flex align-center" style={{display: showNavMobile && 'flex'}}>
+                {user&& <HeaderUser /> || <HeaderGuest />}
                 </nav>
+              
             </header>
 
             <CreatMixModel />

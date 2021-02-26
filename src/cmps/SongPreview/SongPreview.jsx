@@ -24,7 +24,7 @@
 import React, { Fragment } from 'react'
 
 import './SongPreview.scss'
-import { useState } from 'react';
+
 
 export default function SongPreview({ songPlayed,song, updateMix, isUserAdmin, idx, loadSong, isInAddSongs, addSongToMix }) {
     let number = idx + 1;
@@ -41,7 +41,7 @@ export default function SongPreview({ songPlayed,song, updateMix, isUserAdmin, i
                     <span className="song-duration">{song.duration}</span>
                 </div>
                 <div className="song-controls flex align-center">
-                    {isUserAdmin && <i onClick={() => updateMix(song.id)} className="song-preview-icon fas fa-trash-alt"></i>}
+                    {!isInAddSongs && isUserAdmin && <i onClick={() => updateMix(song.id)} className="song-preview-icon fas fa-trash-alt"></i>}
                 </div>
             </li>
             {isInAddSongs && <button className="add-song-btn" onClick={() => addSongToMix(song)}><i className="fas fa-plus"></i></button>}

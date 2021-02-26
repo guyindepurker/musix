@@ -1,10 +1,10 @@
 @import "./src/styles/setup";
 .mix-preview {
   background-color: $mix-bgc;
-  width: 280px;
-  height: 270px;
-  margin: 10px;
-  padding: 16px;
+  width: rem(280px);
+  height: rem(270px);
+  margin: rem(10px);
+  padding: rem(16px);
   border-radius: 4px;
   isolation: isolate;
   transition: background-color 0.3s ease;
@@ -24,15 +24,17 @@
   .mix-desc {
     font-family: $font-secondary;
     font-size: rem(12px);
-    margin-bottom: 10px;
-    // padding: 5px 0;
+    @include respond(mobile){
+      font-size: rem(13px);
+    }
+    margin-bottom: rem(10px);
   }
 
   .mix-img {
-    width: 250px;
-    height: 140px;
+    width: rem(250px);
+    height: rem(140px);
     object-fit: cover;
-    margin-bottom: 8px;
+    margin-bottom: rem(8px);
   }
 
   .details-container {

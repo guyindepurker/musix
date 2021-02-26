@@ -8,7 +8,10 @@
   grid-template-columns: rem(15px) 1fr rem(15px);
   // row-gap: 5px;
   margin-top: -25px;
+  @include respond(narrow){
+  grid-template-rows: rem(260px) rem(60px) 1fr 10px;
 
+  }
   .grid {
     // grid-column: 2/3;
     grid-column: 1/-1;

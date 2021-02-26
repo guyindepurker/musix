@@ -1,5 +1,53 @@
 /* Media queries Breakpoint mixins */
 
+@mixin respond($breakpoint) {
+  // $mobile: 350px;
+  @if $breakpoint==max-mobile {
+    @media only screen and (max-width:$break-max-mobile) {
+        @content;
+    }
+}
+  // $mobile: 400px;
+  @if $breakpoint==mobile {
+    @media only screen and (max-width:$break-mobile) {
+        @content;
+    }
+}
+  // $mobile: 450px;
+  @if $breakpoint==min-mobile {
+    @media only screen and (max-width:$break-mobile-min) {
+        @content;
+    }
+}
+
+// $max-narrow: 550px;
+
+  @if $breakpoint==max-narrow {
+    @media only screen and (max-width:$break-max-narrow) {
+        @content;
+    }
+}
+// $narrow: 750px;
+
+  @if $breakpoint==narrow {
+    @media only screen and (max-width:$break-narrow) {
+        @content;
+    }
+}
+// $break-normal: 950px;
+
+  @if $breakpoint==normal {
+    @media only screen and (max-width:$break-normal) {
+        @content;
+    }
+}
+// $break-wide: 1300px;
+  @if $breakpoint==wide {
+    @media only screen and (max-width: $break-wide) {
+        @content;
+    }
+}
+}
 
 @mixin for-mobile-layout {
   // $break-max-narrow: 400px;

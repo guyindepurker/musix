@@ -1,7 +1,7 @@
 @import "./src/styles/setup";
 
 .player {
-  height: 105px;
+  height: rem(105px);
   position: fixed;
   bottom: 0;
   padding: rem(15px) rem(30px);
@@ -9,20 +9,47 @@
   background-color: $player-bgc;
   border-top: 1px solid $player-top;
   width: 100%;
-
+  @include respond(mobile){
+    padding-left: rem(15px);
+  }
   .volume-container {
-    width: 300px;
-
+    width: rem(300px);
+    @include respond(min-mobile){
+      // width: fit-content;
+      position: absolute;
+      right: -70px;
+      bottom:10px;
+    }
+    @include respond(max-mobile){
+      right: -50px;
+    }
     .fa-volume {
       color: $light-grey;
-      margin-right: 5px;
+      margin-right: rem(5px);
       font-size: rem(14px);
+    }
+    .volume-slider{
+      max-width: rem(129px);
+      min-width: rem(60px);
+      @include respond(min-mobile){
+        width: rem(40px);
+        // max-width: rem(40px);
+      }
+ 
     }
   }
 
   .song-control {
+    max-width: rem(375px);
+    min-width: rem(250px);
+    @include respond(mobile){
+      min-width: rem(160px);
+    }
+    @include respond(max-mobile){
+      width: 50%;
+    }
     .btns-player-control {
-      width: 250px;
+      width: rem(250px);
       margin-bottom: rem(15px);
 
       button {
@@ -32,8 +59,8 @@
       .play-song-btn {
         background-color: $white;
         // padding: 8px 8px 8px 11px;
-        width: 40px;
-        height: 40px;
+        width: rem(40px);
+        height: rem(40px);
         border-radius: 50%;
       }
 
@@ -59,23 +86,23 @@
     }
 
     .song-duration-slider {
-      width: 500px;
+      width: 100%;
       input {
-        width: 425px;
+        width: rem(425px);
       }
 
       span {
-        width: 30px;
+        width: rem(30px);
         color: $light-grey;
         font-size: rem(14px);
-        margin: 0 10px;
+        margin: 0 rem(10px);
       }
     }
   }
 
   .grey-icon {
     color: $light-grey;
-    margin: 0 5px;
+    margin: 0 rem(5px);
     transition: all .3s;
 
     &:hover {
@@ -85,21 +112,29 @@
 
   .song-container {
     color: $light-grey;
-    width: 350px;
+    width: rem(350px);
     justify-content: flex-end;
     .song-name {
       font-size: rem(14px);
+      @include respond(narrow){
+        max-width:rem(120px) ;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+      @include respond(max-mobile){
+        width: 50%;
+      }
     }
     .song-img {
-      width: 70px;
-      height: 60px;
-      margin-left: 10px;
+      width: rem(70px);
+      height: rem(60px);
+      margin-left: rem(10px);
     }
 
     .like-song {
       background-color: transparent;
       margin-right: rem(10px);
-
+      
       .fa-heart {
         font-size: rem(16px);
         color: $light-grey;
@@ -109,5 +144,96 @@
         }
       }
     }
+  }
+}
+
+input[type=range].slider-duration {
+  width: 100%;
+  margin: 5.7px 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+input[type=range].slider-duration:focus {
+  outline: none;
+}
+input[type=range].slider-duration::-webkit-slider-runnable-track {
+  background: rgba(10, 8, 35, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4.8px;
+  width: 100%;
+  height: 4.6px;
+  cursor: pointer;
+}
+input[type=range].slider-duration::-webkit-slider-thumb {
+  margin-top: -6.7px;
+  width: 16px;
+  height: 16px;
+  background: #282828;
+  border: 0.3px solid rgba(145, 129, 150, 0.6);
+  border-radius: 29px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+input[type=range].slider-duration:focus::-webkit-slider-runnable-track {
+  background: #0a0823;
+}
+input[type=range].slider-duration::-moz-range-track {
+  background: rgba(10, 8, 35, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 4.8px;
+  width: 100%;
+  height: 4.6px;
+  cursor: pointer;
+}
+input[type=range].slider-duration::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #282828;
+  border: 0.3px solid rgba(145, 129, 150, 0.6);
+  border-radius: 29px;
+  cursor: pointer;
+}
+input[type=range].slider-duration::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  border-width: 6.7px 0;
+  color: transparent;
+  width: 100%;
+  height: 4.6px;
+  cursor: pointer;
+}
+input[type=range].slider-duration::-ms-fill-lower {
+  background: #0a0823;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 9.6px;
+}
+input[type=range].slider-duration::-ms-fill-upper {
+  background: rgba(10, 8, 35, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 9.6px;
+}
+input[type=range].slider-duration::-ms-thumb {
+  width: 16px;
+  height: 16px;
+  background: #282828;
+  border: 0.3px solid rgba(145, 129, 150, 0.6);
+  border-radius: 29px;
+  cursor: pointer;
+  margin-top: 0px;
+  /*Needed to keep the Edge thumb centred*/
+}
+input[type=range].slider-duration:focus::-ms-fill-lower {
+  background: rgba(10, 8, 35, 0.78);
+}
+input[type=range].slider-duration:focus::-ms-fill-upper {
+  background: #0a0823;
+}
+/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+how to remove the virtical space around the range input in IE*/
+@supports (-ms-ime-align:auto) {
+  /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+  input[type=range].slider-duration {
+    margin: 0;
+    /*Edge starts the margin from the thumb, not the track as other browsers do*/
   }
 }
