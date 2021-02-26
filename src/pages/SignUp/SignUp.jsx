@@ -27,8 +27,8 @@ class SignUp extends Component {
                 <div className="sepertor-container flex align-center">
                     <span className="separator-line"></span>Or<span className="separator-line"></span>
                 </div>
-                {!isSignup && <Login toggleIsSignup={this.toggleIsSignup}></Login>
-                    || isSignup && <SignupForm toggleIsSignup={this.toggleIsSignup}></SignupForm>
+                {!isSignup && <Login toggleIsSignup={this.toggleIsSignup} history={this.props.history}></Login>
+                    || isSignup && <SignupForm toggleIsSignup={this.toggleIsSignup} history={this.props.history}></SignupForm>
                 }
             </section>
 

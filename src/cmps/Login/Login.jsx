@@ -26,7 +26,7 @@ class Login extends Component {
         const { email, password } = this.state.user
         const userCreds = { email, password };
         await this.props.login(userCreds)
-        // this.props.history.push('/app')
+        this.props.history.push('/app')
     }
     render() {
         const {toggleIsSignup} = this.props

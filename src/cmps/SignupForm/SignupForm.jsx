@@ -45,7 +45,7 @@ class SignupForm extends Component {
         const { email, fullName, password, isAdmin, imgUrl } = this.state.user;
         const userCreds = { email, fullName, password, isAdmin, imgUrl };
         await this.props.signup(userCreds);
-        // this.props.history.push('/app')
+        this.props.history.push('/app')
     }
 
     render() {
