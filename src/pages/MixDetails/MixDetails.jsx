@@ -132,7 +132,7 @@ function mapStateToProps(state) {
     return {
         mix: state.mixReducer.mix,
         mixes: state.mixReducer.mixes,
-        user: state.userReducer.loggedinUser,
+        user: state.userReducer.loggedInUser,
         songPlayed: state.playerReducer.song,
     }
 }

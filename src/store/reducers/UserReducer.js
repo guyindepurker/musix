@@ -1,15 +1,19 @@
 const INITIAL_STATE = {
-    loggedinUser:null
+    loggedInUser: null,
+    users: null
 }
-export function userReducer(state=INITIAL_STATE,action){
+export function userReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case 'SET_USER':
-           return {
-               ...state,
-               loggedinUser:action.user
-           } 
-           
-    
+            return {
+                ...state,
+                loggedInUser: action.user
+            }
+        case 'SET_USERS':
+            return {
+                ...state,
+                users: action.users
+            }
         default:
             return state;
     }

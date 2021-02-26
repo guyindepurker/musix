@@ -20,7 +20,7 @@ class UserProfile extends Component {
     loadUser1 = ()=>{
         const user = {
             fullName: 'Orly Amdadi',
-            userName: 'orly@amdadi.com',
+            email: 'orly@amdadi.com',
             isAdmin: true
         } 
         this.setState({user})

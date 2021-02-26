@@ -8,8 +8,13 @@ export const userService = {
   signup,
   logout,
   getMiniUser,
-  guestMode
+  guestMode,
+  getUsers
 };
+
+function getUsers() {
+  return httpService.get(`user`);
+}
 
 function getById(userId) {
   return httpService.get(`user/${userId}`);
@@ -68,7 +73,7 @@ async function guestMode() {
   const guest = {
     _id: utilService.makeId(),
     fullName: 'Orly Amdadi',
-    userName: 'orly@amdadi.com',
+    email: 'orly@amdadi.com',
     isAdmin: true
     }
     return _handleLogin(guest);

@@ -1,32 +1,32 @@
 
 import React, { Fragment, useState } from 'react'
-import { withRouter,NavLink } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 import './AppHeader.scss'
 
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { CreateMix } from '../CreateMix/CreateMix';
 
 import { logout } from '../../store/actions/UserAction';
 
- function AppHeader(props) {
+function AppHeader(props) {
 
     let [showCreateMixModal, toggleCreateMix] = useState(false)
-    let [showNavOption,toggleNavOpt] = useState(false)
-    const user = useSelector(state => state.userReducer.loggedinUser)
+    let [showNavOption, toggleNavOpt] = useState(false)
+    const user = useSelector(state => state.userReducer.loggedInUser)
     const dispatch = useDispatch()
-    const handleNavOption = (action)=>{
+    const handleNavOption = (action) => {
         toggleNavOpt(false)
-        if(action==='profile'){
+        if (action === 'profile') {
             return props.history.push(`/user/${user._id}`)
-        }else if(action==='logout'){
+        } else if (action === 'logout') {
             return dispatch(logout())
         }
     }
-    const ProfileNavOption = ()=>{
+    const ProfileNavOption = () => {
         return (
             <div className="nav-profile-option absolute">
-                <div className="profile-btn flex wrap space-around align-center" onClick={()=>handleNavOption('profile')}><i className="fal icon fa-user-alt"></i> Profile</div>
-                <div className="profile-btn btn-logout flex wrap space-around align-center" onClick={()=>handleNavOption('logout')}><i className="fad fa-sign-out"></i> logout</div>  
+                <div className="profile-btn flex wrap space-around align-center" onClick={() => handleNavOption('profile')}><i className="fal icon fa-user-alt"></i> Profile</div>
+                <div className="profile-btn btn-logout flex wrap space-around align-center" onClick={() => handleNavOption('logout')}><i className="fad fa-sign-out"></i> logout</div>
             </div>
         )
     }
@@ -45,17 +45,17 @@ import { logout } from '../../store/actions/UserAction';
                 <span user="true" className="create-mix-cmp" onClick={() => toggleCreateMix(!showCreateMixModal)}>Create Mix</span>
                 <span>|</span>
                 <div className="profile-link relative flex align-center">
-                    <i onClick={()=>toggleNavOpt(!showNavOption)} className="far fa-user-circle"></i>
-                   {showNavOption&& <ProfileNavOption />}
+                    <i onClick={() => toggleNavOpt(!showNavOption)} className="far fa-user-circle"></i>
+                    {showNavOption && <ProfileNavOption />}
                 </div>
             </Fragment>
         )
     }
-    const CreatMixModel = ()=>{
+    const CreatMixModel = () => {
         return (
             <Fragment>
                 {showCreateMixModal && <CreateMix closeModal={() => toggleCreateMix(!showCreateMixModal)}></CreateMix>}
-            {showCreateMixModal && <div className="back-drop-layer" onClick={() => toggleCreateMix(!showCreateMixModal)}></div>}
+                {showCreateMixModal && <div className="back-drop-layer" onClick={() => toggleCreateMix(!showCreateMixModal)}></div>}
             </Fragment>
 
         )
@@ -68,7 +68,8 @@ import { logout } from '../../store/actions/UserAction';
                     <h1>Musix<span className="copyrights">©</span></h1>
                 </NavLink>
                 <nav className="nav-links flex align-center">
-                {user&& <HeaderUser /> || <HeaderGuest />}
+                    {/* {user&& <HeaderUser /> || <HeaderGuest />} */}
+                    <HeaderUser /> || <HeaderGuest />
                 </nav>
             </header>
 

@@ -53,7 +53,7 @@ class UserEdit extends Component {
 
 function mapStateToProps(state) {
     return {
-      user: state.userReducer.loggedinUser
+      user: state.userReducer.loggedInUser
     }
   }
   const mapDispatchToProps = {

@@ -1,7 +1,10 @@
 
-import React, { Component } from 'react'
-import { CreateMix } from '../../cmps/CreateMix/CreateMix'
-import Player from '../../cmps/Player/Player'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Login from '../../cmps/Login/Login';
+import SignupForm from '../../cmps/SignupForm/SignupForm';
+import { login, signup } from '../../store/actions/UserAction';
+
 
 import './SignUp.scss'
 
@@ -9,50 +12,12 @@ class SignUp extends Component {
     state = {
         isSignup: false,
     }
+
+    toggleIsSignup = () => {
+        this.setState(prevState => ({ isSignup: !prevState.isSignup }))
+    }
+
     render() {
-
-        const Login = () => {
-            return (
-                <div className="login flex column">
-                    <form className="login-form flex column">
-                        Username
-                    <input type="string" placeholder="Enter username"></input>
-                    Password
-                    <input type="password" placeholder="Enter password"></input>
-                        <button className="signup-login-btn">Login</button>
-                    </form>
-
-                    <div className="signup-section flex column align-center">
-                        <span className="quest">Don't you have an account yet?</span>
-                        <button onClick={() => this.setState({ isSignup: true })} className="quest-btn">Sign up now!</button>
-                    </div>
-                </div>
-
-            )
-        }
-
-
-        const Signup = () => {
-            return (
-                <div className="signup">
-                    <form className="signup-form flex column">
-                        Fullname
-                    <input type="string" placeholder="Enter fullname"></input>
-                    Email
-                    <input type="string" placeholder="Enter email"></input>
-                    Password
-                    <input type="password" placeholder="Enter password"></input>
-                        <button className="signup-login-btn" >Sign Up to Musix</button>
-                    </form>
-
-                    <div className="login-section flex column align-center">
-                        <span className="quest">Already have an account?</span>
-                        <button onClick={() => this.setState({ isSignup: false })} className="quest-btn" >Login</button>
-                    </div>
-                </div>
-
-            )
-        }
         const { isSignup } = this.state
         return (
             <section className="sign-up flex column align-center">
@@ -62,11 +27,23 @@ class SignUp extends Component {
                 <div className="sepertor-container flex align-center">
                     <span className="separator-line"></span>Or<span className="separator-line"></span>
                 </div>
-                {!isSignup && <Login></Login> || isSignup && <Signup></Signup>}
+                {!isSignup && <Login toggleIsSignup={this.toggleIsSignup}></Login>
+                    || isSignup && <SignupForm toggleIsSignup={this.toggleIsSignup}></SignupForm>
+                }
             </section>
 
         )
     }
 }
+const mapStateToProps = state => {
+    return {
+        user: state.userReducer.loggedInUser,
+    }
+}
 
-export default SignUp
+const mapDispatchToProps = {
+    login,
+    signup
+}
+
+export default SignUp = connect(mapStateToProps, mapDispatchToProps)(SignUp)
