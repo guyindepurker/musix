@@ -17,7 +17,6 @@ import SignUp from './pages/SignUp/SignUp';
 import { connect } from 'react-redux';
 
 
-
 class _App extends Component  {
   render(){
     const {user} = this.props

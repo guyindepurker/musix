@@ -110,21 +110,20 @@ class _MixDetails extends Component {
         if (!mix) return <LoaderCmp></LoaderCmp>
         const { createdBy, songs } = mix
         return (
-
-            <section className="mix-details">
-                <div className="grid grid-header">
-                    <MixHeader user={user} updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
-                </div>
-                <div className="grid grid-action">
-                    <MixActions isLike={this.isLike} like={this.likeByUser} unLike={this.unLikeByUser} pathName={this.props.history.location.pathname} setSearch={this.filterBySong} addSongToMix={this.addSongToMix} />
-                </div>
-                <div className="grid grid-content">
-                    <SongList songPlayed={songPlayed || null} loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
-                </div>
-                <div className=" grid-player">
-                    <Player></Player>
-                </div>
-            </section>
+            <Fragment>
+                <section className="mix-details">
+                    <div className="grid grid-header">
+                        <MixHeader user={user} updateMix={this.updateMix} removeMix={this.removeMix} mix={mix} createdBy={createdBy} songs={songs} />
+                    </div>
+                    <div className="grid grid-action">
+                        <MixActions isLike={this.isLike} like={this.likeByUser} unLike={this.unLikeByUser} pathName={this.props.history.location.pathname} setSearch={this.filterBySong} addSongToMix={this.addSongToMix} />
+                    </div>
+                    <div className="grid grid-content">
+                        <SongList songPlayed={songPlayed || null} loadSong={this.loadSongToPlayer} isUserAdmin={(user._id === createdBy._id || user.isAdmin)} updateMix={this.removeSong} songs={this.songsToShow} />
+                    </div>
+                </section>
+                <Player></Player>
+            </Fragment>
         )
     }
 }
