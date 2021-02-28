@@ -7,7 +7,7 @@
   padding: rem(15px) rem(20px);
   margin-bottom: rem(50px);
 .icon-hamburger{
-  z-index: 33;
+  z-index: 99999;
   display: none;
     font-size: 21px;
     color: white;
@@ -48,14 +48,15 @@
       padding: 10px 0;
       gap: 10px;
       position: fixed;
-      top: 11px;
-      right: 8px;
-      width: 100vw;
+      top: 0;
+      right: 0;
+      width: 205px;
       height: 100vh;
-      z-index: 3;
+      z-index: 9990;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      margin: 0;
     }
     > * {
       font-family: $font-tertiary;

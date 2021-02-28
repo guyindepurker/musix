@@ -1,5 +1,5 @@
 
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 // import ReactPlayer from 'react-player/youtube'
 import './Player.scss'
 import { connect } from 'react-redux';
@@ -127,54 +127,52 @@ class Player extends Component {
         const { song } = this.props
         const { isPlaying, timeLeft } = this.state
         if (!song) return null
-        console.log('duration:', this.duration);
+        console.log('duration:',this.duration);
         return (
-            <Fragment>
-                <section className="player flex align-center space-between">
-                    <div className="volume-container flex align-center">
-                        <i className="fas grey-icon fa-volume"></i>
+            <section className="player flex align-center space-between">
+
+                <div className="volume-container flex align-center">
+                    <i className="fas grey-icon fa-volume"></i>
+                    <input
+                        className="slider-duration  volume-slider"
+                        type="range"
+                        value={this.volume}
+                        min="0"
+                        step="1"
+                        max="100"
+                        onChange={this.changeVolume}
+                    />
+                </div>
+
+                <div className="song-control flex column align-center">
+                    <div className="btns-player-control flex space-around">
+                       
+                        <button onClick={() => this.changeSong('prev')} className="prev-song-btn"><i className="fas fa-arrow-to-left"></i></button>
+                        <button onClick={() => isPlaying ? this.handleSong('pause') : this.handleSong('play')} className="play-song-btn flex center-center"><i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i></button>
+                        <button onClick={() => this.changeSong('next')} className="next-song-btn"><i className="fas fa-arrow-to-right"></i></button>
+                    </div>
+                    <div className="song-duration-slider flex align-center">
+                        <span className="grey-icon count-time">{this.timeLeft}</span>
                         <input
-                            className="slider-duration  volume-slider"
+                            className="slider-duration duration-slider"
                             type="range"
-                            value={this.volume}
+                            name="played"
+                            value={timeLeft}
                             min="0"
-                            step="1"
-                            max="100"
-                            onChange={this.changeVolume}
+                            max={this.duration}
+                            onChange={this.changeTime}
                         />
+                        <span className="grey-icon song-duration">{song.duration}</span>
                     </div>
+                </div>
 
-                    <div className="song-control flex column align-center">
-                        <div className="btns-player-control flex space-around">
-
-                            <button onClick={() => this.changeSong('prev')} className="prev-song-btn"><i className="fas fa-arrow-to-left"></i></button>
-                            <button onClick={() => isPlaying ? this.handleSong('pause') : this.handleSong('play')} className="play-song-btn flex center-center"><i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i></button>
-                            <button onClick={() => this.changeSong('next')} className="next-song-btn"><i className="fas fa-arrow-to-right"></i></button>
-                        </div>
-                        <div className="song-duration-slider flex align-center">
-                            <span className="grey-icon count-time">{this.timeLeft}</span>
-                            <input
-                                className="slider-duration duration-slider"
-                                type="range"
-                                name="played"
-                                value={timeLeft}
-                                min="0"
-                                max={this.duration}
-                                onChange={this.changeTime}
-                            />
-                            <span className="grey-icon song-duration">{song.duration}</span>
-                        </div>
-                    </div>
-
-                    <div className="song-container flex align-center">
-                        <button className="like-song"><i className="far fa-heart"></i></button>
-                        <span className="song-name">{song.title}</span>
-                        <img className="song-img" src={song.imgUrl} alt="song-img"></img>
-                    </div>
-                </section>
+                <div className="song-container flex align-center">
+                    <button className="like-song"><i className="far fa-heart"></i></button>
+                    <span className="song-name">{song.title}</span>
+                    <img className="song-img" src={song.imgUrl} alt="song-img"></img>
+                </div>
                 <YouTube videoId={song.youtubeId} opts={opts} onReady={this.onReady} />
-
-            </Fragment>
+            </section>
         )
 
 
