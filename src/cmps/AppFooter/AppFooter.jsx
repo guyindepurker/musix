@@ -14,7 +14,7 @@ import { useSelector, connect } from 'react-redux';
     return (
         
         <footer className="app-footer ">
-            <div className="main-footer container flex wrap  space-between">
+            <div className="main-footer container flex wrap ">
             <div className="logo-main">
             <NavLink className="logo-container flex" exact to="/app">
                 <i className="fab fa-spotify"></i>
