@@ -5,7 +5,7 @@ import './SelectGenre.scss'
 
 const SelectGenre = ({ selectedVal, save }) => {
 
-    const genreNames = ['funk', 'pop', 'rock', 'electro', 'trance', 'techno', 'israeli', 'classic']
+    const genreNames = ['latin', 'pop', 'rock', 'dance', 'israeli']
 
     return (
         <select value={selectedVal} onChange={(ev)=>save(ev)} className="select-genre" name="genre" >

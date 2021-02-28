@@ -37,7 +37,8 @@ class _Mixes extends Component {
     }
 
     get genresNames() {
-        return ['all mixes', 'funk', 'pop', 'rock', 'electro', 'trance', 'techno', 'israeli', 'classic']
+       return ['all mixes','latin', 'pop', 'rock', 'dance', 'israeli']
+       
     }
 
     get mixesToShow() {

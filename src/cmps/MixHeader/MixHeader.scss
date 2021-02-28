@@ -23,6 +23,7 @@
     font-size: rem(16px);
     text-transform: capitalize;
     gap: rem(5px);
+    
 
     > *:not(:first-child) {
       letter-spacing: 1px;
@@ -33,8 +34,15 @@
       }
     .mix {
       &-name {
-        font-size: rem(96px);
+        font-size: rem(85px);
         font-family: $font-secondary;
+        max-width: inherit;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: clip;
+        @include respond(max-normal){
+          font-size: rem(70px);
+        }
         @include respond(normal){
           font-size: rem(60px);
         }
@@ -51,6 +59,10 @@
       &-description {
         font-size: rem(25px);
         text-transform: lowercase;
+        max-width: inherit;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: clip;
         @include respond(mobile){
           font-size: rem(18px);
         }

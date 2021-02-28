@@ -16,7 +16,10 @@ class Player extends Component {
         volume: 5,
         isPlaying: false,
         youtubePlayer: null,
-        timeLeft: 0
+        timeLeft: 0,
+    }
+    componentDidMount() {
+        console.log('songs:', this.props.songs);
     }
     componentDidUpdate({ song }, prevState) {
         if (!this.props.song || !song) return
@@ -40,36 +43,37 @@ class Player extends Component {
     getTimeLeft = () => {
         const { youtubePlayer, isPlaying } = this.state
         if (youtubePlayer) {
-            console.log('im in the get');
             this.gInterval = setInterval(() => {
                 let time = youtubePlayer.getCurrentTime()
-                console.log('i am in the getter!', this.duration);
-                if (this.duration === time) {
+                if (this.duration === time && this.duration !== 0) {
                     this.changeSong('next');
                 }
-                this.setState({ timeLeft: time }, () => console.log('time left state =', this.state.timeLeft))
+                this.setState({ timeLeft: time })
             }, 1000)
         }
     }
 
     toggleIsPlaying = () => {
-        this.setState(prevState => ({ isPlaying: !prevState.isPlaying }), () => console.log('SetState Toggle IsLoading', this.state.isPlaying))
+        this.setState(prevState => ({ isPlaying: !prevState.isPlaying }))
     }
 
     changeSong = (action) => {
         const { song, songs, loadSong } = this.props
         let idx = songs.findIndex(currSong => currSong.id === song.id)
-        let songsLength = songs.length - 1
-        if (idx >= songsLength) idx = -1
+        console.log('idx:', idx)
+        let songsLength = songs.length - 1;
+        // if (idx === songsLength || idx === -1) idx = 0;
+
         if (action === 'next') {
+            if (idx === songsLength) idx = -1;
             const nextSong = songs[idx + 1]
             loadSong(nextSong)
 
         } else {
-            if (idx === 0) idx = songs.length;
-            if (idx === -1) idx = 1;
+            if (idx === 0) idx = songsLength +1
             const prevSong = songs[idx - 1]
             loadSong(prevSong)
+
         }
         if (!this.state.isPlaying) {
             this.toggleIsPlaying()
@@ -139,6 +143,7 @@ class Player extends Component {
                             className="slider-duration  volume-slider"
                             type="range"
                             value={this.volume}
+                            name="volume"
                             min="0"
                             step="1"
                             max="100"
@@ -155,15 +160,16 @@ class Player extends Component {
                         </div>
                         <div className="song-duration-slider flex align-center">
                             <span className="grey-icon count-time">{this.timeLeft}</span>
-                            <input
-                                className="slider-duration duration-slider"
-                                type="range"
-                                name="played"
-                                value={timeLeft}
-                                min="0"
-                                max={this.duration}
-                                onChange={this.changeTime}
-                            />
+                    <input
+                        className="slider-duration duration-slider"
+                        type="range"
+                        name="played"
+                        value={timeLeft === undefined? 0 : timeLeft}
+                        name="timeLeft"
+                        min="0"
+                        max={this.duration}
+                        onChange={this.changeTime}
+                    />
                             <span className="grey-icon song-duration">{song.duration}</span>
                         </div>
                     </div>

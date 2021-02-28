@@ -25,8 +25,11 @@ class _CreateMix extends Component {
     }
     handleChange = ({ target }) => {
         const field = target.name
-        const value = target.value
-        this.setState(prevState => ({ mix: { ...prevState.mix, [field]: value } }))
+        let value = target.value
+        if(field==='songs'){
+           value = JSON.parse(value) 
+        }
+        this.setState(prevState => ({ mix: { ...prevState.mix, [field]: value } }),()=>console.log('mix:',this.state.mix))
     }
     saveMix = async (ev) => {
         ev.preventDefault()
@@ -71,6 +74,7 @@ class _CreateMix extends Component {
                         <div>
                             {mix.imgUrl ? '' : 'Upload Image'}
                         </div>
+                   
                     </div>
                     <label htmlFor="mixName">Name:</label>
                     <input id="mixName" type="text" onChange={this.handleChange} name="name" value={mix.name} placeholder="Enter mix name" />
@@ -78,6 +82,10 @@ class _CreateMix extends Component {
                     <SelectGenre selectedVal={mix.genre} save={this.handleChange} ></SelectGenre>
                     <label htmlFor="mixDescription">Description:</label>
                     <textarea rows="3" cols="30" id="mixDescription" onChange={this.handleChange} type="text" name="description" value={mix.description} placeholder="Your description..." />
+                    <label htmlFor="songsList">Songs json:</label>
+                        <textarea onChange={this.handleChange} name="songs" id="songsList" cols="30" rows="4">
+
+                        </textarea>
                     <button className="create-mix-btn flex justify-center">Create mix ♫</button>
                 </form>
             </section>

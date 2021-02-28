@@ -32,17 +32,17 @@ export default function SongPreview({ songPlayed, song, updateMix, isUserAdmin, 
     let number = idx + 1;
     const isMatch = songPlayed?.id === song.id
 
-    let [isHovering] = useState(false)
-    let [songIdHover] = useState(null)
+    // let [isHovering] = useState(false)
+    // let [songIdHover] = useState(null)
 
-    function setHoverdSong(songId) {
-        isHovering = true
-        songIdHover = songId
-    }
+    // function setHoverdSong(songId) {
+    //     isHovering = true
+    //     songIdHover = songId
+    // }
 
     return (
         <section className="song-preview-container flex align-center">
-            <li className="song-preview flex space-between" onMouseOver={setHoverdSong(song.id)}>
+            <li className="song-preview flex space-between" >
                 <div onClick={() => isInAddSongs ? addSongToMix(song) : loadSong(song)} className={`song-details flex align-center ${isMatch && 'played-song' || ''}`}>
                     {!isInAddSongs && <span className="song-number">{number}</span>}
                     {!isInAddSongs && <i className="song-preview-icon fas fa-play"></i>}
@@ -50,9 +50,9 @@ export default function SongPreview({ songPlayed, song, updateMix, isUserAdmin, 
                     <span className="song-name">{song.title}</span>
                     <span className="song-duration">{song.duration}</span>
                 </div>
-                {isHovering && songIdHover == song.id && <div className="song-controls flex align-center">
+               <div className="song-controls flex align-center">
                     {!isInAddSongs && isUserAdmin && <i onClick={() => updateMix(song.id)} className="song-preview-icon fas fa-trash-alt"></i>}
-                </div>}
+                </div>
             </li>
             {isInAddSongs && <button className="add-song-btn" onClick={() => addSongToMix(song)}><i className="fas fa-plus"></i></button>}
         </section>

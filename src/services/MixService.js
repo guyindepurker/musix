@@ -39,7 +39,7 @@ function getEmptyMix(miniUser,name='New Mix',description='Mix description') {
     const mix ={
         name,
         description,
-        genre: 'funk',
+        genre: 'latin',
         views: 0,
         imgUrl: 'defualtImg.jpg',
         likes: 0,
