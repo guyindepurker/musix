@@ -1,7 +1,7 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { login } from '../../store/actions/UserAction';
+import { login, loginGuestMode } from '../../store/actions/UserAction';
 
 
 import './Login.scss'
@@ -19,7 +19,15 @@ class Login extends Component {
         console.log(ev.target.name, ev.target.value);
         this.setState({ user: { ...this.state.user, [ev.target.name]: ev.target.value } })
     }
-
+    loginGuestMode=async(ev)=> {
+        ev.preventDefault();
+        try{
+         await this.props.loginGuestMode()
+         this.props.history.push('/app/mix')
+        }catch (err){
+            console.log('unbale to login as a guest');
+        }
+     }
     onLogin = async (ev) => {
         ev.preventDefault();
         if (this.state.email === '') return;
@@ -39,7 +47,9 @@ class Login extends Component {
                     Password
                         <input type="password" placeholder="Enter password" name="password" value={this.state.user.password} onChange={this.onChange}
                     ></input>
-                    <button className="signup-login-btn" onClick={this.onLogin}>Login</button>
+
+                    <button  type="submit" className="signup-login-btn" onClick={this.onLogin}>Login</button>
+                    <button type="guest" className="signup-login-btn" onClick={this.loginGuestMode}>Try as Guest!</button>
                 </form>
 
                 <div className="signup-section flex column align-center">
@@ -58,7 +68,8 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = {
-    login
+    login,
+    loginGuestMode
 }
 
 export default Login = connect(mapStateToProps, mapDispatchToProps)(Login)

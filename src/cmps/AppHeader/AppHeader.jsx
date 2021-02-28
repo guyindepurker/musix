@@ -13,7 +13,7 @@ import { logout } from '../../store/actions/UserAction';
     let [showNavOption,toggleNavOpt] = useState(false)
     let [showNavMobile,toggleNavMobile] = useState(false)
     // let [isMobile,toggleIsMobile] = useState((window.innerWidth <=750) ? true : false)
-    const user = useSelector(state => state.userReducer.loggedinUser)
+    const user = useSelector(state => state.userReducer.loggedInUser)
     const dispatch = useDispatch()
     const handleNavOption = (action) => {
         toggleNavOpt(false)

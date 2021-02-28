@@ -69,12 +69,10 @@ function _getUser() {
   return user;
 }
 
-async function guestMode() {
+function guestMode() {
   const guest = {
-    _id: utilService.makeId(),
-    fullName: 'Orly Amdadi',
-    email: 'orly@amdadi.com',
-    isAdmin: true
+    email: 'guest@gmail.com',
+    password: '123'
     }
-    return _handleLogin(guest);
+    return guest
 }

@@ -146,7 +146,7 @@ class Player extends Component {
 
                 <div className="song-control flex column align-center">
                     <div className="btns-player-control flex space-around">
-                        <button className="shuffle"><i className="fas fa-random"></i></button>
+                       
                         <button onClick={() => this.changeSong('prev')} className="prev-song-btn"><i className="fas fa-arrow-to-left"></i></button>
                         <button onClick={() => isPlaying ? this.handleSong('pause') : this.handleSong('play')} className="play-song-btn flex center-center"><i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i></button>
                         <button onClick={() => this.changeSong('next')} className="next-song-btn"><i className="fas fa-arrow-to-right"></i></button>

@@ -65,7 +65,8 @@ export function getMiniUser() {
 export function loginGuestMode() {
     return async (dispatch) => {
         try {
-            const user = await userService.guestMode()
+            const userCred =  userService.guestMode()
+            const user = await userService.login(userCred)
             dispatch({ type: 'SET_USER', user })
         } catch (err) {
             console.log('err from action login:', err)

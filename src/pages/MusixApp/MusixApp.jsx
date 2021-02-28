@@ -58,7 +58,7 @@ class _MusixApp extends Component {
 }
 function mapStateToProps(state) {
     return {
-        mixes: state.mixReducer.mixes
+        mixes: state.mixReducer.mixes,
     }
 }
 const mapDispatchToProps = {

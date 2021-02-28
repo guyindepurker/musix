@@ -15,6 +15,7 @@ import UserProfile from './pages/UserProfile/UserProfile';
 import {MixDetails} from './pages/MixDetails/MixDetails';
 import SignUp from './pages/SignUp/SignUp';
 import { connect } from 'react-redux';
+import BackOfficeAddSong from './cmps/BackOfficeAddSong/BackOfficeAddSong';
 
 
 class _App extends Component  {
@@ -34,6 +35,7 @@ class _App extends Component  {
           <PrivateRoute path='/app' component={MusixApp} />
           <Route path='/signup' component={SignUp} />
           <PrivateRoute path='/user/:id' component={UserProfile} />
+          <Route path='/admin' component={BackOfficeAddSong} />
           <Route path='/' component={HomePage} />
         </Switch>
         </main>
