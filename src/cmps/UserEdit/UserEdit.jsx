@@ -60,7 +60,7 @@ class UserEdit extends Component {
     render() {
         const {userToEdit,isLoading,errMsg} = this.state
         if(!userToEdit) return <LoaderCmp></LoaderCmp>
-        console.log('userToEdit:', userToEdit)
+        
         return (
             
                 <form onSubmit={this.saveChanges} className="user-to-edit flex column wrap center-center">
