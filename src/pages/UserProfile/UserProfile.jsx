@@ -6,34 +6,28 @@ import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 import _ from 'lodash'
 import { utilService } from '../../services/UtilsService';
 import UserEdit from '../../cmps/UserEdit/UserEdit';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 class UserProfile extends Component {
     state = {
-        user:null,
+       
        isEdit:false
     }
     componentDidMount(){
-        this.loadUser1()
     }
     toggleUserEditor = ()=>{
         this.setState(prevState=>({isEdit:!prevState.isEdit}))
     }
-    loadUser1 = ()=>{
-        const user = {
-            fullName: 'Orly Amdadi',
-            email: 'orly@amdadi.com',
-            isAdmin: true
-        } 
-        this.setState({user})
-    }
     get userKeys(){
-        const copyUser = _.omit(this.state.user,'isAdmin')
+        const copyUser = _.omit(this.props.user,['isAdmin','imgUrl'])
         return Object.keys(copyUser)
     }
     get currentTime(){
        return utilService.greetByTime()
     }
     render() {
-        const {user,isEdit} = this.state
+        const {isEdit} = this.state
+        const {user} = this.props
         if(!user) return <LoaderCmp></LoaderCmp>
        const UserPreview = () =>{
             return (
@@ -52,8 +46,7 @@ class UserProfile extends Component {
         const HeroProfile = ()=>{
             return   <div className="hero-profile">
             <h1 className="hero-title">Hello  {user.fullName} , {this.currentTime}!</h1>
-            <p className="hero-paragraph">Welcome to your own secret profilem
-            here you can update your settings and see your overview.
+            <p className="hero-paragraph">Welcome to your personal profile, here you can see information about you as you have updated and you can update your personal details and adjust your personal settings.
             </p>
          
             </div>
@@ -62,12 +55,13 @@ class UserProfile extends Component {
             return (
                 <Fragment>
                 <div className="user-profile-img flex center-center">
-                <img  src="/defualtImg.jpg" alt="user img" />
+                <img  src={user.imgUrl||'/defualtImg.jpg'} alt="user img" />
             </div>
             <ul className="clean-list nav-bar-menu-user flex column">
-                <li><a href="#">Overview</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Mixes</a></li>
+                <li><Link to={`/user/${user._id}`}>Settings</Link></li>
+                    
+                <li><Link to={`/user/${user._id}`}>Settings</Link></li>
+                <li><Link to="/app/mixes">Mixes</Link></li>
             </ul>
             </Fragment>
             )
@@ -89,5 +83,9 @@ class UserProfile extends Component {
             </section>)
     }
 }
-
-export default UserProfile
+function mapStateToProps(state){
+    return {
+        user:state.userReducer.loggedInUser
+    }
+}
+export default UserProfile = connect(mapStateToProps)(UserProfile)

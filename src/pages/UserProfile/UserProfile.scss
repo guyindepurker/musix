@@ -82,10 +82,12 @@
             letter-spacing: 1.5px;
             width: 40ch;
             @include respond(max-narrow){
-                width: 20ch;
+                width: 35ch;
             }
             @include respond(min-mobile){
                 width: 100%;
+                margin-bottom: 5px;
+                padding-bottom: 5px;
             }
         }
     }

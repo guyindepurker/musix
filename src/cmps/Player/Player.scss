@@ -21,7 +21,7 @@
       bottom:10px;
     }
     @include respond(max-mobile){
-      right: -50px;
+      right: -75px;
     }
     .fa-volume {
       color: $light-grey;
@@ -51,7 +51,10 @@
     .btns-player-control {
       width: rem(250px);
       margin-bottom: rem(15px);
-
+      @include respond(max-mobile){
+        justify-content: space-evenly;
+        margin-right: -66px;
+      }
       button {
         background-color: transparent;
       }

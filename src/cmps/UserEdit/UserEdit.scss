@@ -1,7 +1,27 @@
 
         @import "./src/styles/setup";
         .user-to-edit {
-                
+                .img-user{
+                        display: block;
+                        border-radius: 50%;
+                        margin:5px;
+                        border: 2px solid $mix-bgc;
+                        box-sizing: content-box;
+                        object-fit: cover;
+                        width: rem(120px);
+                        height: rem(120px);
+                        cursor: pointer;
+                }
+                .img-user-upload{
+                        cursor: pointer;
+                        font-size: rem(25px);
+                        color: $mix-bgc;
+                        margin: 5px;
+                        transition: all .2s;
+                        &:hover{
+                                color: $light-green;
+                        }
+                }
                 label{
                         font-size: rem(20px);
                         margin-bottom: rem(10px);
@@ -15,6 +35,9 @@
                         color: $player-bgc;
                         background-color: $white;
                         transition: all .3s;
+                        width:fit-content ;
+                        overflow: hidden;
+                        
 
                         &:focus{
                                 outline: none;
@@ -22,4 +45,5 @@
                                 background-color: $player-top;
                         }
                 }
+                .err-msg{color: #f44336f5;}
         }

@@ -130,9 +130,7 @@ class Player extends Component {
         console.log('duration:', this.duration);
         return (
             <Fragment>
-
                 <section className="player flex align-center space-between">
-
                     <div className="volume-container flex align-center">
                         <i className="fas grey-icon fa-volume"></i>
                         <input
@@ -148,7 +146,7 @@ class Player extends Component {
 
                     <div className="song-control flex column align-center">
                         <div className="btns-player-control flex space-around">
-                            <button className="shuffle"><i className="fas fa-random"></i></button>
+
                             <button onClick={() => this.changeSong('prev')} className="prev-song-btn"><i className="fas fa-arrow-to-left"></i></button>
                             <button onClick={() => isPlaying ? this.handleSong('pause') : this.handleSong('play')} className="play-song-btn flex center-center"><i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i></button>
                             <button onClick={() => this.changeSong('next')} className="next-song-btn"><i className="fas fa-arrow-to-right"></i></button>
@@ -156,22 +154,43 @@ class Player extends Component {
                         <div className="song-duration-slider flex align-center">
                             <span className="grey-icon count-time">{this.timeLeft}</span>
                             <input
-                                className="slider-duration duration-slider"
+                                className="slider-duration  volume-slider"
                                 type="range"
-                                name="played"
-                                value={timeLeft}
+                                value={this.volume}
                                 min="0"
-                                max={this.duration}
-                                onChange={this.changeTime}
+                                step="1"
+                                max="100"
+                                onChange={this.changeVolume}
                             />
-                            <span className="grey-icon song-duration">{song.duration}</span>
                         </div>
-                    </div>
 
-                    <div className="song-container flex align-center">
-                        <button className="like-song"><i className="far fa-heart"></i></button>
-                        <span className="song-name">{song.title}</span>
-                        <img className="song-img" src={song.imgUrl} alt="song-img"></img>
+                        <div className="song-control flex column align-center">
+                            <div className="btns-player-control flex space-around">
+                                <button className="shuffle"><i className="fas fa-random"></i></button>
+                                <button onClick={() => this.changeSong('prev')} className="prev-song-btn"><i className="fas fa-arrow-to-left"></i></button>
+                                <button onClick={() => isPlaying ? this.handleSong('pause') : this.handleSong('play')} className="play-song-btn flex center-center"><i className={`fas fa-${isPlaying ? 'pause' : 'play'}`}></i></button>
+                                <button onClick={() => this.changeSong('next')} className="next-song-btn"><i className="fas fa-arrow-to-right"></i></button>
+                            </div>
+                            <div className="song-duration-slider flex align-center">
+                                <span className="grey-icon count-time">{this.timeLeft}</span>
+                                <input
+                                    className="slider-duration duration-slider"
+                                    type="range"
+                                    name="played"
+                                    value={timeLeft}
+                                    min="0"
+                                    max={this.duration}
+                                    onChange={this.changeTime}
+                                />
+                                <span className="grey-icon song-duration">{song.duration}</span>
+                            </div>
+                        </div>
+
+                        <div className="song-container flex align-center">
+                            <button className="like-song"><i className="far fa-heart"></i></button>
+                            <span className="song-name">{song.title}</span>
+                            <img className="song-img" src={song.imgUrl} alt="song-img"></img>
+                        </div>
                     </div>
                 </section>
                 <YouTube videoId={song.youtubeId} opts={opts} onReady={this.onReady} />
