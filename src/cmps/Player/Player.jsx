@@ -92,7 +92,6 @@ class Player extends Component {
     }
 
     changeTime = ({ target }) => {
-
         const value = target.value
         const { youtubePlayer } = this.state
         this.setState({ timeLeft: value }, () => {
