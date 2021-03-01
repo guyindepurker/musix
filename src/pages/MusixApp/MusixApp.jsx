@@ -16,8 +16,7 @@ class _MusixApp extends Component {
     }
     componentDidMount() {
         this.loadMixes()
-        socketService.emit('load',23)
-        socketService.on('update',(massge)=>console.log('front',massge))
+        socketService.on('load-mixes',()=>this.loadMixes())
     }
     
     loadMixes = async () => {
