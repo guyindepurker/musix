@@ -164,7 +164,7 @@ class Player extends Component {
                         className="slider-duration duration-slider"
                         type="range"
                         name="played"
-                        value={timeLeft === undefined? 0 : timeLeft}
+                        value={!timeLeft ? 0 : timeLeft}
                         name="timeLeft"
                         min="0"
                         max={this.duration}
