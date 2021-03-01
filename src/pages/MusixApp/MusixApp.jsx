@@ -7,6 +7,8 @@ import _ from 'lodash'
 import MixList from '../../cmps/MixList/MixList';
 import { Link } from 'react-router-dom'
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
+import { utilService } from '../../services/UtilsService';
+import { socketService } from '../../services/SocketService';
 class _MusixApp extends Component {
     state = {
         filterBy: null,
@@ -14,7 +16,10 @@ class _MusixApp extends Component {
     }
     componentDidMount() {
         this.loadMixes()
+        socketService.emit('load',23)
+        socketService.on('update',(massge)=>console.log('front',massge))
     }
+    
     loadMixes = async () => {
         await this.props.loadMixes(this.state.filterBy)
         this.mixByGenre()
@@ -29,7 +34,10 @@ class _MusixApp extends Component {
         this.setState({ mixesByGenre })
     }
     get genresNames() {
-        return Object.keys(this.state.mixesByGenre)
+        const genresNames = Object.keys(this.state.mixesByGenre).sort()
+        const filterGenres = genresNames.filter(name=> (name !== 'latin' && name !== 'pop'))
+        const genres = ['latin','pop',...filterGenres]      
+        return genres
     }
 
     render() {
