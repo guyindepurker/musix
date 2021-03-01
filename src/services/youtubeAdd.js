@@ -4,24 +4,23 @@ var jq = document.createElement('script');
 jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js";
 document.getElementsByTagName('head')[0].appendChild(jq);
 // ... give time for script to load, then type.
+
 jQuery.noConflict();
-$( document ).ready(function() {
-    console.log( "ready!" );
+$(document).ready(function () {
+    console.log("ready!");
     const duration = $('.ytp-time-duration').text()
-    const title=$('h1.ytd-video-primary-info-renderer').text()
+    const title = $('h1.ytd-video-primary-info-renderer').text()
     const youtubeId = getYoutubeId()
-    const song ={
-        id:makeId(),
+    const song = {
+        id: makeId(),
         title,
         duration,
         youtubeId,
-        imgUrl:getImgUrl(youtubeId)
+        imgUrl: getImgUrl(youtubeId)
     }
-    gSongs.push(song)
-    console.log('song',song)
-    console.log('songs:', gSongs)
-    saveStorage(SONG_DB,gSongs)
-   
+
+    console.log('jquery song', song)
+
 });
 
 function getYoutubeId() {
@@ -38,7 +37,7 @@ function getYoutubeId() {
     return id
 }
 
-function getImgUrl(id){
+function getImgUrl(id) {
     return `http://i3.ytimg.com/vi/${id}/hqdefault.jpg`
 }
 

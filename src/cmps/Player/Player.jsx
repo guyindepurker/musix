@@ -1,9 +1,4 @@
-
-
-
-
 import React, { Component } from 'react'
-// import ReactPlayer from 'react-player/youtube'
 import './Player.scss'
 import { connect } from 'react-redux';
 import { loadSong, loadSongs } from '../../store/actions/PlayerAction';
