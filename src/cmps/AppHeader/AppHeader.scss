@@ -6,20 +6,20 @@
   height: rem(80px);
   padding: rem(15px) rem(20px);
   margin-bottom: rem(50px);
-.icon-hamburger{
-  z-index: 99999;
-  display: none;
+  .icon-hamburger {
+    z-index: 99999;
+    display: none;
     font-size: 21px;
     color: white;
     cursor: pointer;
-    transition: all .2s;
-    &:hover{
+    transition: all 0.2s;
+    &:hover {
       color: $green;
     }
-    @include respond(narrow){
+    @include respond(narrow) {
       display: block;
     }
-}
+  }
   .logo-container {
     color: $white;
     h1 {
@@ -41,7 +41,7 @@
   }
 
   .nav-links {
-    @include respond(narrow){
+    @include respond(narrow) {
       display: none;
       flex-direction: column;
       background-color: $mix-bgc;
@@ -63,15 +63,15 @@
       padding: 0px rem(17px);
       color: $white;
       letter-spacing: 0.5px;
-      @include respond(narrow){
-      background-color: $green;
-      text-align: center;
-      width: 50%;
-      padding: 10px;
-      &:hover{
-        background-color: #fff;
+      @include respond(narrow) {
+        background-color: $green;
+        text-align: center;
+        width: 50%;
+        padding: 10px;
+        &:hover {
+          background-color: #fff;
+        }
       }
-    }
     }
 
     .profile-link {
@@ -103,33 +103,32 @@
     }
   }
 }
-.nav-profile-option{
-  top: 37px;
-background-color: white;
-right: -9px;
-width: 109px;
-text-align: center;
-border: 1px solid rgba($light-grey-4, 0.2);
-border-radius: 10px;
-color: $player-top;
->:first-child{
-margin-bottom: 10px;
-}
-.profile-btn,a{
-padding: 8px;
-text-transform: capitalize;
-border-radius: 10px;
-color: inherit;
-transition: all .3s;
-width: 100%;
-cursor: pointer;
-&:hover{
-  background-color: rgba($light-grey-3,0.2);
-}
-i{
-
-  color: inherit;
-}
-}
-
+.nav-profile-option {
+  top: 40px;
+  background-color: white;
+  right: 25px;
+  width: 109px;
+  text-align: center;
+  border: 1px solid rgba(163, 163, 163, 0.2);
+  border-radius: 10px;
+  color: #282828;
+  > :first-child {
+    margin-bottom: 10px;
+  }
+  .profile-btn,
+  a {
+    padding: 8px;
+    text-transform: capitalize;
+    border-radius: 10px;
+    color: inherit;
+    transition: all 0.3s;
+    width: 100%;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba($light-grey-3, 0.2);
+    }
+    i {
+      color: inherit;
+    }
+  }
 }
