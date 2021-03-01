@@ -13,13 +13,18 @@ import Player from '../../cmps/Player/Player';
 import { loadSongs, loadSong } from '../../store/actions/PlayerAction';
 import { userService } from '../../services/UserService';
 import { youtubeService } from '../../services/YoutubeService';
+import { socketService } from '../../services/SocketService';
+
 class _MixDetails extends Component {
     state = {
         filterBySong: null
     }
     componentDidMount() {
         this.loadMix()
-
+        socketService.emit('set-mix-id',this.props.match.params.id)
+        socketService.on('load-mix',()=>{
+            console.log('the mix is update load the mix again...');
+            this.loadMix()})
 
     }
     componentWillUnmount() {

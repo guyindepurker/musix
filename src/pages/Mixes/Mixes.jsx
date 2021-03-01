@@ -10,6 +10,7 @@ import Search from '../../cmps/Search';
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 import { utilService } from '../../services/UtilsService';
 import PopUpMenu from '../../cmps/PopUpMenu/PopUpMenu'
+import { socketService } from '../../services/SocketService'
 
 class _Mixes extends Component {
 
@@ -22,6 +23,7 @@ class _Mixes extends Component {
         if(!this.props.mixes){
             this.loadMixes()
         }
+        socketService.on('load-mixes',()=>this.loadMixes())
     }
     componentDidUpdate(prevProps) {
         if (this.props.location.search !== prevProps.location.search) {
