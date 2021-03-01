@@ -21,7 +21,6 @@ class SignupForm extends Component {
 
     async componentDidMount() {
         const users = await this.props.loadUsers()
-        console.log('users:', users);
         this.setState({ users })
     }
 
@@ -30,7 +29,6 @@ class SignupForm extends Component {
     }
 
     onChange = (ev) => {
-        console.log(ev.target.name, ev.target.value);
         this.setState({ user: { ...this.state.user, [ev.target.name]: ev.target.value } })
     }
 

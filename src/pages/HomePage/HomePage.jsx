@@ -4,7 +4,6 @@ import React from 'react'
 import './HomePage.scss'
 import { connect } from 'react-redux';
 import { loginGuestMode } from '../../store/actions/UserAction';
-import { socketService } from '../../services/SocketService';
 
 function HomePage(props) {
    

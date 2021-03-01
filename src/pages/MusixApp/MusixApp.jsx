@@ -7,8 +7,7 @@ import _ from 'lodash'
 import MixList from '../../cmps/MixList/MixList';
 import { Link } from 'react-router-dom'
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
-import { utilService } from '../../services/UtilsService';
-import { socketService } from '../../services/SocketService';
+// import { socketService } from '../../services/SocketService';
 class _MusixApp extends Component {
     state = {
         filterBy: null,
@@ -16,7 +15,10 @@ class _MusixApp extends Component {
     }
     componentDidMount() {
         this.loadMixes()
-        socketService.on('load-mixes',()=>this.loadMixes())
+        // socketService.on('mixes-update',()=>{
+        //     console.log('all the mixes loadeddd!');
+        //     this.loadMixes()
+        // })
     }
     
     loadMixes = async () => {

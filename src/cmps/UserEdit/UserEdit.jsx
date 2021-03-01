@@ -14,7 +14,7 @@ class UserEdit extends Component {
     }
     componentDidMount(){
        const {user} =  this.props
-       this.setState({userToEdit:{...user}},()=>console.log('user editor',this.state.userToEdit))
+       this.setState({userToEdit:{...user}})
     }
     componentWillUnmount(){
         this.setState({userToEdit:null})
@@ -25,16 +25,16 @@ class UserEdit extends Component {
     handleChange = ({target})=>{
         const field = target.name
         const value = target.value
-        this.setState(prevState=>({userToEdit:{...prevState.userToEdit,[field]:value}}),()=>console.log(this.state))
+        this.setState(prevState=>({userToEdit:{...prevState.userToEdit,[field]:value}}))
     }
     onUploadImg = async (ev) => {
         this.setState({ isLoading: true })
         try {
             const res = await uploadImg(ev);
-            this.setState(prevState => ({ userToEdit: { ...prevState.userToEdit, imgUrl: res.url }, isLoading: false }),()=>console.log('state:',this.state))
+            this.setState(prevState => ({ userToEdit: { ...prevState.userToEdit, imgUrl: res.url }, isLoading: false }))
 
         } catch (err) {
-            console.log('Cant upload your image!!', err);
+            console.log('Cant upload your image!!');
         }
     }
     saveChanges = async (ev) =>{
@@ -53,7 +53,7 @@ class UserEdit extends Component {
             await this.props.saveUser(userToEdit)
             this.props.toggleUserEditor()
         } catch(err){
-            console.log('Cant save user');
+           
             this.handleErrMsg('Some problem cant update your account try later...');
         }
     }

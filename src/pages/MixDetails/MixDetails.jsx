@@ -13,7 +13,7 @@ import Player from '../../cmps/Player/Player';
 import { loadSongs, loadSong } from '../../store/actions/PlayerAction';
 import { userService } from '../../services/UserService';
 import { youtubeService } from '../../services/YoutubeService';
-import { socketService } from '../../services/SocketService';
+// import { socketService } from '../../services/SocketService';
 
 class _MixDetails extends Component {
     state = {
@@ -21,13 +21,14 @@ class _MixDetails extends Component {
     }
     componentDidMount() {
         this.loadMix()
-        socketService.emit('set-mix-id',this.props.match.params.id)
-        socketService.on('load-mix',()=>{
-            console.log('the mix is update load the mix again...');
-            this.loadMix()})
+        // socketService.emit('set-mix-id',this.props.match.params.id)
+        // socketService.on('load-mix',()=>{
+        //     console.log('i am get the socket event !!!!!! loaded the mix again!...');
+        //     this.loadMix()})
 
     }
     componentWillUnmount() {
+       
         this.props.loadMix(undefined)
     }
 
@@ -71,7 +72,6 @@ class _MixDetails extends Component {
         this.updateMix('songs', updatedSongs)
     }
     addSongToMix = async (song) => {
-        console.log('song in addSongToMix<<<<<', song);
         const copyMix = { ...this.props.mix }
         const isAlreadyInMix = copyMix.songs.find(currSong => currSong.youtubeId === song.youtubeId)
         if (isAlreadyInMix) return;

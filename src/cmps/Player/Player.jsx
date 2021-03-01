@@ -13,9 +13,7 @@ class Player extends Component {
         youtubePlayer: null,
         timeLeft: 0,
     }
-    componentDidMount() {
-        console.log('songs:', this.props.songs);
-    }
+  
     componentDidUpdate({ song }, prevState) {
         if (!this.props.song || !song) return
         if (song.title !== this.props.song.title && !this.state.isPlaying) {
@@ -23,9 +21,7 @@ class Player extends Component {
         }
     }
     onReady = (event) => {
-        console.log('ready')
         event.target.playVideo();
-        console.log('event.target:', event.target)
         if (!this.state.isPlaying) {
             this.toggleIsPlaying()
         }
@@ -55,9 +51,7 @@ class Player extends Component {
     changeSong = (action) => {
         const { song, songs, loadSong } = this.props
         let idx = songs.findIndex(currSong => currSong.id === song.id)
-        console.log('idx:', idx)
         let songsLength = songs.length - 1;
-        // if (idx === songsLength || idx === -1) idx = 0;
 
         if (action === 'next') {
             if (idx === songsLength) idx = -1;

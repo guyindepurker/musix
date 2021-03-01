@@ -16,7 +16,6 @@ class Login extends Component {
     }
 
     onChange = (ev) => {
-        console.log(ev.target.name, ev.target.value);
         this.setState({ user: { ...this.state.user, [ev.target.name]: ev.target.value } })
     }
     loginGuestMode=async(ev)=> {

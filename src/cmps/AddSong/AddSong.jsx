@@ -32,7 +32,6 @@ class AddSong extends Component {
         const { searchTerm } = this.state;
         if(!searchTerm) return;
         const songs = await youtubeService.getSongs(searchTerm);
-        console.log('songs youtube:', songs)
         if (!songs) return;
         this.setState({ songs });
     }

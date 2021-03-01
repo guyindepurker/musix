@@ -21,7 +21,7 @@ export const youtubeService = {
 }
 
 async function getSongs(term) {
-  console.log('term:', term);
+
   let res = await axios.get(`${SEARCH_URL}?part=snippet&videoEmbeddable=true&type=video&key=${API_KEY}&q=${term}`)
   let songs = res.data.items;
   songs = songs.map(song => _convertToSongObj(song));
