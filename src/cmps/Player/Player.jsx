@@ -30,19 +30,18 @@ class Player extends Component {
         if(isMuted){
             event.target.unMute()
         }
-        if(this.state.isMobile){
-            event.target.mute();
-        }
         event.target.playVideo();
-        if(this.state.isMobile){
-            setTimeout(()=>{
-                event.target.unMute()
-            },1000)
-        }
         if (!this.state.isPlaying) {
             this.toggleIsPlaying()
         }
+        if(this.state.isMobile){
+            if(this.state.isPlaying){
+            this.toggleIsPlaying()
+            }
+            event.target.pauseVideo();
+        }
         this.setState({ youtubePlayer: event.target }, this.getTimeLeft)
+     
 
     }
     componentWillUnmount() {
