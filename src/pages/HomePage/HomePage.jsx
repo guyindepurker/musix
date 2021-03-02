@@ -4,7 +4,8 @@ import React from 'react'
 import './HomePage.scss'
 import { connect } from 'react-redux';
 import { loginGuestMode } from '../../store/actions/UserAction';
-
+import guyImg from '../../assets/imgs/guy.jfif'
+import yuvalImg from '../../assets/imgs/yuval.jpg'
 function HomePage(props) {
    
     async function loginGuestMode() {
@@ -18,13 +19,13 @@ function HomePage(props) {
     const HeroHomePage = () => {
         return(
             <div className="hero-home-page">
-            <div className="hero-content  flex column align-center">
+            <div className="hero-content  flex wrap column center-center">
                 <h1 className="hero-content-title">
                     Listening is everything
                     
             </h1>
                 <h6 className="hero-content-description">Millions of songs and podcasts. No credit card needed.</h6>
-                <div className="hero-content-controls">
+                <div className="hero-content-controls flex center-center wrap">
                     <button onClick={()=>loginGuestMode()} className="btn-green">Try as guest!</button>
                     <button onClick={()=>props.history.push('/signup')} className="btn-green">Login</button>
                 </div>
@@ -39,15 +40,15 @@ function HomePage(props) {
             <h2 className="lasted-mix-title">Lasted mix</h2>
             <div className="lasted-mix-container container flex wrap center-center ">
                 <div className="lasted-mix-box flex column center-center">
-                    <img src="http://i3.ytimg.com/vi/qy185xXA93E/hqdefault.jpg" alt="img mix" />
-                    <h3 className="mix-title">The best mix ever!</h3>
+                    <img src="http://res.cloudinary.com/yuvalbeiton/image/upload/v1614525260/Scorpion_by_Drake_bhx2xx.jpg" alt="img mix" />
+                    <h3 className="mix-title">Drake - New Album</h3>
                     <h5 className="mix-genre">Pop</h5>
 
                 </div>
                 <div className="lasted-mix-box flex column center-center">
-                    <img src="http://i3.ytimg.com/vi/qy185xXA93E/hqdefault.jpg" alt="img mix" />
-                    <h3 className="mix-title">The best mix ever!</h3>
-                    <h5 className="mix-genre">Rock</h5>
+                    <img src="https://res.cloudinary.com/yuvalbeiton/image/upload/v1614524678/edb5f5ee508095cd84d5ca2a12629bbc.822x822x1_xazqbk.png" alt="img mix" />
+                    <h3 className="mix-title">Maluma - The Hits</h3>
+                    <h5 className="mix-genre">Latin</h5>
                 </div>
             </div>
         </div>
@@ -90,6 +91,23 @@ function HomePage(props) {
         <HeroHomePage />
         <LastedMix />
         <FeatureHomePage />
+        <div className="developer-box ">
+            <h2 className="developer-title">About the developers</h2>
+            <div className="flex center-center wrap">
+                 <div className="developer flex center-center">
+                    <img alt="Guy" src={guyImg} />
+                    <p>Guy Indepurker</p>
+                    <a href="https://www.linkedin.com/in/guy-indepurker-5778091a4/" > <i className="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/guyindepurker" > <i className="fab fa-github"></i></a>
+                </div>
+        <div className="developer flex center-center">
+                    <img alt="Yuval" src={yuvalImg} />
+                    <p>Yuval Beit On</p>
+                    <a href="https://www.linkedin.com/in/yuvalbeiton/" > <i className="fab fa-linkedin"></i></a>
+                    <a href="https://github.com/YuvalBeitOn" > <i className="fab fa-github"></i></a>
+                </div> 
+            </div>
+            </div>
         </section>
     )
 }

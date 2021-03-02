@@ -14,7 +14,7 @@
     margin-right: rem(23px);
     @include respond(max-mobile) {
       margin-right: 1rem;
-      width: 50%;
+      width: calc(50% - 1rem);
     }
   }
 
@@ -22,22 +22,23 @@
     color: $white;
     font-size: rem(16px);
     text-transform: capitalize;
-    gap: rem(5px);
-
+    width: calc(100% - 14.625rem);
+    >*:not(:last-child){
+      margin-bottom: rem(5px);
+    }
     > *:not(:first-child) {
       letter-spacing: 1px;
     }
     @include respond(max-mobile) {
-      width: 50%;
+      width: calc(100% - 50% - 1rem);
     }
     .mix {
       &-name {
         font-size: rem(85px);
         font-family: $font-secondary;
-        max-width: inherit;
+        max-width: 95%;
         overflow: hidden;
         white-space: nowrap;
-        text-overflow: clip;
         @include respond(max-normal) {
           font-size: rem(70px);
         }

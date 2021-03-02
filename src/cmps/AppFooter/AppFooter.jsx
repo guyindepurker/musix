@@ -28,20 +28,7 @@ import { useSelector, connect } from 'react-redux';
                 <NavLink exact to="/user/52">Profile</NavLink>
             </ul>
             <div className="footer-content flex column">
-            <div className="about flex column">
-                <div className="developer flex align-center justify-center">
-                    <img alt="Yuval" src={yuvalImg} />
-                    <p>Yuval Beit On</p>
-                    <a href="https://www.linkedin.com/in/yuvalbeiton/" > <i className="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/YuvalBeitOn" > <i className="fab fa-github"></i></a>
-                </div>
-                <div className="developer flex align-center justify-center">
-                    <img alt="Guy" src={guyImg} />
-                    <p>Guy Indepurker</p>
-                    <a href="https://www.linkedin.com/in/guy-indepurker-5778091a4/" > <i className="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/guyindepurker" > <i className="fab fa-github"></i></a>
-                </div>
-            </div>
+        
             
                 <span className="copyrights">© copyrights musix 2021 <span><i className="fal fa-globe-asia"></i> Israel</span></span>
             </div>

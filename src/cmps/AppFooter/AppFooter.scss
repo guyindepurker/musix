@@ -71,14 +71,15 @@
   .footer-content {
     font-size: rem(14px);
     font-family: $font-primary;
-    color: #919496;
+    color: $gray;
     padding: 0 rem(80px);
-    text-align: right;
+    text-align: center;
     .fa-globe-asia {
       font-size: rem(12px);
     }
     .copyrights {
-      margin-top: 10px;
+      text-align: center;
+      margin-top: auto;
     }
   }
 

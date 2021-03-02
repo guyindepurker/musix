@@ -34,10 +34,13 @@ import { logout } from '../../store/actions/UserAction';
 
     const ProfileNavOption = ()=>{
         return (
+            <Fragment>
             <div className="nav-profile-option absolute">
                 <div className="profile-btn flex wrap space-around align-center" onClick={() => handleNavOption('profile')}><i className="fal icon fa-user-alt"></i> Profile</div>
                 <div className="profile-btn btn-logout flex wrap space-around align-center" onClick={() => handleNavOption('logout')}><i className="fad fa-sign-out"></i> logout</div>
             </div>
+            
+            </Fragment>
         )
     }
     const HeaderGuest = () => {
@@ -85,7 +88,8 @@ import { logout } from '../../store/actions/UserAction';
                 </nav>
               
             </header>
-
+            {showNavMobile&&<div className="back-drop-layer" onClick={() => toggleNavMobile(false)}></div>}
+            {showNavOption&&<div className="back-drop-layer" onClick={() => toggleNavOpt(false)}></div>}
             <CreatMixModel />
         </Fragment>
     )

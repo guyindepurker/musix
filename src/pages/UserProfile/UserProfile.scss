@@ -26,6 +26,7 @@
             padding-top: rem(40px);
             background-color: $mix-bgc;
             @include respond(min-mobile){
+                padding-top: 0;
                 background-color: inherit;
         
             }
@@ -81,10 +82,14 @@
             font-size: rem(17px);
             letter-spacing: 1.5px;
             width: 40ch;
+            word-break: break-all;
+            
+            overflow: hidden;
             @include respond(max-narrow){
                 width: 35ch;
             }
             @include respond(min-mobile){
+                max-height: 80px;
                 width: 100%;
                 margin-bottom: 5px;
                 padding-bottom: 5px;

@@ -121,13 +121,16 @@
     justify-content: flex-end;
     .song-name {
       font-size: rem(14px);
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 100%;
+      overflow: hidden;
       @include respond(narrow) {
         max-width: rem(120px);
-        white-space: nowrap;
-        overflow: hidden;
+       
       }
       @include respond(max-mobile) {
-        width: 50%;
+       max-width: rem(80px);
       }
     }
     .song-img {
