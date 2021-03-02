@@ -12,8 +12,13 @@ class Player extends Component {
         isPlaying: false,
         youtubePlayer: null,
         timeLeft: 0,
+        isMobile:false
     }
-  
+    componentDidMount(){
+        if (window.outerWidth < 820) {
+            this.setState(prevState=>({isMobile:!prevState.isMobile}))
+        }
+    }
     componentDidUpdate({ song }, prevState) {
         if (!this.props.song || !song) return
         if (song.title !== this.props.song.title && !this.state.isPlaying) {
@@ -21,7 +26,19 @@ class Player extends Component {
         }
     }
     onReady = (event) => {
+        const isMuted = event.target.isMuted()
+        if(isMuted){
+            event.target.unMute()
+        }
+        if(this.state.isMobile){
+            event.target.mute();
+        }
         event.target.playVideo();
+        if(this.state.isMobile){
+            setTimeout(()=>{
+                event.target.unMute()
+            },1000)
+        }
         if (!this.state.isPlaying) {
             this.toggleIsPlaying()
         }
@@ -116,6 +133,7 @@ class Player extends Component {
             playerVars: {
                 // https://developers.google.com/youtube/player_parameters
                 autoplay: 1,
+                playsinline:1
             },
         };
         const { song } = this.props
@@ -169,7 +187,7 @@ class Player extends Component {
                         <img className="song-img" src={song.imgUrl} alt="song-img"></img>
                     </div>
                 </section>
-                <YouTube videoId={song.youtubeId} opts={opts} onReady={this.onReady} />
+                <YouTube  containerClassName={'hidden'} videoId={song.youtubeId} opts={opts} onReady={this.onReady} />
             </Fragment>
         )
 
