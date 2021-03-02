@@ -1,33 +1,30 @@
 @import "./src/styles/setup";
 
 .mix-actions {
-        border-top: 1px solid $dark-grey;
-        border-bottom: 1px solid $dark-grey;
-        padding: rem(7px) rem(20px);
-        width: 100%;
-        height: 100%;
+  border-top: 1px solid $dark-grey;
+  border-bottom: 1px solid $dark-grey;
+  padding: rem(7px) rem(20px);
+  width: 100%;
+  height: 100%;
 
-        .mix-control-icon {
-                color: $white;
-                font-size: rem(25px);
-                margin: 0 rem(6px);
-                transition: all .2s;
-                cursor: pointer;
+  .mix-control-icon {
+    color: $white;
+    font-size: rem(20px);
+    margin: 0 rem(6px);
+    transition: all 0.2s;
+    cursor: pointer;
 
-                &:hover {
-                        color: $light-green;
-                }
-
-        }
-        .mix-icon-like-active{
-                color: $light-green;
-             
-        }
-        .clean-a{
-                // &:link,&:active&:focus&:hover,&:visited{
-                //         text-decoration: none;
-                        
-                // }
-        }
-
+    &:hover {
+      color: $light-green;
+    }
+  }
+  .mix-icon-like-active {
+    color: $light-green;
+  }
+  .search-container-controls {
+    input {
+      width: rem(350px);
+      height: rem(35px);
+    }
+  }
 }

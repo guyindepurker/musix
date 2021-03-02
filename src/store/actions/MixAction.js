@@ -3,66 +3,65 @@ import { mixService } from '../../services/MixService';
 
 export function loadMixes(filterBy) {
     return async (dispatch) => {
-        try{
+        try {
             const mixes = await mixService.query(filterBy)
             dispatch({ type: 'SET_MIXES', mixes })
-
-        } catch(err){
+        } catch (err) {
             console.error('ERROR: CANNOT LOAD MIXES');
+            throw err;
         }
     }
 }
 
 export function loadMix(mixId) {
     return async (dispatch) => {
-        try{
+        try {
             if (!mixId) {
                 
                 return dispatch({ type: 'SET_MIX', mix: null })
             }
             const mix = await mixService.getById(mixId)
             dispatch({ type: 'SET_MIX', mix })
-
-        } catch(err){
+        } catch (err) {
             console.error('ERROR: CANNOT LOAD MIX');
+            throw err;
         }
     }
 }
 export function removeMix(mixId) {
     return async (dispatch) => {
-        try{
+        try {
             await mixService.remove(mixId)
             // socketService.emit('mixes-update')
             dispatch({ type: 'REMOVE_MIX', mixId })
-
-        } catch(err){
+        } catch (err) {
             console.error('ERROR: CANNOT REMOVE MIX');
+            throw err;
         }
     }
 }
 export function addMix(mix) {
     return async (dispatch) => {
-        try{
+        try {
             const addMix = await mixService.save(mix)
             // socketService.emit('mixes-update')
             dispatch({ type: 'ADD_MIX', mix: addMix })
-
-        } catch(err){
+        } catch (err) {
             console.error('ERROR: CANNOT ADD MIX');
+            throw err;
         }
     }
 }
 export function updateMix(mix) {
     return async (dispatch) => {
-        try{
+        try {
             const mixUpdated = await mixService.save(mix)
             // socketService.emit('mix-update')
             // socketService.emit('mixes-update')
             dispatch({ type: 'UPDATE_MIX', mix: mixUpdated })
-
-        } catch(err){
+        } catch (err) {
             console.error('ERROR: CANNOT UPDATE MIX');
-
+            throw err;
         }
     }
 }

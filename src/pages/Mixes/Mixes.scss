@@ -1,9 +1,13 @@
 @import "./src/styles/setup";
 .mixes {
   .search-container {
-    margin-bottom: rem(25px);
+    margin-bottom: rem(30px);
     display: flex;
     justify-content: center;
+    input {
+      width: rem(350px);
+      height: rem(35px);
+    }
   }
 }
 

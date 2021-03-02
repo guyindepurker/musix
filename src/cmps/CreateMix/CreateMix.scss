@@ -1,11 +1,11 @@
 @import "./src/styles/setup";
 .create-mix {
- font-family: $font-secondary;
+  font-family: $font-secondary;
   position: fixed;
   width: rem(530px);
   height: rem(570px);
   background-color: #121212;
-  z-index: 3;
+  z-index: 100;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -14,16 +14,15 @@
   border-radius: rem(5px);
   padding: rem(12px) rem(25px);
   color: $white;
-  @include respond(narrow){
+  @include respond(narrow) {
     height: rem(650.2px);
   }
-  @include respond(min-mobile){
+  @include respond(min-mobile) {
     width: rem(390.5px);
     height: rem(690.5px);
   }
-  @include respond(mobile){
+  @include respond(mobile) {
     width: 100%;
-   
   }
   .close-btn {
     background-color: transparent;
@@ -36,10 +35,9 @@
     top: 0;
     padding: rem(10px) rem(15px);
     color: #ffffffb5;
-    transition: all .3s;
-    &:hover{
+    transition: all 0.3s;
+    &:hover {
       color: #fffffffa;
-
     }
   }
   .create-mix-title {
@@ -58,12 +56,10 @@
       cursor: pointer;
       width: rem(200px);
       box-shadow: 0 0 10px 0px #494949;
-      transition: box-shadow .3s;
-      &:hover{
-
+      transition: box-shadow 0.3s;
+      &:hover {
         box-shadow: 0 0 rem(10px) 0px #989898;
       }
-    
     }
   }
 
@@ -75,25 +71,26 @@
     letter-spacing: 0.5px;
   }
 
-  input, select, textarea {
+  input,
+  select,
+  textarea {
     padding: rem(8px) rem(21px);
     border-radius: rem(20px);
     outline: none;
     border: none;
     margin-bottom: rem(10px);
     font-family: $font-secondary;
-    resize:none;
+    resize: none;
     border: 1px solid #545454d1;
-    transition: all .2s;
-    @include respond(mobile){
+    transition: all 0.2s;
+    @include respond(mobile) {
       width: 100%;
-      
     }
-    &:focus,&:active{
+    &:focus,
+    &:active {
       background-color: #141414;
       color: $white;
     }
-
   }
 
   .create-mix-btn {
@@ -107,8 +104,8 @@
     letter-spacing: 0.5px;
     align-self: center;
     margin-top: rem(15px);
-    transition: all .2s;
-    @include respond(mobile){
+    transition: all 0.2s;
+    @include respond(mobile) {
       width: 80%;
     }
     &:hover {
@@ -116,5 +113,3 @@
     }
   }
 }
-
-

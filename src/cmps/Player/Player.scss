@@ -9,18 +9,18 @@
   background-color: $player-bgc;
   border-top: 1px solid $player-top;
   width: 100%;
-  @include respond(mobile){
+  @include respond(mobile) {
     padding-left: rem(15px);
   }
   .volume-container {
     width: rem(300px);
-    @include respond(min-mobile){
+    @include respond(min-mobile) {
       // width: fit-content;
       position: absolute;
       right: -70px;
-      bottom:10px;
+      bottom: 10px;
     }
-    @include respond(max-mobile){
+    @include respond(max-mobile) {
       right: -75px;
     }
     .fa-volume {
@@ -28,30 +28,29 @@
       margin-right: rem(5px);
       font-size: rem(14px);
     }
-    .volume-slider{
+    .volume-slider {
       max-width: rem(129px);
       min-width: rem(60px);
-      @include respond(min-mobile){
+      @include respond(min-mobile) {
         width: rem(40px);
         // max-width: rem(40px);
       }
- 
     }
   }
 
   .song-control {
     max-width: rem(375px);
     min-width: rem(250px);
-    @include respond(mobile){
+    @include respond(mobile) {
       min-width: rem(160px);
     }
-    @include respond(max-mobile){
+    @include respond(max-mobile) {
       width: 50%;
     }
     .btns-player-control {
       width: rem(250px);
       margin-bottom: rem(15px);
-      @include respond(max-mobile){
+      @include respond(max-mobile) {
         justify-content: space-evenly;
         margin-right: -66px;
       }
@@ -99,6 +98,9 @@
         color: $light-grey;
         font-size: rem(14px);
         margin: 0 rem(10px);
+        &.count-time {
+          margin-right: 1rem;
+        }
       }
     }
   }
@@ -106,7 +108,7 @@
   .grey-icon {
     color: $light-grey;
     margin: 0 rem(5px);
-    transition: all .3s;
+    transition: all 0.3s;
 
     &:hover {
       color: $green;
@@ -119,12 +121,12 @@
     justify-content: flex-end;
     .song-name {
       font-size: rem(14px);
-      @include respond(narrow){
-        max-width:rem(120px) ;
+      @include respond(narrow) {
+        max-width: rem(120px);
         white-space: nowrap;
         overflow: hidden;
       }
-      @include respond(max-mobile){
+      @include respond(max-mobile) {
         width: 50%;
       }
     }
@@ -137,7 +139,7 @@
     .like-song {
       background-color: transparent;
       margin-right: rem(10px);
-      
+
       .fa-heart {
         font-size: rem(16px);
         color: $light-grey;
@@ -150,16 +152,16 @@
   }
 }
 
-input[type=range].slider-duration {
+input[type="range"].slider-duration {
   width: 100%;
   margin: 5.7px 0;
   background-color: transparent;
   -webkit-appearance: none;
 }
-input[type=range].slider-duration:focus {
+input[type="range"].slider-duration:focus {
   outline: none;
 }
-input[type=range].slider-duration::-webkit-slider-runnable-track {
+input[type="range"].slider-duration::-webkit-slider-runnable-track {
   background: rgba(10, 8, 35, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 4.8px;
@@ -167,7 +169,7 @@ input[type=range].slider-duration::-webkit-slider-runnable-track {
   height: 4.6px;
   cursor: pointer;
 }
-input[type=range].slider-duration::-webkit-slider-thumb {
+input[type="range"].slider-duration::-webkit-slider-thumb {
   margin-top: -6.7px;
   width: 16px;
   height: 16px;
@@ -177,10 +179,10 @@ input[type=range].slider-duration::-webkit-slider-thumb {
   cursor: pointer;
   -webkit-appearance: none;
 }
-input[type=range].slider-duration:focus::-webkit-slider-runnable-track {
+input[type="range"].slider-duration:focus::-webkit-slider-runnable-track {
   background: #0a0823;
 }
-input[type=range].slider-duration::-moz-range-track {
+input[type="range"].slider-duration::-moz-range-track {
   background: rgba(10, 8, 35, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 4.8px;
@@ -188,7 +190,7 @@ input[type=range].slider-duration::-moz-range-track {
   height: 4.6px;
   cursor: pointer;
 }
-input[type=range].slider-duration::-moz-range-thumb {
+input[type="range"].slider-duration::-moz-range-thumb {
   width: 16px;
   height: 16px;
   background: #282828;
@@ -196,7 +198,7 @@ input[type=range].slider-duration::-moz-range-thumb {
   border-radius: 29px;
   cursor: pointer;
 }
-input[type=range].slider-duration::-ms-track {
+input[type="range"].slider-duration::-ms-track {
   background: transparent;
   border-color: transparent;
   border-width: 6.7px 0;
@@ -205,17 +207,17 @@ input[type=range].slider-duration::-ms-track {
   height: 4.6px;
   cursor: pointer;
 }
-input[type=range].slider-duration::-ms-fill-lower {
+input[type="range"].slider-duration::-ms-fill-lower {
   background: #0a0823;
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 9.6px;
 }
-input[type=range].slider-duration::-ms-fill-upper {
+input[type="range"].slider-duration::-ms-fill-upper {
   background: rgba(10, 8, 35, 0.78);
   border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 9.6px;
 }
-input[type=range].slider-duration::-ms-thumb {
+input[type="range"].slider-duration::-ms-thumb {
   width: 16px;
   height: 16px;
   background: #282828;
@@ -225,17 +227,17 @@ input[type=range].slider-duration::-ms-thumb {
   margin-top: 0px;
   /*Needed to keep the Edge thumb centred*/
 }
-input[type=range].slider-duration:focus::-ms-fill-lower {
+input[type="range"].slider-duration:focus::-ms-fill-lower {
   background: rgba(10, 8, 35, 0.78);
 }
-input[type=range].slider-duration:focus::-ms-fill-upper {
+input[type="range"].slider-duration:focus::-ms-fill-upper {
   background: #0a0823;
 }
 /*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
 how to remove the virtical space around the range input in IE*/
-@supports (-ms-ime-align:auto) {
+@supports (-ms-ime-align: auto) {
   /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
-  input[type=range].slider-duration {
+  input[type="range"].slider-duration {
     margin: 0;
     /*Edge starts the margin from the thumb, not the track as other browsers do*/
   }

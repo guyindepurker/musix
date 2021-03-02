@@ -2,9 +2,15 @@ import { userService } from '../../services/UserService';
 
 export function loadUsers() {
     return async dispatch => {
-        const users = await userService.getUsers()
-        dispatch({ type: 'SET_USERS', users });
-        return users;
+        try {
+            const users = await userService.getUsers()
+            dispatch({ type: 'SET_USERS', users });
+            return users;
+        } catch (err) {
+            console.error('ERROR: CANNOT LOAD USERS');
+            throw err;
+
+        }
     };
 }
 export function login(userCred) {
@@ -14,7 +20,7 @@ export function login(userCred) {
             const user = await userService.login(userCred)
             dispatch({ type: 'SET_USER', user })
         } catch (err) {
-            console.log('err from action login:', err)
+            console.error('ERROR: CANNOT LOGIN USER');
             throw err
         }
     }
@@ -27,7 +33,7 @@ export function signup(userCred) {
             const user = await userService.signup(userCred)
             dispatch({ type: 'SET_USER', user })
         } catch (err) {
-            console.log('err from action signup:', err)
+            console.error('ERROR: CANNOT SIGNUP USER');
             throw err
         }
     }
@@ -39,7 +45,7 @@ export function logout() {
             userService.logout()
             dispatch({ type: 'SET_USER', user: null })
         } catch (err) {
-            console.log('err from action logout:', err)
+            console.error('ERROR: CANNOT LOGOUT USER');
             throw err
         }
     }
@@ -51,7 +57,7 @@ export function saveUser(user) {
             const savedUser = await userService.save(user)
             dispatch({ type: 'SET_USER', user: savedUser })
         } catch (err) {
-            console.log('err from action update,save user:', err)
+            console.error('ERROR: CANNOT SAVE USER');
             throw err
         }
     }
@@ -65,11 +71,11 @@ export function getMiniUser() {
 export function loginGuestMode() {
     return async (dispatch) => {
         try {
-            const userCred =  userService.guestMode()
+            const userCred = userService.guestMode()
             const user = await userService.login(userCred)
             dispatch({ type: 'SET_USER', user })
         } catch (err) {
-            console.log('err from action login:', err)
+            console.error('ERROR: CANNOT LOGIN GUEST MODE');
             throw err
         }
     }

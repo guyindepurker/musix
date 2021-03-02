@@ -19,7 +19,7 @@ export default function MixActions({ isLike, setSearch, pathName, like, unLike, 
         <Fragment>
             <div className="mix-actions  flex space-between align-center">
                 <div className="mix-controls flex align-center">
-                    <i onClick={() => toggleAddSong(true)} className="mix-control-icon fas fa-plus-circle"></i>
+                    <i onClick={() => toggleAddSong(true)} className="mix-control-icon fas fa-plus"></i>
                     <div className="search-container-controls">
                         <Search placeholderTxt="Search songs..." setSearch={setSearch} />
                     </div>

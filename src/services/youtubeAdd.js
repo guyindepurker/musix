@@ -5,6 +5,8 @@ jq.src = "https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js";
 document.getElementsByTagName('head')[0].appendChild(jq);
 // ... give time for script to load, then type.
 
+var gSongs = loadStorage('songs_db') || []
+
 jQuery.noConflict();
 $(document).ready(function () {
     console.log("ready!");
@@ -18,9 +20,10 @@ $(document).ready(function () {
         youtubeId,
         imgUrl: getImgUrl(youtubeId)
     }
-
-    console.log('jquery song', song)
-
+    gSongs.push(song)
+    console.log('song', song)
+    console.log('songs:', gSongs)
+    saveStorage('songs_db', gSongs)
 });
 
 function getYoutubeId() {
@@ -49,7 +52,6 @@ function makeId(length = 11) {
     }
     return txt;
 }
-
 
 function saveStorage(key, val) {
     localStorage.setItem(key, JSON.stringify(val))
