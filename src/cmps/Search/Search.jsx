@@ -1,10 +1,8 @@
 
 import React from 'react'
-
 import './Search.scss'
 
 export default function Search({ setSearch, placeholderTxt }) {
-
     return (
         <section className="search-cmp">
             <i className="fal fa-search"></i>

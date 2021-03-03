@@ -1,6 +1,4 @@
 import Axios from 'axios';
-// const BASE_URL = '//localhost:3000/';
-
 const BASE_URL = process.env.NODE_ENV === "production" ? "/api/" : "//localhost:3030/api/";
 
 var axios = Axios.create({
@@ -31,7 +29,7 @@ async function ajax(endpoint, method = 'get', data = null) {
     });
     return res.data;
   } catch (err) {
-    console.log('Error from HTTPSERVICE');
+    console.log('ERROR FROM HTTPSERVICE');
     throw err;
   }
 }

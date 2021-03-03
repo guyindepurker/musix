@@ -3,7 +3,7 @@
 .mix-actions {
   border-top: 1px solid $dark-grey;
   border-bottom: 1px solid $dark-grey;
-  padding: rem(7px) rem(20px);
+  padding: rem(10px) rem(7.5px);
   width: 100%;
   height: 100%;
 
@@ -23,7 +23,6 @@
   }
   .search-container-controls {
     input {
-      width: rem(350px);
       height: rem(35px);
     }
   }

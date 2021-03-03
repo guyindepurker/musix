@@ -1,11 +1,8 @@
 
+import './Login.scss'
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { login, loginGuestMode } from '../../store/actions/UserAction';
-
-
-import './Login.scss'
-
 class Login extends Component {
     state = {
         user: {
@@ -16,7 +13,6 @@ class Login extends Component {
     }
 
     onChange = (ev) => {
-        console.log(ev.target.name, ev.target.value);
         this.setState({ user: { ...this.state.user, [ev.target.name]: ev.target.value } })
     }
     loginGuestMode = async (ev) => {
@@ -25,7 +21,7 @@ class Login extends Component {
             await this.props.loginGuestMode()
             this.props.history.push('/app/mix')
         } catch (err) {
-            console.log('unbale to login as a guest');
+            console.log('ERROR: UNABLE TO LOGIN GUEST MODE');
         }
     }
 

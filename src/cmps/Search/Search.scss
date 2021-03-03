@@ -3,8 +3,6 @@
 .search-cmp {
   margin: rem(5px);
   position: relative;
-  height: fit-content;
-  width: fit-content;
 
   .search-input {
     color: $black;
@@ -27,9 +25,10 @@
 
   .fa-search {
     position: absolute;
-    bottom: 14px;
+    top: 50%;
     font-size: rem(14px);
-    right: 11px;
+    right: 4px;
     padding-left: 8px;
+    transform: translate(-50%, -50%);
   }
 }

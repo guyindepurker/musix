@@ -2,12 +2,17 @@
 .mix-preview {
   background-color: $mix-bgc;
   width: rem(280px);
-  height: rem(270px);
+  height: rem(280px);
   margin: rem(10px);
-  padding: rem(16px);
+  padding: rem(20px) rem(16px);
   border-radius: 4px;
   isolation: isolate;
   transition: background-color 0.3s ease;
+  @include respond(max-narrow) {
+    width: rem(320px);
+    justify-content: center;
+    align-items: center;
+  }
   &:hover {
     background-color: $mix-bgc-hover;
   }
@@ -24,7 +29,7 @@
   .mix-desc {
     font-family: $font-secondary;
     font-size: rem(12px);
-    @include respond(mobile){
+    @include respond(mobile) {
       font-size: rem(13px);
     }
     margin-bottom: rem(10px);
@@ -35,6 +40,7 @@
     height: rem(140px);
     object-fit: cover;
     margin-bottom: rem(8px);
+    border-radius: rem(13px);
   }
 
   .details-container {

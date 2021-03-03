@@ -1,18 +1,14 @@
-
+import './AppHeader.scss'
 import React, { Fragment, useState } from 'react'
 import { withRouter, NavLink } from 'react-router-dom'
-import './AppHeader.scss'
-
 import { useSelector, useDispatch } from 'react-redux';
 import { CreateMix } from '../CreateMix/CreateMix';
-
 import { logout } from '../../store/actions/UserAction';
 
- function AppHeader(props) {
+function AppHeader(props) {
     let [showCreateMixModal, toggleCreateMix] = useState(false)
-    let [showNavOption,toggleNavOpt] = useState(false)
-    let [showNavMobile,toggleNavMobile] = useState(false)
-    // let [isMobile,toggleIsMobile] = useState((window.innerWidth <=750) ? true : false)
+    let [showNavOption, toggleNavOpt] = useState(false)
+    let [showNavMobile, toggleNavMobile] = useState(false)
     const user = useSelector(state => state.userReducer.loggedInUser)
     const dispatch = useDispatch()
     const handleNavOption = (action) => {
@@ -23,21 +19,19 @@ import { logout } from '../../store/actions/UserAction';
             return dispatch(logout())
         }
     }
-    const onToggleNavMobile = ()=>{
+    const onToggleNavMobile = () => {
         toggleNavMobile(!showNavMobile)
-        // if(!isMobile){
-        //     toggleIsMobile(true)
-        // } else {
-        //     toggleIsMobile(!isMobile)
-        // }
     }
 
-    const ProfileNavOption = ()=>{
+    const ProfileNavOption = () => {
         return (
-            <div className="nav-profile-option absolute">
-                <div className="profile-btn flex wrap space-around align-center" onClick={() => handleNavOption('profile')}><i className="fal icon fa-user-alt"></i> Profile</div>
-                <div className="profile-btn btn-logout flex wrap space-around align-center" onClick={() => handleNavOption('logout')}><i className="fad fa-sign-out"></i> logout</div>
-            </div>
+            <Fragment>
+                <div className="nav-profile-option absolute">
+                    <div className="profile-btn flex wrap space-around align-center" onClick={() => handleNavOption('profile')}><i className="fal icon fa-user-alt"></i> Profile</div>
+                    <div className="profile-btn btn-logout flex wrap space-around align-center" onClick={() => handleNavOption('logout')}><i className="fad fa-sign-out"></i> logout</div>
+                </div>
+
+            </Fragment>
         )
     }
     const HeaderGuest = () => {
@@ -53,10 +47,10 @@ import { logout } from '../../store/actions/UserAction';
             <Fragment>
                 <NavLink className="mixes-link" exact to="/app/mixes">Mixes</NavLink>
                 <span user="true" className="create-mix-cmp" onClick={() => toggleCreateMix(!showCreateMixModal)}>Create Mix</span>
-                {!showNavMobile&&<span>|</span>}
-                <div className={`profile-link relative flex ${showNavMobile ? 'center-center' :'align-center'}`}>
-                    <i onClick={()=>toggleNavOpt(!showNavOption)} className="far fa-user-circle"></i>
-                   {showNavOption&& <ProfileNavOption />}
+                {!showNavMobile && <span>|</span>}
+                <div className={`profile-link relative flex ${showNavMobile ? 'center-center' : 'align-center'}`}>
+                    <i onClick={() => toggleNavOpt(!showNavOption)} className="far fa-user-circle"></i>
+                    {showNavOption && <ProfileNavOption />}
                 </div>
             </Fragment>
         )
@@ -70,7 +64,7 @@ import { logout } from '../../store/actions/UserAction';
 
         )
     }
-   
+
     return (
         <Fragment>
             <header className="app-header flex space-between align-center">
@@ -78,14 +72,15 @@ import { logout } from '../../store/actions/UserAction';
                     <i className="fab fa-spotify"></i>
                     <h1>Musix<span className="copyrights">©</span></h1>
                 </NavLink>
-                
-             <i onClick={ onToggleNavMobile}  className={`far icon-hamburger fa-${showNavMobile ? 'times' : 'bars'}`}></i>
-                <nav className="nav-links flex align-center" style={{display: showNavMobile && 'flex'}}>
-                {user&& <HeaderUser /> || <HeaderGuest />}
-                </nav>
-              
-            </header>
 
+                <i onClick={onToggleNavMobile} className={`far icon-hamburger fa-${showNavMobile ? 'times' : 'bars'}`}></i>
+                <nav className="nav-links flex align-center" style={{ display: showNavMobile && 'flex' }}>
+                    {user && <HeaderUser /> || <HeaderGuest />}
+                </nav>
+
+            </header>
+            {showNavMobile && <div className="back-drop-layer" onClick={() => toggleNavMobile(false)}></div>}
+            {showNavOption && <div className="back-drop-layer" onClick={() => toggleNavOpt(false)}></div>}
             <CreatMixModel />
         </Fragment>
     )

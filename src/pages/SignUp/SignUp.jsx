@@ -1,16 +1,12 @@
-
+import './SignUp.scss'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Login from '../../cmps/Login/Login';
 import SignupForm from '../../cmps/SignupForm/SignupForm';
 import { login, signup } from '../../store/actions/UserAction';
-
-
-import './SignUp.scss'
-
 class SignUp extends Component {
     state = {
-        isSignup: false,
+        isSignup: false
     }
 
     toggleIsSignup = () => {
@@ -31,13 +27,12 @@ class SignUp extends Component {
                     || isSignup && <SignupForm toggleIsSignup={this.toggleIsSignup} history={this.props.history}></SignupForm>
                 }
             </section>
-
         )
     }
 }
 const mapStateToProps = state => {
     return {
-        user: state.userReducer.loggedInUser,
+        user: state.userReducer.loggedInUser
     }
 }
 

@@ -7,9 +7,8 @@ export const mixService = {
     save,
     getEmptyMix
 }
-function query(filterBy=null) {
-    if(filterBy){
-        console.log('filterBy:', filterBy)
+function query(filterBy = null) {
+    if (filterBy) {
         return httpService.get(`mix${filterBy}`);
     }
     return httpService.get('mix');
@@ -35,18 +34,18 @@ async function _add(mix) {
 async function _update(mix) {
     return httpService.put(`mix/${mix._id}`, mix);
 }
-function getEmptyMix(miniUser,name='New Mix',description='Mix description') {
-    const mix ={
+function getEmptyMix(miniUser, name = 'New Mix', description = 'Mix description') {
+    const mix = {
         name,
         description,
         genre: 'latin',
         views: 0,
         imgUrl: 'defualtImg.jpg',
         likes: 0,
-        createdBy:miniUser,
+        createdBy: miniUser,
         tags: [],
         likedByUsers: [],
-        songs:[]
+        songs: []
     }
     return mix
 }

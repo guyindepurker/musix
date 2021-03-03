@@ -1,4 +1,3 @@
-
 function makeId(length = 11) {
     var txt = '';
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -8,19 +7,17 @@ function makeId(length = 11) {
     return txt;
 }
 function sortNames(array) {
-   return array.sort(function(a, b) {
+    return array.sort(function (a, b) {
         var nameA = a.toUpperCase(); // ignore upper and lowercase
         var nameB = b.toUpperCase(); // ignore upper and lowercase
         if (nameA < nameB) {
-          return -1;
+            return -1;
         }
         if (nameA > nameB) {
-          return 1;
+            return 1;
         }
-      
-        // names must be equal
         return 0;
-      }); 
+    });
 }
 
 function getRandomInt(min, max) {
@@ -28,7 +25,7 @@ function getRandomInt(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
 }
-function findMatchLowerCase(key,value){
+function findMatchLowerCase(key, value) {
     key = key.toLowerCase()
     value = value.toLowerCase()
     return key.includes(value)
@@ -46,15 +43,15 @@ function showTime(seconds) {
     return `${mins}:${secs}`
 }
 
-function greetByTime(value='Good') {
+function greetByTime(value = 'Good') {
     const hour = new Date().getHours()
-    let massage= ''
-    if(hour<12){
-        massage=`${value} morning`
-    }else if(hour<17){
-        massage=`${value} afternoon`
-    }else {
-        massage=`${value} evening`
+    let massage = ''
+    if (hour < 12) {
+        massage = `${value} morning`
+    } else if (hour < 17) {
+        massage = `${value} afternoon`
+    } else {
+        massage = `${value} evening`
     }
     return massage
 }

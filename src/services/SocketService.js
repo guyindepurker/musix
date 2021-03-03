@@ -1,24 +1,10 @@
-import io from 'socket.io-client';
-const BASE_URL = process.env.NODE_ENV === 'production'
-    ? '/'
-    : '//localhost:3030'
-
-var socket;
-console.log('socket setup!');
-socket = io(BASE_URL,{reconnection:false})
 export const socketService = {
     terminate,
     on,
     off,
     emit,
-    setup
 }
 
-
-function setup() {
-
-    
-}
 function terminate() {
     socket = null;
 }

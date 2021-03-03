@@ -21,7 +21,7 @@ class AddSong extends Component {
 
     state = {
         searchTerm: '',
-        songs:null
+        songs: null
     }
 
     handleInputChange = (ev) => {
@@ -30,16 +30,15 @@ class AddSong extends Component {
 
     getSongs = async () => {
         const { searchTerm } = this.state;
-        if(!searchTerm) return;
+        if (!searchTerm) return;
         const songs = await youtubeService.getSongs(searchTerm);
-        console.log('songs youtube:', songs)
         if (!songs) return;
         this.setState({ songs });
     }
 
     render() {
         const { songs } = this.state
-        const { addSongToMix,closeModal } = this.props
+        const { addSongToMix, closeModal } = this.props
         return (
             <section className="add-song flex column align-center">
                 <i onClick={closeModal} className="fas close-btn fa-times"></i>

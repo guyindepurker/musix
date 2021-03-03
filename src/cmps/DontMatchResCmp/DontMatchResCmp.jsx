@@ -1,21 +1,18 @@
 
 import React from 'react'
-
 import './DontMatchResCmp.scss'
 
 const DontMatchResCmp = () => {
-
     return (
         <div className="dont-match-res-cmp">
             <i className="fas fa-exclamation-circle"></i>
             <p className="err-msg">
-                Sorry we cant find results...
+                Sorry we can't find any results...
             </p>
             <h6 className="flex center-center">Look for something else</h6>
         </div>
 
     )
-
 }
 
 export default DontMatchResCmp

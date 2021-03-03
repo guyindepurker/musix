@@ -1,9 +1,6 @@
-
+import './MixHeader.scss'
 import React, { Component } from 'react'
 import SelectGenre from '../SelectGenre/SelectGenre'
-
-
-import './MixHeader.scss'
 class MixHeader extends Component {
     state = {
         isEdit: false
@@ -25,7 +22,7 @@ class MixHeader extends Component {
         return (
             <div className="mix-header flex relative">
                 <img className="img-mix" src={mix.imgUrl} alt="mix img" />
-                <div className="mix-header-content flex column ">
+                <div className="mix-header-content flex column">
                     <h2 contentEditable={isEdit} onBlur={(ev) => this.save('name', ev.target.innerText)} suppressContentEditableWarning={true} className={`mix-name ${isEdit && 'editable'}`}>{mix.name}</h2>
                     <h3 contentEditable={isEdit} onBlur={(ev) => this.save('description', ev.target.innerText)} suppressContentEditableWarning={true} className={`mix-description ${isEdit && 'editable'}`}>{mix.description}</h3>
                     <h4 className="mix-created-by"><span>created by:</span>{createdBy.fullName}</h4>

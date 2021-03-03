@@ -9,12 +9,10 @@ export function loadUsers() {
         } catch (err) {
             console.error('ERROR: CANNOT LOAD USERS');
             throw err;
-
         }
     };
 }
 export function login(userCred) {
-    console.log('userCred in login user action:', userCred);
     return async (dispatch) => {
         try {
             const user = await userService.login(userCred)
@@ -27,7 +25,7 @@ export function login(userCred) {
 }
 
 export function signup(userCred) {
-    console.log('userCred in user action:', userCred);
+
     return async (dispatch) => {
         try {
             const user = await userService.signup(userCred)
@@ -39,7 +37,7 @@ export function signup(userCred) {
     }
 }
 export function logout() {
-    console.log('do logout~!!');
+
     return (dispatch) => {
         try {
             userService.logout()

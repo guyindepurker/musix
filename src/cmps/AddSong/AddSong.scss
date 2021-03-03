@@ -1,5 +1,5 @@
 @import "./src/styles/setup";
-.add-song{
+.add-song {
   font-family: $font-secondary;
   position: fixed;
   width: rem(515px);
@@ -13,20 +13,19 @@
   border-radius: 5px;
   padding: rem(12px) rem(25px);
   color: $dark-grey;
-  @include respond(narrow){
+  @include respond(narrow) {
     height: rem(500px);
   }
-  @include respond(max-mobile){
+  @include respond(max-mobile) {
     width: 100%;
   }
-  .close-btn{
+  .close-btn {
     color: #6a6868;
-    transition: color .2s;
+    transition: color 0.2s;
     cursor: pointer;
     align-self: flex-end;
-    &:hover{
+    &:hover {
       color: $player-top;
-     
     }
   }
   .search-container {
@@ -61,7 +60,7 @@
 
   .song-list-container {
     .song-list {
-      max-height: rem(330px)!important;
+      max-height: rem(330px) !important;
       overflow-y: unset;
       width: rem(500px);
       .song-preview {
@@ -81,11 +80,11 @@
     }
   }
 }
-.add-song-btn{
+.add-song-btn {
   background-color: transparent;
   outline: none;
-  i{
-    &:hover{
+  i {
+    &:hover {
       color: $green;
     }
   }

@@ -1,11 +1,7 @@
-
+import './MixActions.scss'
 import React, { useState, Fragment } from 'react'
 import Search from '../../cmps/Search/Search';
-
-import './MixActions.scss'
 import AddSong from '../AddSong/AddSong';
-
-
 
 export default function MixActions({ isLike, setSearch, pathName, like, unLike, addSongToMix }) {
     const { origin: publicDomain } = window.location

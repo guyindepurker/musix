@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
 import './Player.scss'
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { loadSong, loadSongs } from '../../store/actions/PlayerAction';
 import YouTube from 'react-youtube';
@@ -12,9 +12,12 @@ class Player extends Component {
         isPlaying: false,
         youtubePlayer: null,
         timeLeft: 0,
+        isMobile: false
     }
     componentDidMount() {
-        console.log('songs:', this.props.songs);
+        if (window.outerWidth < 820) {
+            this.setState(prevState => ({ isMobile: !prevState.isMobile }))
+        }
     }
     componentDidUpdate({ song }, prevState) {
         if (!this.props.song || !song) return
@@ -23,13 +26,22 @@ class Player extends Component {
         }
     }
     onReady = (event) => {
-        console.log('ready')
+        const isMuted = event.target.isMuted()
+        if (isMuted) {
+            event.target.unMute()
+        }
         event.target.playVideo();
-        console.log('event.target:', event.target)
         if (!this.state.isPlaying) {
             this.toggleIsPlaying()
         }
+        if (this.state.isMobile) {
+            if (this.state.isPlaying) {
+                this.toggleIsPlaying()
+            }
+            event.target.pauseVideo();
+        }
         this.setState({ youtubePlayer: event.target }, this.getTimeLeft)
+
 
     }
     componentWillUnmount() {
@@ -55,9 +67,7 @@ class Player extends Component {
     changeSong = (action) => {
         const { song, songs, loadSong } = this.props
         let idx = songs.findIndex(currSong => currSong.id === song.id)
-        console.log('idx:', idx)
         let songsLength = songs.length - 1;
-        // if (idx === songsLength || idx === -1) idx = 0;
 
         if (action === 'next') {
             if (idx === songsLength) idx = -1;
@@ -119,8 +129,8 @@ class Player extends Component {
             height: '0',
             width: '0',
             playerVars: {
-                // https://developers.google.com/youtube/player_parameters
                 autoplay: 1,
+                playsinline: 1
             },
         };
         const { song } = this.props
@@ -172,7 +182,7 @@ class Player extends Component {
                         <img className="song-img" src={song.imgUrl} alt="song-img"></img>
                     </div>
                 </section>
-                <YouTube videoId={song.youtubeId} opts={opts} onReady={this.onReady} />
+                <YouTube containerClassName={'hidden'} videoId={song.youtubeId} opts={opts} onReady={this.onReady} />
             </Fragment>
         )
 

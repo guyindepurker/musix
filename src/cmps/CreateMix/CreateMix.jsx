@@ -1,7 +1,6 @@
 
-import React, { Component } from 'react'
-
 import './CreateMix.scss'
+import React, { Component } from 'react'
 import { userService } from '../../services/UserService';
 import { mixService } from '../../services/MixService';
 import LoaderCmp from '../LoaderCmp/LoaderCmp';
@@ -11,7 +10,6 @@ import { uploadImg } from '../../services/CloudService';
 import imgPlaceholder from '../../assets/imgs/uploadImg.png';
 import SelectGenre from '../SelectGenre/SelectGenre';
 import { withRouter } from 'react-router-dom';
-
 class _CreateMix extends Component {
 
     state = {
@@ -21,15 +19,12 @@ class _CreateMix extends Component {
     componentDidMount() {
         const miniUser = userService.getMiniUser()
         const mix = mixService.getEmptyMix(miniUser)
-        this.setState({ mix }, () => console.log('this is your new mix', this.state.mix))
+        this.setState({ mix })
     }
     handleChange = ({ target }) => {
         const field = target.name
-        let value = target.value
-        if(field==='songs'){
-           value = JSON.parse(value) 
-        }
-        this.setState(prevState => ({ mix: { ...prevState.mix, [field]: value } }),()=>console.log('mix:',this.state.mix))
+        const value = target.value
+        this.setState(prevState => ({ mix: { ...prevState.mix, [field]: value } }))
     }
     saveMix = async (ev) => {
         ev.preventDefault()
@@ -45,10 +40,9 @@ class _CreateMix extends Component {
         this.setState({ isLoading: true })
         try {
             const res = await uploadImg(ev);
-            this.setState(prevState => ({ mix: { ...prevState.mix, imgUrl: res.url }, isLoading: false }),()=>console.log('state:',this.state))
-
+            this.setState(prevState => ({ mix: { ...prevState.mix, imgUrl: res.url }, isLoading: false }))
         } catch (err) {
-            console.log('Cant upload your image!!', err);
+            console.log('ERROR ON IMAGE UPLOAD', err);
         }
     }
 
@@ -74,7 +68,6 @@ class _CreateMix extends Component {
                         <div>
                             {mix.imgUrl ? '' : 'Upload Image'}
                         </div>
-                   
                     </div>
                     <label htmlFor="mixName">Name:</label>
                     <input id="mixName" type="text" onChange={this.handleChange} name="name" value={mix.name} placeholder="Enter mix name" />
@@ -82,10 +75,6 @@ class _CreateMix extends Component {
                     <SelectGenre selectedVal={mix.genre} save={this.handleChange} ></SelectGenre>
                     <label htmlFor="mixDescription">Description:</label>
                     <textarea rows="3" cols="30" id="mixDescription" onChange={this.handleChange} type="text" name="description" value={mix.description} placeholder="Your description..." />
-                    <label htmlFor="songsList">Songs json:</label>
-                        <textarea onChange={this.handleChange} name="songs" id="songsList" cols="30" rows="4">
-
-                        </textarea>
                     <button className="create-mix-btn flex justify-center">Create mix ♫</button>
                 </form>
             </section>
@@ -100,7 +89,7 @@ function mapStateToProps(state) {
 }
 
 const mapDispatchToProps = {
-    addMix,
+    addMix
 }
 
 export const CreateMix = withRouter(connect(mapStateToProps, mapDispatchToProps)(_CreateMix))

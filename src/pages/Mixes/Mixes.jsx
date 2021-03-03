@@ -1,29 +1,21 @@
-
+import './Mixes.scss'
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
-
 import MixList from '../../cmps/MixList/MixList'
 import { loadMixes } from '../../store/actions/MixAction'
-
-import './Mixes.scss'
 import Search from '../../cmps/Search';
 import LoaderCmp from '../../cmps/LoaderCmp/LoaderCmp';
 import { utilService } from '../../services/UtilsService';
-import PopUpMenu from '../../cmps/PopUpMenu/PopUpMenu'
-import { socketService } from '../../services/SocketService'
-
 class _Mixes extends Component {
-
     state = {
         filterBy: null,
         filterBySong: null
-
     }
+
     componentDidMount() {
-        if(!this.props.mixes){
+        if (!this.props.mixes) {
             this.loadMixes()
         }
-        socketService.on('load-mixes',()=>this.loadMixes())
     }
     componentDidUpdate(prevProps) {
         if (this.props.location.search !== prevProps.location.search) {
@@ -39,8 +31,8 @@ class _Mixes extends Component {
     }
 
     get genresNames() {
-       return ['all mixes','latin', 'pop', 'rock', 'dance', 'israeli']
-       
+        return ['all mixes', 'latin', 'pop', 'rock', 'dance', 'israeli']
+
     }
 
     get mixesToShow() {
@@ -55,19 +47,19 @@ class _Mixes extends Component {
 
     render() {
         const { mixes } = this.props
-        if ( !mixes) return <LoaderCmp></LoaderCmp>
+        if (!mixes) return <LoaderCmp></LoaderCmp>
 
         const GenresNames = () => {
             return (
-                    <ul className="genres-names-list clean-list flex wrap container space-around">
-                        {this.genresNames.map((name, idx) => {
-                            return (
-                                <li onClick={() => this.props.history.push((idx === 0) ? `mixes` : `mixes?genre=${name}`)} className="genre-name" key={name}>
-                                    {name}
-                                </li>
-                            )
-                        })}
-                    </ul>
+                <ul className="genres-names-list clean-list flex wrap container space-around">
+                    {this.genresNames.map((name, idx) => {
+                        return (
+                            <li onClick={() => this.props.history.push((idx === 0) ? `mixes` : `mixes?genre=${name}`)} className="genre-name" key={name}>
+                                {name}
+                            </li>
+                        )
+                    })}
+                </ul>
 
             )
         }

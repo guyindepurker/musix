@@ -26,12 +26,12 @@
   }
   .song-details {
     font-size: rem(16px);
-    gap: rem(10px);
+    > * {
+      margin-right: 16px;
+    }
     transition: color 0.3s;
     cursor: pointer;
-    .song-number {
-      margin-right: 8px;
-    }
+
     img {
       width: rem(50px);
 
@@ -39,12 +39,20 @@
       border-radius: rem(5px);
     }
     .song-name {
+      position: relative;
+      display: block;
       text-transform: capitalize;
+      white-space: nowrap;
+      overflow: hidden;
+
+      max-width: rem(500px);
+      @include respond(narrow) {
+        max-width: rem(350px);
+      }
       @include respond(min-mobile) {
         text-transform: capitalize;
-        width: rem(104px);
-        white-space: nowrap;
-        overflow: hidden;
+        min-width: rem(200px);
+        max-width: rem(104px);
         text-overflow: ellipsis;
       }
     }
@@ -66,7 +74,11 @@
     font-size: rem(15px);
     color: $white;
     transition: all 0.2s;
-    margin-left: rem(9px);
+
+    &-remove {
+      margin-left: rem(9px);
+      margin-right: rem(3px);
+    }
     cursor: pointer;
 
     &:hover {

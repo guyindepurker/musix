@@ -1,193 +1,183 @@
 @import "./src/styles/setup";
 
 .user-profile {
-    margin-top: -50px;
-    @include respond(min-mobile){
-        margin-top: 0;
-
+  margin-top: -50px;
+  @include respond(min-mobile) {
+    margin-top: 0;
+  }
+  .user-profile-grid-container {
+    display: grid;
+    grid-template-columns: rem(300px) 1fr;
+    grid-template-rows: rem(440px) 1fr;
+    @include respond(normal) {
+      grid-template-columns: 1fr;
+      grid-template-rows: rem(440px) 1fr;
     }
-    .user-profile-grid-container {
-        display: grid;
-        grid-template-columns: rem(300px) 1fr;
-        grid-template-rows: rem(440px) 1fr;
-        @include respond(normal){
-        grid-template-columns: 1fr;
-        grid-template-rows: rem(440px) 1fr;
-
-
-        }
-        @include respond(min-mobile){
-            grid-template-rows: rem(210px) 1fr;
-
-        }
-        header {
-            grid-column: 1/-1;
-            grid-row: 1/2;
-            padding-top: rem(40px);
-            background-color: $mix-bgc;
-            @include respond(min-mobile){
-                background-color: inherit;
-        
-            }
-           
-        }
-
-        nav {
-            grid-column: 1/2;
-            grid-row: 2/3;
-            background-color: $navbar-bgc;
-            @include respond(normal){
-               display: none;
-            
-                }
-        }
-
-        main {
-            grid-row: 2/3;
-            grid-column: 2/-1;
-            background-color: $white;
-            padding: rem(20px) rem(43px);
-            @include respond(normal){
-                grid-column: 1/-1;
-        
-                }
-        }
+    @include respond(min-mobile) {
+      grid-template-rows: rem(210px) 1fr;
     }
+    header {
+      grid-column: 1/-1;
+      grid-row: 1/2;
+      padding-top: rem(40px);
+      background-color: $mix-bgc;
+      @include respond(min-mobile) {
+        padding-top: 0;
+        background-color: inherit;
+      }
+    }
+
+    nav {
+      grid-column: 1/2;
+      grid-row: 2/3;
+      background-color: $navbar-bgc;
+      @include respond(normal) {
+        display: none;
+      }
+    }
+
+    main {
+      grid-row: 2/3;
+      grid-column: 2/-1;
+      background-color: $white;
+      padding: rem(20px) rem(43px);
+      @include respond(normal) {
+        grid-column: 1/-1;
+      }
+    }
+  }
 }
 // Private cmp
 // HERO
 .hero-profile {
-    padding-top: 5.25rem;
-    padding-left: 4.125rem;
-    text-align: left;
-    color: $white;
-    @include respond(min-mobile){
-        padding: 5px 10px;
+  padding-top: 5.25rem;
+  padding-left: 4.125rem;
+  text-align: left;
+  color: $white;
+  @include respond(min-mobile) {
+    padding: 5px 10px;
     text-align: center;
-
+  }
+  .hero {
+    &-title {
+      font-size: rem(40px);
+      margin-bottom: rem(10px);
+      @include respond(max-narrow) {
+        font-size: rem(30px);
+      }
     }
-    .hero {
-        &-title {
-            font-size: rem(40px);
-            margin-bottom: rem(10px);
-            @include respond(max-narrow){
-                font-size: rem(30px);
-            }
-        }
 
-        &-paragraph {
-            
-            font-size: rem(17px);
-            letter-spacing: 1.5px;
-            width: 40ch;
-            @include respond(max-narrow){
-                width: 35ch;
-            }
-            @include respond(min-mobile){
-                width: 100%;
-                margin-bottom: 5px;
-                padding-bottom: 5px;
-            }
-        }
+    &-paragraph {
+      font-size: rem(17px);
+      letter-spacing: 1.5px;
+      width: 40ch;
+      word-break: break-all;
+
+      overflow: hidden;
+      @include respond(max-narrow) {
+        width: 35ch;
+      }
+      @include respond(min-mobile) {
+        max-height: 80px;
+        width: 100%;
+        margin-bottom: 5px;
+        padding-bottom: 5px;
+      }
     }
+  }
 }
 //NAVBAR
-.nav-bar-profile{
-    padding-top: rem(20px);
-.user-profile-img{
+.nav-bar-profile {
+  padding-top: rem(20px);
+  .user-profile-img {
     margin-bottom: rem(20px);
-    img{
-        border-radius: 50%;
-        height: 5.5rem;
-        width: 5.5rem;
-        object-fit: cover;
+    img {
+      border-radius: 50%;
+      height: 5.5rem;
+      width: 5.5rem;
+      object-fit: cover;
     }
-}
-.nav-bar-menu-user{
-    color:$light-grey-4;
-    li{
-    
-        a{
-            color: inherit;
-            display: block;
-            padding:rem(20px) 10px;
-            letter-spacing: 1px;
-            position: relative;
-            transition: all .3s;
-            &:hover::before{
-                margin: 0;
-                padding: 0;
-                content: '';
-                height: 100%;
-                position: absolute;
-                background-color: $green-navbar;
-                width: 5px;
-                left: 0;
-                top:0;
-            }
-            &:hover,.active-link{
-                color:$white;
-                padding-left: 10%;
-            }
-       
-         
+  }
+  .nav-bar-menu-user {
+    color: $light-grey-4;
+    li {
+      a {
+        color: inherit;
+        display: block;
+        padding: rem(20px) 10px;
+        letter-spacing: 1px;
+        position: relative;
+        transition: all 0.3s;
+        &:hover::before {
+          margin: 0;
+          padding: 0;
+          content: "";
+          height: 100%;
+          position: absolute;
+          background-color: $green-navbar;
+          width: 5px;
+          left: 0;
+          top: 0;
         }
-        &:first-child{
-            border-top: 1px solid rgba($light-grey-4,0.2) ;
+        &:hover,
+        .active-link {
+          color: $white;
+          padding-left: 10%;
         }
-        &:not(:last-child){
-            border-bottom: 1px solid rgba($light-grey-4,0.2) ;
-        }
+      }
+      &:first-child {
+        border-top: 1px solid rgba($light-grey-4, 0.2);
+      }
+      &:not(:last-child) {
+        border-bottom: 1px solid rgba($light-grey-4, 0.2);
+      }
     }
-}
+  }
 }
 //CONTENT
-.main-content{
-color: $navbar-bgc;
+.main-content {
+  color: $navbar-bgc;
 }
 
-.details-container{
-margin: 0 auto;
-h3{
+.details-container {
+  margin: 0 auto;
+  h3 {
     color: rgba(0, 0, 0, 0.934);
     text-shadow: #e0e0e0 1px 1px 0;
     font-size: rem(35px);
     margin-bottom: 10px;
     text-align: left;
-   
-   
-}
-button{
+  }
+  button {
     margin-right: auto;
+  }
 }
 
+.user-container {
+  width: 100%;
 }
+.user-list-details {
+  margin-bottom: 15px;
+  max-width: 500px;
+  min-width: 100%;
 
-.user-container{
-    width: 100%;
-}
-.user-list-details{
-    margin-bottom: 15px;
-    max-width: 500px;
-        min-width: 100%;
+  color: $black;
+  background-color: $white;
+  .user-preview {
+    padding: rem(10px);
+    color: $player-top;
+    span {
+      margin-right: auto;
+      color: $light-grey-4;
+      &::first-letter {
+        text-transform: uppercase;
+      }
+    }
 
-    color: $black;
-    background-color: $white;
-    .user-preview{
-        padding: rem(10px);
-        color: $player-top;
-        span{
-            margin-right: auto;
-            color:$light-grey-4;
-            &::first-letter{
-                text-transform: uppercase;
-            }
-        }
-  
-        &:not(:last-child){
-            border-bottom: 1px solid $light-grey;
-            border-width: fit-content;
-            margin-bottom: rem(8px);
-        }
-    }  
+    &:not(:last-child) {
+      border-bottom: 1px solid $light-grey;
+      border-width: fit-content;
+      margin-bottom: rem(8px);
+    }
+  }
 }

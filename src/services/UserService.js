@@ -1,5 +1,5 @@
-import { utilService } from './UtilsService';
 import { httpService } from './HttpService';
+
 export const userService = {
   getById,
   remove,

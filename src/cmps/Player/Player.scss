@@ -9,13 +9,12 @@
   background-color: $player-bgc;
   border-top: 1px solid $player-top;
   width: 100%;
-  @include respond(mobile) {
-    padding-left: rem(15px);
+  @include respond(min-mobile) {
+    padding: 0 rem(15px) 0 rem(10px);
   }
   .volume-container {
     width: rem(300px);
     @include respond(min-mobile) {
-      // width: fit-content;
       position: absolute;
       right: -70px;
       bottom: 10px;
@@ -33,7 +32,6 @@
       min-width: rem(60px);
       @include respond(min-mobile) {
         width: rem(40px);
-        // max-width: rem(40px);
       }
     }
   }
@@ -60,7 +58,6 @@
 
       .play-song-btn {
         background-color: $white;
-        // padding: 8px 8px 8px 11px;
         width: rem(40px);
         height: rem(40px);
         border-radius: 50%;
@@ -121,13 +118,21 @@
     justify-content: flex-end;
     .song-name {
       font-size: rem(14px);
+      white-space: nowrap;
+      overflow: hidden;
+      max-width: 100%;
+      overflow: hidden;
       @include respond(narrow) {
         max-width: rem(120px);
-        white-space: nowrap;
-        overflow: hidden;
       }
       @include respond(max-mobile) {
-        width: 50%;
+        max-width: rem(80px);
+        display: flex;
+        align-self: flex-start;
+      }
+      @include respond(min-mobile) {
+        display: flex;
+        align-self: flex-start;
       }
     }
     .song-img {
@@ -139,6 +144,10 @@
     .like-song {
       background-color: transparent;
       margin-right: rem(10px);
+      @include respond(min-mobile) {
+        display: flex;
+        align-self: flex-start;
+      }
 
       .fa-heart {
         font-size: rem(16px);

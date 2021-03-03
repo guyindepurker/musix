@@ -1,9 +1,9 @@
 
+import './SignupForm.scss'
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { signup, loadUsers } from '../../store/actions/UserAction';
 
-import './SignupForm.scss'
 
 class SignupForm extends Component {
     state = {
@@ -21,7 +21,6 @@ class SignupForm extends Component {
 
     async componentDidMount() {
         const users = await this.props.loadUsers()
-        console.log('users:', users);
         this.setState({ users })
     }
 
@@ -30,19 +29,19 @@ class SignupForm extends Component {
     }
 
     onChange = (ev) => {
-        console.log(ev.target.name, ev.target.value);
         this.setState({ user: { ...this.state.user, [ev.target.name]: ev.target.value } })
     }
 
     onSignup = async (ev) => {
         ev.preventDefault();
         if (this.state.email === '' || this.state.fullName === '' || this.state.password === '') return;
-        const user = this.state.users.find(user => user.email === this.state.user.email)
+        const user = this.state.users.find(user => user.email.toLowerCase() === this.state.user.email.toLowerCase())
         if (user) {
             this.toggleModal()
             return;
         }
-        const { email, fullName, password, isAdmin, imgUrl } = this.state.user;
+        let { email, fullName, password, isAdmin, imgUrl } = this.state.user;
+        email = email.toLowerCase()
         const userCreds = { email, fullName, password, isAdmin, imgUrl };
         await this.props.signup(userCreds);
         this.props.history.push('/app')

@@ -1,17 +1,7 @@
-// const apiKey = 'AIzaSyBA-F0ZCU78Y0kgzgv7LmcvVEorD7dCi1o'
-// import { httpService } from './HttpService';
-
-// export const youtubeService = {
-//     getSongs
-// }
-
-// function getSongs(term) {
-//   return  httpService.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&videoEmbeddable=true&type=video&key=${apiKey}&q=${term}`)
-// }
 import axios from 'axios';
 import { utilService } from './UtilsService';
 
-const API_KEY = 'AIzaSyDztRVkKE-RMM_trTaVJr86X2iRBDI0MGQ'; //yuval
+const API_KEY = 'AIzaSyDztRVkKE-RMM_trTaVJr86X2iRBDI0MGQ';
 const SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 const DETAILS_URL = 'https://www.googleapis.com/youtube/v3/videos';
 
@@ -21,7 +11,7 @@ export const youtubeService = {
 }
 
 async function getSongs(term) {
-  console.log('term:', term);
+
   let res = await axios.get(`${SEARCH_URL}?part=snippet&videoEmbeddable=true&type=video&key=${API_KEY}&q=${term}`)
   let songs = res.data.items;
   songs = songs.map(song => _convertToSongObj(song));
