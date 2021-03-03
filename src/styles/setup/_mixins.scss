@@ -41,10 +41,16 @@
       @content;
     }
   }
-  // $break-max-normal:1000px;
+  // $break-max-normal:1050px;
 
   @if $breakpoint==max-normal {
     @media only screen and (max-width: $break-max-normal) {
+      @content;
+    }
+  }
+
+  @if $breakpoint==mid-normal {
+    @media only screen and (max-width: $break-mid-normal) {
       @content;
     }
   }
