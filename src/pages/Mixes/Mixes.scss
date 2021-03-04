@@ -1,0 +1,28 @@
+@import "./src/styles/setup";
+.mixes {
+  .search-container {
+    margin-bottom: rem(30px);
+    display: flex;
+    justify-content: center;
+    input {
+      width: rem(350px);
+      height: rem(35px);
+    }
+  }
+}
+
+.genres-names-list {
+  margin-bottom: rem(20px);
+  gap: rem(10px);
+  .genre-name {
+    cursor: pointer;
+    color: $white;
+    font-family: $font-primary;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    transition: all 0.3s;
+    &:hover {
+      color: $light-green;
+    }
+  }
+}

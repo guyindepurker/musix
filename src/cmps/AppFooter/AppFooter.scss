@@ -1,0 +1,117 @@
+@import "./src/styles/setup";
+.app-footer {
+  margin-top: 20px;
+  background-color: $black;
+  color: $white;
+  width: 100%;
+  padding: rem(50px) rem(100px);
+  @include respond(narrow) {
+    padding: rem(50px) rem(30px);
+  }
+
+  .main-footer {
+    @include respond(noraml) {
+      .logo-main {
+        width: 100%;
+      }
+    }
+    @include respond(narrow) {
+      > *:not(:first-child) {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    .logo-container {
+      color: $white;
+      margin-right: rem(80px);
+      height: fit-content;
+      align-items: center;
+      h1 {
+        font-family: $font-secondary;
+        font-size: rem(30px);
+        letter-spacing: 0.5px;
+        position: relative;
+        .copyrights {
+          font-size: rem(10px);
+          position: absolute;
+          top: 9px;
+          right: -9px;
+        }
+      }
+      .fa-spotify {
+        margin-right: 7px;
+        font-size: rem(45px);
+      }
+    }
+
+    .footer-links {
+      padding-top: rem(15px);
+      margin-right: auto;
+      > * {
+        font-family: $font-secondary;
+        padding: rem(10px) rem(20px);
+        color: $white;
+        letter-spacing: 0.5px;
+        font-size: rem(15px);
+        &:hover {
+          color: $light-green;
+        }
+      }
+      >*:last-child {
+        padding-bottom: 0;
+      }
+    }
+
+    .footer-content {
+      font-size: rem(14px);
+      font-family: $font-primary;
+      color: $gray;
+      height: fit-content;
+      align-items: end;
+      justify-content: flex-start;
+      align-self: flex-end;
+      @include respond(narrow) {
+       margin-top: 10px;
+      }
+      .fa-globe-asia {
+        font-size: rem(12px);
+      }
+      .copyrights {
+        text-align: center;
+        margin-top: 5px;
+      }
+    }
+
+    .about {
+      margin-bottom: rem(5px);
+      > * {
+        text-align: right;
+      }
+      .developer {
+        box-shadow: 0px 2px 11px -1px #3a3a3a;
+        margin: rem(10px);
+        border-radius: 5px;
+        font-size: rem(13px);
+        padding: 0 3px;
+        width: rem(190px);
+        > * {
+          margin: 4px;
+        }
+      }
+
+      .fa-linkedin,
+      .fa-github {
+        color: $white;
+      }
+    }
+
+    img {
+      height: rem(30px);
+      width: rem(30px);
+      border-radius: 50%;
+      margin: 0 5px;
+    }
+  }
+}
