@@ -1,0 +1,67 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  @include respond(mobile){
+    font-size: 10px;
+  }
+  @include respond(narrow){
+    font-size: 12px;
+  }
+}
+
+body {
+  height: 100vh;
+  background-color: $dark-black;
+  
+  font-family: $font-primary;
+}
+
+input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+.back-drop-layer {
+  position: fixed;
+  z-index: 2;
+
+top: 0;
+right: 0;
+left: 0;
+bottom: 0;
+  background-color: rgba(0, 0, 0, 0.404);
+}
+
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: rgba(0, 0, 0, 0.171);
+  
+}
+
+::-webkit-scrollbar:hover {
+  background-color: rgba(0, 0, 0, 0.09);
+}
+
+::-webkit-scrollbar-thumb:vertical {
+  background: rgba(237, 237, 237, 0.5);
+  -webkit-border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:vertical:active {
+  -webkit-border-radius: 100px;
+}

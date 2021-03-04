@@ -1,0 +1,31 @@
+@import "./src/styles/setup";
+
+.mix-details {
+  height: 85vh;
+  display: grid;
+  grid-template-rows: rem(260px) rem(60px) 1fr 100px;
+  grid-template-columns: rem(15px) 1fr rem(15px);
+  margin-top: -25px;
+  @include respond(narrow) {
+    grid-template-rows: rem(260px) rem(60px) 1fr 10px;
+  }
+  .grid {
+    grid-column: 1/-1;
+    &-header {
+      grid-row: 1/2;
+    }
+
+    &-action {
+      grid-row: 2/3;
+    }
+
+    &-content {
+      grid-row: 3/4;
+
+      overflow-y: scroll;
+    }
+    &-player {
+      grid-row: 4/5;
+    }
+  }
+}

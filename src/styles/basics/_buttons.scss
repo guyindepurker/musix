@@ -1,0 +1,30 @@
+.btn-green{
+color: $white;
+background-color:$light-green-3;
+letter-spacing: 1.4px;
+padding: rem(16px) rem(40px);
+transition-duration: .3s;
+min-width: 160px;
+text-transform: uppercase;
+border-radius: 20px;
+&:hover{
+    color:$light-green-3;
+    background-color:$white;
+}
+}
+.btn-primary {
+    width: 200px;
+    padding: 8px 12px;
+    background-color: $green-btn-color;
+    border-radius: 20px;
+    font-family: $font-secondary;
+    font-size: rem(15px);
+    color: $white;
+    letter-spacing: 0.5px;
+    align-self: center;
+    margin-top: rem(15px);
+    transition: all .2s;
+
+    &:hover {
+      background-color: $light-green;
+    }}
