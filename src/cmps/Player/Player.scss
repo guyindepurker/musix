@@ -122,6 +122,7 @@
       overflow: hidden;
       max-width: 100%;
       overflow: hidden;
+      text-overflow: ellipsis;
       @include respond(narrow) {
         max-width: rem(120px);
       }

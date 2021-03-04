@@ -84,23 +84,6 @@ function HomePage(props) {
             <HeroHomePage />
             <LastedMix />
             <FeatureHomePage />
-            <div className="developer-box ">
-                <h2 className="developer-title">About the developers</h2>
-                <div className="flex center-center wrap">
-                    <div className="developer flex center-center">
-                        <img alt="Guy" src={guyImg} />
-                        <p>Guy Indepurker</p>
-                        <a href="https://www.linkedin.com/in/guy-indepurker-5778091a4/" > <i className="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/guyindepurker" > <i className="fab fa-github"></i></a>
-                    </div>
-                    <div className="developer flex center-center">
-                        <img alt="Yuval" src={yuvalImg} />
-                        <p>Yuval Beit On</p>
-                        <a href="https://www.linkedin.com/in/yuvalbeiton/" > <i className="fab fa-linkedin"></i></a>
-                        <a href="https://github.com/YuvalBeitOn" > <i className="fab fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
         </section>
     )
 }

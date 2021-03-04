@@ -44,6 +44,7 @@
       text-transform: capitalize;
       white-space: nowrap;
       overflow: hidden;
+      text-overflow: ellipsis;
 
       max-width: rem(500px);
       @include respond(narrow) {

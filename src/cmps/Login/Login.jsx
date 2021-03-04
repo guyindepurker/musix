@@ -29,7 +29,8 @@ class Login extends Component {
         ev.preventDefault();
         if (this.state.email === '') return;
         const { email, password } = this.state.user
-        const userCreds = { email, password };
+        const emailLower = email.toLowerCase()
+        const userCreds = { email:emailLower, password };
         await this.props.login(userCreds)
         this.props.history.push('/app/mix')
     }
